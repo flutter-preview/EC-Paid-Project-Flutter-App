@@ -12,7 +12,7 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SignupPage(),
+      home: GridPage(),
       routes: {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
