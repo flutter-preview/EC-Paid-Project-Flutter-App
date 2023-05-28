@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'pages/login/login.dart';
+import 'pages/productGrid/product_grid.dart';
+import 'pages/signpage/signup.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(LoginApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class LoginApp extends StatelessWidget {
+  const LoginApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Flutter Ecommerce App",
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Home Page"),
-            backgroundColor: Colors.yellow[600],
-          ),
-          body: const Center(
-            child: Text("Flutter Ecommerce App"),
-          ),
-        ));
+      home: LoginPage(),
+      routes: {
+        "/login": (context) => LoginPage(),
+        "/signup": (context) => SignupPage(),
+        "/gridpage": (context) => GridPage(),
+      },
+    );
   }
 }
