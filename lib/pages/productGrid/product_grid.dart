@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../searchBar/searchbar.dart';
+// import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
 
 class GridPage extends StatelessWidget {
