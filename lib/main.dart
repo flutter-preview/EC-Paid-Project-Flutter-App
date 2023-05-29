@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
+import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'dart:ui';
 import 'appTheme/apptheme.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       cupertino: (_, __) => CupertinoAppData(
         theme: MyTheme.iosThemeData,
       ),
-      home: CartPage(),
+      home: Splash(),
       routes: {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),

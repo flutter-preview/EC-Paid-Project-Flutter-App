@@ -46,8 +46,7 @@ class Cart {
   double getSubtotal() {
     double subtotal = 0;
     for (var item in cartItems) {
-      subtotal +=
-          item.quantity * item.price; // Assuming each item has a price of $10
+      subtotal += item.quantity * item.price;
     }
     return subtotal;
   }
