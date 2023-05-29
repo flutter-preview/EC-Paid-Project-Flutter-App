@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-// import '../searchBar/searchbar.dart';
+import 'package:flutter_ecommerce_app/pages/productGrid/actions/actions.dart';
+
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import '../../models/food_and_category.dart';
 import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
 
@@ -18,7 +20,14 @@ class GridPage extends StatelessWidget {
       appBar: PlatformAppBar(
         title: Text('Grid page'),
       ),
-      body: CustomScrollView(
+      body:FutureBuilder(
+        future: getAllProduct(context),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<Food> food =
+                snapshot.data as List<Food>; 
+                return 
+      CustomScrollView(
         slivers: [
           SliverList(
             delegate: SliverChildListDelegate([
@@ -36,8 +45,8 @@ class GridPage extends StatelessWidget {
               (BuildContext context, int index) {
                 return GridItem(
                   image:
-                      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
-                  title: "Item ${index + 1}",
+                     food[index].image,
+                  title: "food",
                   price: "10",
                   width: itemWidth,
                   height: itemHeight,
@@ -47,7 +56,10 @@ class GridPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      );
+      }else{
+        return Center(child: CircularProgressIndicator(),);
+      }},)
     );
   }
 }

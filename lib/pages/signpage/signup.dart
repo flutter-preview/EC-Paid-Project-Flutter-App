@@ -49,8 +49,6 @@ class SignupPage extends StatelessWidget {
               // SearchBar()
                Expanded(child:SizedBox()),
                 SizedBox(
-                  height: 60,
-                  width: 60,
                   child: CircleAvatar(
                     radius: 100,
                     backgroundImage: NetworkImage(
@@ -94,7 +92,7 @@ class SignupPage extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      print(user.username);
+                      // print(user.username);
                     },
                     child: const Text('Signup'),
                     style: ElevatedButton.styleFrom(

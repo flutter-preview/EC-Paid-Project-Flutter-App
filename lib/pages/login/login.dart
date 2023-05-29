@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../../urls/urls.dart';
 import 'components/input_box.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -78,7 +79,8 @@ class LoginPage extends StatelessWidget {
                                 width: 200,
                                 height: 50,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () async{
+                                    Navigator.of(context).pushNamed("/gridpage");},
                                   child: const Text('Login'),
                                   style: ElevatedButton.styleFrom(
                                     elevation: 9.9,
