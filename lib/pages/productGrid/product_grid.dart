@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import '../searchBar/searchbar.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
@@ -22,7 +21,7 @@ class GridPage extends StatelessWidget {
         slivers: [
           SliverList(
             delegate: SliverChildListDelegate([
-              SearchBar(),
+              CustomSearchBar(),
             ]),
           ),
           SliverGrid(
