@@ -12,7 +12,6 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
-    // Add some demo items to the cart
     cart.addItem(CartItem(name: 'Item 1', image: 'images/shoe.png', price: 10));
     cart.addItem(CartItem(name: 'Item 2', image: 'images/shoe.png', price: 20));
     cart.addItem(CartItem(
