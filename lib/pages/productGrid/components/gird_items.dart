@@ -36,7 +36,7 @@ class GridItem extends StatelessWidget {
             ),
             child: Image.network(
               image,
-              width: width, // Adjust the width of the image to fit within the container
+              width: width,isAntiAlias:true , // Adjust the width of the image to fit within the container
               height: (height - 26) * 0.6, // Adjust the height of the image to fit within the container
               fit: BoxFit.cover,
             ),

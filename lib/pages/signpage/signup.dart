@@ -20,26 +20,39 @@ class SignupPage extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView(
-        padding: EdgeInsets.all(0.0),
+        // padding: EdgeInsets.all(0.0),
+        
+          padding:EdgeInsets.symmetric(horizontal: 20),
         children: [
           Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 9, 126, 181), Colors.white],
-              stops: [0.8, 20],
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-            ),
+             height:MediaQuery.of(context).size.height,
+          decoration: const 
+            BoxDecoration(
+  // gradient: LinearGradient(
+  //   colors: [Color.fromARGB(255, 9, 126, 181), Colors.white],
+  //   stops: [0.8, 20],
+  //   begin: Alignment.bottomLeft,
+  //   end: Alignment.topRight,
+  // ),
+  image: DecorationImage(
+    image: NetworkImage(
+      'https://w.forfun.com/fetch/59/59eea5bf2b204449655f734f3ea97a9c.jpeg?h=300&r=0.5',
+    ),
+    fit: BoxFit.contain,
+  
+)
           ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
               // SearchBar()
+               Expanded(child:SizedBox()),
                 SizedBox(
                   height: 60,
                   width: 60,
                   child: CircleAvatar(
+                    radius: 100,
                     backgroundImage: NetworkImage(
                       'https://images.unsplash.com/photo-1637079421287-2336e69d3257?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
                     ),
@@ -50,9 +63,9 @@ class SignupPage extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 500, sigmaY: 500),
+                    filter: ImageFilter.blur(sigmaX: 50, sigmaY: 100),
                     child: Container(
-                      width: 300,
+                      width: double.infinity,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -68,6 +81,7 @@ class SignupPage extends StatelessWidget {
                             color: Color.fromARGB(8, 247, 240, 240),
                           )
                         ],
+                            
                         color: Colors.white.withOpacity(0.0),
                       ),
                       child: MyInputColumn(user: user),
@@ -112,7 +126,9 @@ class SignupPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // somefunction
+                        },
                         child: Text("Already signed up yet? login"),
                       ),
                     ],

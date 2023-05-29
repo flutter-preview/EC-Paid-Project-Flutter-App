@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 // import '../searchBar/searchbar.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
 
 class GridPage extends StatelessWidget {
@@ -11,9 +13,10 @@ class GridPage extends StatelessWidget {
     final itemWidth = (screenWidth - 30) / 2; // Subtracting padding and spacing
     final itemHeight = itemWidth * 1.2; // Adjust the aspect ratio as needed
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Grid Page'),
+    return PlatformScaffold(
+      backgroundColor: Color.fromARGB(255, 171, 226, 252),
+      appBar: PlatformAppBar(
+        title: Text('Grid page'),
       ),
       body: CustomScrollView(
         slivers: [
