@@ -31,7 +31,7 @@ class GridPage extends StatelessWidget {
         slivers: [
           SliverList(
             delegate: SliverChildListDelegate([
-              SearchBar(),
+              CustomSearchBar(),
             ]),
           ),
           SliverGrid(

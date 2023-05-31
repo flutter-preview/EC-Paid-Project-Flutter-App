@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
+import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'dart:ui';
 import 'appTheme/apptheme.dart';
@@ -9,15 +12,14 @@ import 'pages/productDetail/product_detail_view.dart';
 import 'pages/productGrid/product_grid.dart';
 import 'pages/qrcode/qr.dart';
 import 'pages/signpage/signup.dart';
-import 'package:redux/redux.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+
 
 import 'package:device_preview/device_preview.dart';
 
 import 'reduxStore/app_state.dart';
 import 'reduxStore/reducer.dart';
 
-// import 'reduxStore/app_state.dart';
+
 void main() {
 
      final store=Store<AppState>(
@@ -52,7 +54,7 @@ void main() {
       cupertino: (_, __) => CupertinoAppData(
         theme: MyTheme.iosThemeData,
       ),
-      home: LoginPage(),
+      home: Splash(),
       routes: {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
@@ -61,5 +63,5 @@ void main() {
       },
     )
     );
-    }
+  }
   }
