@@ -60,6 +60,7 @@ void main() {
         "/signup": (context) => SignupPage(),
         "/gridpage": (context) => GridPage(),
         "/prductDetailView": (context) => ProductDetailsView(),
+        "/cart": (context) => CartPage(),
       },
     )
     );
