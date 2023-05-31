@@ -2,23 +2,23 @@ import 'dart:convert';
 
 class Food {
   int foodId=-1;
-  int categoryId;
-  String name;
+  int categoryId=-1;
+  String title;
   String image;
   double price;
 
-  Food( this.categoryId, this.name, this.price,this.image);
+  Food( this.categoryId, this.title, this.price,this.image);
 
   Food.fromJson(Map<String, dynamic> json)
-      : foodId = json['food_id'],
-        categoryId = json['category_id'],
-        name = json['name'],
-        image = json['image'],
+      : foodId = json['id'],
+        // categoryId = json['category_id'],
+        title = json['title'],
+        image = json['thumbnail'],
         price = json['price'];
 
   Map<String, dynamic> toJson() => {
         'category_id': categoryId,
-        'name': name,
+        'title': title,
         'price': price,
         'image': price,
       };

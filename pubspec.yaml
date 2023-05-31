@@ -39,6 +39,9 @@ dependencies:
   flutter_platform_widgets: ^3.3.4
   device_preview: ^1.1.0
   redux: ^5.0.0
+  flutter_redux: ^0.10.0
+  qr_code_scanner: ^1.0.1
+ 
 
 dev_dependencies:
   flutter_test:

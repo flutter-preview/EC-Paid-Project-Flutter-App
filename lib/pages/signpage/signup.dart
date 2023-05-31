@@ -22,7 +22,7 @@ class SignupPage extends StatelessWidget {
       body: ListView(
         // padding: EdgeInsets.all(0.0),
         
-          padding:EdgeInsets.symmetric(horizontal: 20),
+          // padding:EdgeInsets.symmetric(horizontal: 20),
         children: [
           Container(
              height:MediaQuery.of(context).size.height,
@@ -38,101 +38,103 @@ class SignupPage extends StatelessWidget {
     image: NetworkImage(
       'https://w.forfun.com/fetch/59/59eea5bf2b204449655f734f3ea97a9c.jpeg?h=300&r=0.5',
     ),
-    fit: BoxFit.contain,
+    fit: BoxFit.cover,
   
 )
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-              // SearchBar()
-               Expanded(child:SizedBox()),
-                SizedBox(
-                  child: CircleAvatar(
-                    radius: 100,
-                    backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1637079421287-2336e69d3257?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+          child: Expanded(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                // SearchBar()
+                //  Expanded(child:SizedBox()),
+                  SizedBox(
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage: NetworkImage(
+                        'https://images.unsplash.com/photo-1637079421287-2336e69d3257?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+                      ),
+                      backgroundColor: Colors.transparent,
                     ),
-                    backgroundColor: Colors.transparent,
                   ),
-                ),
-                const SizedBox(height: 40),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 50, sigmaY: 100),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          style: BorderStyle.solid,
-                          width: 2,
-                          color: Colors.black.withOpacity(0.2),
+                  const SizedBox(height: 30),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            width: 2,
+                            color: Colors.black.withOpacity(0.2),
+                          ),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              blurRadius: 10,
+                              spreadRadius: 40.0,
+                              offset: Offset(0, 10),
+                              color: Color.fromARGB(8, 247, 240, 240),
+                            )
+                          ],
+                              
+                          color: Colors.white.withOpacity(0.0),
                         ),
-                        boxShadow: const <BoxShadow>[
-                          BoxShadow(
-                            blurRadius: 10,
-                            spreadRadius: 40.0,
-                            offset: Offset(0, 10),
-                            color: Color.fromARGB(8, 247, 240, 240),
-                          )
-                        ],
-                            
-                        color: Colors.white.withOpacity(0.0),
-                      ),
-                      child: MyInputColumn(user: user),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // print(user.username);
-                    },
-                    child: const Text('Signup'),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 9.9,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
+                        child: MyInputColumn(user: user),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(Icons.golf_course),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: 200,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // print(user.username);
+                      },
+                      child: const Text('Signup'),
+                      style: ElevatedButton.styleFrom(
+                        elevation: 9.9,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                      ),
                     ),
-                    const SizedBox(width: 20),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(Icons.apple),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                SafeArea(
-                  child: Row(
+                  ),
+                  Expanded(child: const SizedBox()),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          // somefunction
-                        },
-                        child: Text("Already signed up yet? login"),
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.golf_course),
+                      ),
+                      const SizedBox(width: 20),
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.apple),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  Expanded(child: const SizedBox()),
+                  SafeArea(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            // somefunction
+                          },
+                          child: Text("Already signed up yet? login"),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

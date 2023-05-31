@@ -11,19 +11,14 @@ class AppState {
   final User user;
 
   AppState({required this.food, required this.foodList, required this.user});
+  factory AppState.initialState()=> AppState(food: Food(1,"",3.4,""), foodList: [], user: User(-1,"","",""));
 }
 
 // Combine the reducers
-AppState appReducer(AppState state, dynamic action) {
-  return AppState(
-    food: foodReducer(state.food, action),
-    foodList: foodListReducer(state.foodList, action),
-    user: userReducer(state.user, action),
-  );
-}
+
 
 // Create the Redux store
 final store = Store<AppState>(
   appReducer,
-  initialState: AppState(food: Food(1,"",3.4,""), foodList: [], user: User(-1,"","","")),
-);
+  initialState: AppState.initialState()
+  );

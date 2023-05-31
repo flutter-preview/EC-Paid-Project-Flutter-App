@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                    SizedBox(
                   // height: 60,
                   child: CircleAvatar(
-                    radius: 100,
+                    radius: 60,
                     backgroundImage: NetworkImage(
                       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',
                     ),
@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                         child: Container(
                           width: double.infinity,
                         // margin:EdgeInsets.fromLTRB(10,0,10,0),
@@ -80,7 +80,9 @@ class LoginPage extends StatelessWidget {
                                 height: 50,
                                 child: ElevatedButton(
                                   onPressed: () async{
-                                    Navigator.of(context).pushNamed("/gridpage");},
+// final a=await getAll()       ;                        print(a);    
+Navigator.of(context).pushNamed("/gridpage");
+},
                                   child: const Text('Login'),
                                   style: ElevatedButton.styleFrom(
                                     elevation: 9.9,
@@ -90,7 +92,7 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                    SizedBox(height: 30),
+                    Expanded(child: SizedBox()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -105,7 +107,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                        Expanded(child: SizedBox(height: 20)),
+                        Expanded(child: SizedBox()),
             SafeArea(child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [TextButton(onPressed: (){}, child: Text("not signedup yet?  signup")
             ,)],
             ),
