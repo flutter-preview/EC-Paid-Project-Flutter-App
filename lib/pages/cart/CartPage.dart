@@ -136,15 +136,22 @@ class _CartPageState extends State<CartPage> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             onPressed: () {},
-            child: Text(
-              'Proceed to Checkout',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+            child: TextButton(
+              child: Text(
+                'Proceed to Checkout',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              onPressed: (){
+                Navigator.pushNamed(context, "/qr");
+              },
             ),
           ),
+        
         ),
+        
       ),
     );
   }

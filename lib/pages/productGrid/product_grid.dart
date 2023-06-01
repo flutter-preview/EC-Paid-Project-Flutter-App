@@ -43,16 +43,17 @@ class GridPage extends StatelessWidget {
             ),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return GridItem(
+              return GridItem(
                   image:
                      food[index].image,
-                  title: "food",
-                  price: "10",
+                  title: food[index].title,
+                  price: food[index].price.toString(),
                   width: itemWidth,
                   height: itemHeight,
+                  id: food[index].foodId,
                 );
               },
-              childCount: 100,
+              childCount: food.length,
             ),
           ),
         ],

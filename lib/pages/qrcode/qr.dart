@@ -3,7 +3,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRCodeScanner extends StatefulWidget {
-  const QRCodeScanner({super.key});
+  const QRCodeScanner({Key? key}) : super(key: key);
 
   @override
   QRCodeScannerState createState() => QRCodeScannerState();
@@ -32,20 +32,29 @@ class QRCodeScannerState extends State<QRCodeScanner> {
       appBar: PlatformAppBar(
         title: Text('QR Code Scanner'),
       ),
-      body: Column(
+      body: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
-          Expanded(
-            flex: 5,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
+          QRView(
+            key: qrKey,
+            onQRViewCreated: _onQRViewCreated,
+          ),
+          Positioned(
+            child: Container(
+              width: 200.0,
+              height: 200.0,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.green,
+                  width: 2.0,
+                ),
+                borderRadius: BorderRadius.circular(12.0),
+              ),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Text('Scanned Data: $scannedData'),
-            ),
+          Positioned(
+            bottom: 24.0,
+            child: Text('Scanned Data: $scannedData'),
           ),
         ],
       ),
@@ -59,7 +68,7 @@ class QRCodeScannerState extends State<QRCodeScanner> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         scannedData = scanData.code!;
-        print(scannedData+"this sis ssi bghfghghjghjghgjhghghjghghghjghghg");
+        print(scannedData);
       });
     });
   }

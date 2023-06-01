@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+import '../../../reduxStore/app_state.dart';
+import '../../../urls/urls.dart';
 
 class GridItem extends StatelessWidget {
   final String image;
   final String title;
+  final int id;
   final String price;
   final double width;
   final double height;
@@ -13,13 +18,17 @@ class GridItem extends StatelessWidget {
     required this.price,
     required this.width,
     required this.height,
+    required this.id,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        // final=StoreProvider.of<AppState>(context);
+      onTap: () {
+      //  final a =await getOne(id);
+        // final store=StoreProvider.of<AppState>(context);
+        Navigator.of(context).pushNamed("/productDetail");
+        // store.dispatch(setFood());
       },
       child: Container(
         

@@ -13,6 +13,9 @@ List<SmallProduct> smProducts = [
   SmallProduct('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60'),
 ];
 class ProductDetails extends StatelessWidget {
+   String title;
+   String price;
+  ProductDetails({super.key, required this.title,required this.price});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,14 +43,14 @@ class ProductDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Product Name',
+                  title,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
-                  '\$135.00',
+                  '\$$price',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,

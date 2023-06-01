@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProductImage extends StatelessWidget {
+  final String image;
+  const ProductImage({Key? key,required this.image}):super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +16,7 @@ class ProductImage extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 30),
       width: double.infinity,
 
-      child: Image.network('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',colorBlendMode: BlendMode.softLight,fit: BoxFit.cover,),
+      child: Image.network(image,colorBlendMode: BlendMode.softLight,fit: BoxFit.cover,),
       
     );
   }

@@ -8,6 +8,7 @@ import '../../../urls/urls.dart';
 
 
 getAllProduct (BuildContext context)async{
+  print(Uri.base.toString());
   await Future.delayed(Duration(seconds: 2));
   final product=await  getAll();
   final decoded=jsonDecode(product);

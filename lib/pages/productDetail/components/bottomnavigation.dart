@@ -30,7 +30,12 @@ class ProductBottomNavigationBar extends StatelessWidget {
               onTap: () {
                 // productController.addToCart();
               },
-              child: Container(
+              child: 
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pushNamed("/cart");
+                },
+              child:Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.black,
@@ -44,7 +49,7 @@ class ProductBottomNavigationBar extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-              ),
+              ),),
             ),
           ),
         ],

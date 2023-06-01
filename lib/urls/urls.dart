@@ -10,3 +10,10 @@ getAll()async{
   final b=a.body;
   return (b);
 }
+getOne(id)async{
+  final a=await apiClient.get('/products/$id');
+  // print(a.body);
+  final b=a.body;
+  print(b);
+  return (b);
+}

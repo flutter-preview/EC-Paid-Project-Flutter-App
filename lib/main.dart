@@ -59,8 +59,9 @@ void main() {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
         "/gridpage": (context) => GridPage(),
-        "/prductDetailView": (context) => ProductDetailsView(),
+        "/productDetail": (context) => ProductDetailsView(),
         "/cart": (context) => CartPage(),
+        "/qr": (context) =>QRCodeScanner(),
       },
     )
     );

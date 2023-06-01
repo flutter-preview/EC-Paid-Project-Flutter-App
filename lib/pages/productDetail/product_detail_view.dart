@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/productDetail/action/productAction.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import '../../models/food_and_category.dart';
 import 'components/bottomnavigation.dart';
 import 'components/productImage.dart';
 import 'components/product_detail.dart';
@@ -10,7 +12,8 @@ class ProductDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformScaffold(
+    return 
+    PlatformScaffold(
       backgroundColor: Colors.white,
       appBar: PlatformAppBar(
         backgroundColor: Colors.white,
@@ -31,32 +34,44 @@ class ProductDetailsView extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          ProductImage(),
-          Expanded(
-            child: Stack(
-              children: [
-                ProductDetails(),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    width: 50,
-                    height: 5,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(50),
+      body: 
+      FutureBuilder(
+        future: productDetailLoad(context),
+        builder: (context, snapshot) {
+        if (snapshot.hasData){
+          Food food=snapshot.data as Food;
+        
+        return  Column(
+          children: [
+            ProductImage(image:food.image),
+            Expanded(
+              child: Stack(
+                children: [
+                  ProductDetails(title:food.title,price:food.price.toString()),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      width: 50,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          // Expanded(child: SizedBox()),
-          ProductBottomNavigationBar()
-        ],
-      ),
+            // Expanded(child: SizedBox()),
+            ProductBottomNavigationBar()
+          ],
+        );}
+        else{
+          return Center(child:CircularProgressIndicator());
+        }
+
+}     ),
       // bottomNavBar: PlatformNavBar(),
     );
   }
