@@ -27,7 +27,7 @@ class GridItem extends StatelessWidget {
       onTap: () {
       //  final a =await getOne(id);
         // final store=StoreProvider.of<AppState>(context);
-        Navigator.of(context).pushNamed("/productDetail");
+        Navigator.of(context).pushNamed("/productDetail",arguments: id.toString());
         // store.dispatch(setFood());
       },
       child: Container(

@@ -11,11 +11,12 @@ productDetailLoad(BuildContext context)async{
 
   //  final con=Uri.base.pathSegments.last;
   //  print(con);
+  final args = ModalRoute.of(context)!.settings.arguments as String;
   await Future.delayed(Duration(seconds: 2));
-  final a=await getOne(1);
+  final a=await getOne(args);
   final decode=jsonDecode(a);
   final Food food=Food.fromJson(decode);
-  print(food.image+"sjk");
+  // print(food.image+"sjk");
   // final store=StoreProvider.of<AppState>(context);
 // final product=store.state.food;
 // final a=product.map<Food>((json)=>Food.fromJson(json));

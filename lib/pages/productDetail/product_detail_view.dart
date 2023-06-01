@@ -8,7 +8,7 @@ import 'components/productImage.dart';
 import 'components/product_detail.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  ProductDetailsView({Key? key}) : super(key: key);
+  ProductDetailsView({Key? key, required String arguments}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ProductDetailsView extends StatelessWidget {
       appBar: PlatformAppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () =>Navigator.pop(context),
           icon: Icon(
             Icons.adaptive.arrow_back,
             color: Colors.black,
@@ -26,7 +26,7 @@ class ProductDetailsView extends StatelessWidget {
         ),
         trailingActions: [
           IconButton(
-            onPressed: () {},
+            onPressed: (){},
             icon: Icon(
               Icons.shopping_bag_outlined,
               color: Colors.black,

@@ -28,7 +28,7 @@ void main() {
     );
  runApp(
   DevicePreview(
-    enabled:false,
+    enabled:true,
     builder:(context)=>
     MyApp(store:store))
     );
@@ -59,7 +59,7 @@ void main() {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
         "/gridpage": (context) => GridPage(),
-        "/productDetail": (context) => ProductDetailsView(),
+        "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),
         "/cart": (context) => CartPage(),
         "/qr": (context) =>QRCodeScanner(),
       },
