@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
 import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -22,7 +23,7 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  // Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
@@ -39,28 +40,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
-        store: store,   
-    child:PlatformApp(
-      title: 'App Title',
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      material: (_, __) => MaterialAppData(
-        theme: MyTheme.appThemeData,
-      ),
-      cupertino: (_, __) => CupertinoAppData(
-        theme: MyTheme.iosThemeData,
-      ),
-      home: MapPage(),
-      routes: {
-        "/login": (context) => LoginPage(),
-        "/signup": (context) => SignupPage(),
-        "/gridpage": (context) => GridPage(),
-        "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),
-        "/cart": (context) => CartPage(),
-        "/qr": (context) =>QRCodeScanner(),
-      },
-    )
-    );
+        store: store,
+        child: PlatformApp(
+          title: 'App Title',
+          useInheritedMediaQuery: true,
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
+          material: (_, __) => MaterialAppData(
+            theme: MyTheme.appThemeData,
+          ),
+          cupertino: (_, __) => CupertinoAppData(
+            theme: MyTheme.iosThemeData,
+          ),
+          home: HomePage(),
+          routes: {
+            "/login": (context) => LoginPage(),
+            "/signup": (context) => SignupPage(),
+            "/home": (context) => HomePage(),
+            "/gridpage": (context) => GridPage(),
+            "/productDetail": (context) => ProductDetailsView(
+                arguments:
+                    ModalRoute.of(context)?.settings.arguments as String),
+            "/cart": (context) => CartPage(),
+            "/qr": (context) => QRCodeScanner(),
+          },
+        ));
   }
-  }
+}
