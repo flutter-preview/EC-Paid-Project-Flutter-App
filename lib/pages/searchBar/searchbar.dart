@@ -55,7 +55,8 @@ class CustomSearchBar extends StatelessWidget {
           },
           onSuggestionSelected: (suggestion) {
             _textEditingController.text = suggestion.toString();
-            print('Selected: $suggestion');
+            // print('Selected: $suggestion');
+            Navigator.pushNamed(context, "gridpage");
           },
         ),
       ),

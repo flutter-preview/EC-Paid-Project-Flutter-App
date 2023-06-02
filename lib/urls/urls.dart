@@ -6,7 +6,7 @@ final apiClient = ApiClient(
 );
 getAll()async{
   final a=await apiClient.get('/products?limit=10');
-  // print(a.body);
+  print(a.body);
   final b=a.body;
   return (b);
 }

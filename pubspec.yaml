@@ -42,6 +42,7 @@ dependencies:
   flutter_redux: ^0.10.0
   qr_code_scanner: ^1.0.1
   flutter_typeahead: ^4.6.0
+  google_maps_flutter: ^2.2.8
  
 
 dev_dependencies:

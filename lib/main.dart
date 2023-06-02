@@ -7,6 +7,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'dart:ui';
 import 'appTheme/apptheme.dart';
+import 'googleMap/google_map.dart';
 import 'pages/login/login.dart';
 import 'pages/productDetail/product_detail_view.dart';
 import 'pages/productGrid/product_grid.dart';
@@ -54,7 +55,7 @@ void main() {
       cupertino: (_, __) => CupertinoAppData(
         theme: MyTheme.iosThemeData,
       ),
-      home: Splash(),
+      home: MapPage(),
       routes: {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
