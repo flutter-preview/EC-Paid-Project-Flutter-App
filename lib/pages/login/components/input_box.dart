@@ -5,26 +5,27 @@ class MyInputBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-                          children: <Widget>[
-                            SizedBox(height: 30,),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Email',
-                                prefixIcon: Icon(Icons.email),
-                              ),
-                            ),
-                            SizedBox(height: 40),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                labelText: 'Password',
-                                prefixIcon: Icon(Icons.lock),
-                              ),
-                              obscureText: true,
-                            ),
-                            SizedBox(height: 50),
-                           
-                          ],
-                        );
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 30,
+        ),
+        TextFormField(
+          decoration: const InputDecoration(
+            labelText: 'Email',
+            prefixIcon: Icon(Icons.email),
+          ),
+        ),
+        SizedBox(height: 40),
+        TextFormField(
+          decoration: const InputDecoration(
+            labelText: 'Password',
+            prefixIcon: Icon(Icons.lock),
+          ),
+          obscureText: true,
+        ),
+        SizedBox(height: 50),
+      ],
+    );
   }
 }
