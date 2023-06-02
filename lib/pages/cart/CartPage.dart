@@ -111,7 +111,7 @@ class _CartPageState extends State<CartPage> {
               ListTile(
                 title: Text('Delivery Charges'),
                 // trailing:
-                Text('${cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
+                // Text('${cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
               ),
               ListTile(
                 title: Text('Total'),
