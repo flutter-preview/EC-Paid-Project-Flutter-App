@@ -2,10 +2,8 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/auth_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../urls/urls.dart';
 import 'components/input_box.dart';
 
 class LoginPage extends StatelessWidget {

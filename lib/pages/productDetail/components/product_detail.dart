@@ -12,6 +12,7 @@ List<SmallProduct> smProducts = [
   SmallProduct('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60'),
   SmallProduct('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60'),
 ];
+// ignore: must_be_immutable
 class ProductDetails extends StatelessWidget {
    String title;
    String price;
@@ -22,7 +23,7 @@ class ProductDetails extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40, right: 14, left: 14),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Color.fromARGB(122, 158, 158, 158)),
+        border: Border.all(color: const Color.fromARGB(122, 158, 158, 158)),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),

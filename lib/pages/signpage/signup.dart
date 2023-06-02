@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../models/signup.dart';
-import '../searchBar/searchbar.dart';
 import 'components/my_input_column.dart';
 
 class SignupPage extends StatelessWidget {

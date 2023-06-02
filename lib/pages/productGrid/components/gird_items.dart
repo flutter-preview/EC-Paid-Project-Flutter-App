@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-import '../../../reduxStore/app_state.dart';
-import '../../../urls/urls.dart';
 
 class GridItem extends StatelessWidget {
   final String image;
@@ -12,7 +9,7 @@ class GridItem extends StatelessWidget {
   final double width;
   final double height;
 
-  const GridItem({
+  const GridItem({super.key, 
     required this.image,
     required this.title,
     required this.price,

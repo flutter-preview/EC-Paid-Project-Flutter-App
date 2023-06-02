@@ -1,12 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
-import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'dart:ui';
 import 'appTheme/apptheme.dart';
 import 'googleMap/google_map.dart';
 import 'pages/login/login.dart';
@@ -53,12 +50,12 @@ class MyApp extends StatelessWidget {
       ),
       home: MapPage(),
       routes: {
-        "/login": (context) => LoginPage(),
+        "/login": (context) => const LoginPage(),
         "/signup": (context) => SignupPage(),
-        "/gridpage": (context) => GridPage(),
+        "/gridpage": (context) => GridPage(arguments: ModalRoute.of(context)?.settings.arguments),
         "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),
         "/cart": (context) => CartPage(),
-        "/qr": (context) =>QRCodeScanner(),
+        "/qr": (context) =>const QRCodeScanner(),
       },
     )
     );

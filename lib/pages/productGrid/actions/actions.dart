@@ -8,19 +8,37 @@ import '../../../urls/urls.dart';
 
 
 getAllProduct (BuildContext context)async{
-  print(Uri.base.toString());
-  await Future.delayed(Duration(seconds: 2));
+
+ final jsonString = ModalRoute.of(context)?.settings.arguments as String?;
+  await Future.delayed(const Duration(seconds: 2));
+
+    if (jsonString != null && jsonString.isNotEmpty) {
+      final jsonData = jsonDecode(jsonString);
+      final search = jsonData['search'];
+print(search);
+
+  final product=await  getSearch(search);
+  final decoded=jsonDecode(product);
+  print(decoded);
+  if(decoded.length>1 ){
+final   food = decoded['products'] as List<dynamic>;
+  final products=food.map<Food>((json)=>Food.fromJson(json)).toList();
+  return products;
+  }
+if(decoded.length==1){
+final product=Food.fromJson(decoded);
+return product;
+}
+}else{
   final product=await  getAll();
   final decoded=jsonDecode(product);
 final   food = decoded['products'] as List<dynamic>;
-  // final product2=product.products;
-  // final m=product.products;
-  // print(food);
-  // print(food);
   final products=food.map<Food>((json)=>Food.fromJson(json)).toList();
-  // print(products);
-  // print(products[0].foodId);
-// final store= StorePe
-// print(products[0].title+"sdsjhjh");
 return products;
+}
+//   if(routeArgs != null){
+//    final uri = Uri.parse(routeArgs);
+//   final search = uri.queryParameters['param1'];
+
+
 }

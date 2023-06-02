@@ -1,15 +1,14 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class CustomSearchBar extends StatelessWidget {
   final List<String> suggestions=[
-  'John',
-  'Jane',
-  'Alex',
-  'Alice',
-  'Bob',
-  'Carol',
+  'Laptop',
+  'mobile',
+  'tablet',
 ];
  final TextEditingController _textEditingController = TextEditingController();
 
@@ -55,8 +54,10 @@ class CustomSearchBar extends StatelessWidget {
           },
           onSuggestionSelected: (suggestion) {
             _textEditingController.text = suggestion.toString();
-            // print('Selected: $suggestion');
-            Navigator.pushNamed(context, "gridpage");
+            final jsonData = {'search': suggestion };
+final jsonString = jsonEncode(jsonData);
+            print('Selected: $suggestion');
+            Navigator.pushNamed(context, "/gridpage",arguments: jsonString);
           },
         ),
       ),

@@ -6,7 +6,7 @@ import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
 
 class GridPage extends StatelessWidget {
-  GridPage({Key? key}) : super(key: key);
+  GridPage({Key? key, Object? arguments}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

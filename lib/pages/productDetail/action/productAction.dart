@@ -1,9 +1,8 @@
+// ignore: file_names
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/reduxStore/app_state.dart';
 import 'package:flutter_ecommerce_app/urls/urls.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../../models/food_and_category.dart';
 

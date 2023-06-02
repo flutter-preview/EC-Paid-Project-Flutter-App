@@ -17,3 +17,8 @@ getOne(id)async{
   print(b);
   return (b);
 }
+getSearch(searchItem)async{
+final a =await apiClient.get("/products/search?q=$searchItem");
+final b=a.body;
+return b;
+}
