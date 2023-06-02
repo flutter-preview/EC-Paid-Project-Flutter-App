@@ -1,4 +1,5 @@
 // Reducer for a single food item
+import '../models/cart.dart';
 import '../models/food_and_category.dart';
 import '../models/user.dart';
 import 'action.dart';
@@ -10,6 +11,7 @@ AppState appReducer(AppState state, dynamic action) {
     food: foodReducer(state.food, action),
     foodList: foodListReducer(state.foodList, action),
     user: userReducer(state.user, action),
+    cart:cartReducer(state.cart, action)
   );
 }
 
@@ -36,4 +38,24 @@ User userReducer(User user, dynamic action) {
     return action.user;
   }
   return user;
+}
+
+Cart cartReducer(Cart state, CartAction action) {
+  final newState = Cart();
+  newState.food.addAll(state.food);
+
+  switch (action.type) {
+    case CartActionType.addItem:
+      final item = action.payload;
+      newState.addItem(item);
+      break;
+    case CartActionType.removeItem:
+      newState.removeItem(action.payload);
+      break;
+    case CartActionType.clearCart:
+      newState.clearCart();
+      break;
+  }
+
+  return newState;
 }

@@ -1,5 +1,6 @@
 import 'package:redux/redux.dart';
 
+import '../models/cart.dart';
 import '../models/food_and_category.dart';
 import '../models/user.dart';
 import 'reducer.dart';
@@ -9,9 +10,10 @@ class AppState {
   final Food food;
   final List<Food> foodList;
   final User user;
+  final Cart cart;
 
-  AppState({required this.food, required this.foodList, required this.user});
-  factory AppState.initialState()=> AppState(food: Food(1,"",3.4,""), foodList: [], user: User(-1,"","",""));
+  AppState({required this.food, required this.foodList, required this.user,required this.cart});
+  factory AppState.initialState()=> AppState(food: Food(1,"",3.4,""), foodList: [], user: User(-1,"","",""),cart:Cart());
 }
 
 // Combine the reducers

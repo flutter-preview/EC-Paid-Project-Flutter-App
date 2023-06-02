@@ -64,7 +64,7 @@ class ProductDetailsView extends StatelessWidget {
               ),
             ),
             // Expanded(child: SizedBox()),
-            ProductBottomNavigationBar()
+            ProductBottomNavigationBar(food:food),
           ],
         );}
         else{

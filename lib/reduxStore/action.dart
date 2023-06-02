@@ -1,4 +1,5 @@
 // Actions for a single food item
+import '../models/cart.dart';
 import '../models/food_and_category.dart';
 import '../models/user.dart';
 
@@ -21,3 +22,18 @@ class SetUserAction {
 
   SetUserAction(this.user);
 }
+
+
+enum CartActionType {
+  addItem,
+  removeItem,
+  clearCart,
+}
+
+class CartAction {
+  final CartActionType type;
+  final dynamic payload;
+
+  CartAction(this.type, {this.payload});
+}
+
