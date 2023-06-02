@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
@@ -14,30 +15,25 @@ import 'pages/productGrid/product_grid.dart';
 import 'pages/qrcode/qr.dart';
 import 'pages/signpage/signup.dart';
 
-
 import 'package:device_preview/device_preview.dart';
 
 import 'reduxStore/app_state.dart';
 import 'reduxStore/reducer.dart';
 
-
 void main() {
-
-     final store=Store<AppState>(
-      appReducer,
-      initialState:AppState.initialState(),
-    );
- runApp(
-  DevicePreview(
-    enabled:true,
-    builder:(context)=>
-    MyApp(store:store))
-    );
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  final store = Store<AppState>(
+    appReducer,
+    initialState: AppState.initialState(),
+  );
+  runApp(
+      DevicePreview(enabled: true, builder: (context) => MyApp(store: store)));
+  // MyApp(store: store));
 }
 
-
-  class MyApp extends StatelessWidget {
-    final Store<AppState> store;
+class MyApp extends StatelessWidget {
+  final Store<AppState> store;
   const MyApp({Key? key, required this.store}) : super(key: key);
 
   @override
