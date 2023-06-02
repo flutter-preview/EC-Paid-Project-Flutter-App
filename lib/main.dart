@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -19,7 +20,7 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  // Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
