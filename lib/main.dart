@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       cupertino: (_, __) => CupertinoAppData(
         theme: MyTheme.iosThemeData,
       ),
-      home: MapPage(),
+      home: HomePage(),
       routes: {
         "/login": (context) => const LoginPage(),
         "/signup": (context) => SignupPage(),

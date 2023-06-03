@@ -39,9 +39,17 @@ class ProductBottomNavigationBar extends StatelessWidget {
             Expanded(
               child: InkWell(
                 onTap: (){
-                  store.dispatch(CartAction(CartActionType.addItem,payload:food));
-                  Navigator.of(context).pushNamed("/cart");
-                  print(store.state.cart.food.length);
+                  final bool itemExists = store.state.cart.food.any(
+  (item) => item.foodId == food.foodId,
+);
+
+  if (itemExists == true) {
+    Navigator.of(context).pushNamed("/cart");
+  } else {
+    // Item does not exist in the cart, add it and navigate to the cart page
+    store.dispatch(CartAction(CartActionType.addItem, payload: food));
+    Navigator.of(context).pushNamed("/cart");
+  }
                 },
               child:Container(
                 alignment: Alignment.center,

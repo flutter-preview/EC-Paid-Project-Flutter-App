@@ -6,7 +6,6 @@ import '../../reduxStore/action.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
-
   @override
   State<CartPage> createState() => _CartPageState();
 }
@@ -33,7 +32,10 @@ class _CartPageState extends State<CartPage> {
             actions: [
               IconButton(
                 onPressed: () {
-                  store.dispatch(CartAction(CartActionType.clearCart));
+                  store.dispatch(CartAction(CartActionType.clearCart)); 
+                  setState(() {});
+  // Navigator.of(context).pushNamed("/cart");
+
                 },
                 icon: Icon(Icons.delete_rounded),
                 tooltip: 'Empty the entire cart',
@@ -79,6 +81,8 @@ class _CartPageState extends State<CartPage> {
                                 onPressed: () {
                                   store
                                       .dispatch(CartAction(CartActionType.removeItem, payload: item.foodId));
+                                      setState(() {});
+
                                 },
                               ),
                             ),
@@ -92,8 +96,10 @@ class _CartPageState extends State<CartPage> {
                                 icon: Icon(Icons.add_circle),
                                 color: Colors.white,
                                 onPressed: () {
-                                  StoreProvider.of<AppState>(context)
+                                  store
                                       .dispatch(CartAction(CartActionType.addItem, payload: item));
+                                       setState(() {});
+
                                 },
                               ),
                             ),
@@ -106,16 +112,16 @@ class _CartPageState extends State<CartPage> {
               ),
               ListTile(
                 title: Text('Subtotal'),
-                trailing: Text('${cart.getSubtotal().toStringAsFixed(2)} PKR'),
+                trailing: Text('${store.state.cart.getSubtotal().toStringAsFixed(2)} PKR'),
               ),
               ListTile(
                 title: Text('Delivery Charges'),
-                // trailing:
-                // Text('${cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
+                trailing:
+                Text('${store.state.cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
               ),
               ListTile(
                 title: Text('Total'),
-                trailing: Text('${cart.getTotal().toStringAsFixed(2)} PKR'),
+                trailing: Text('${(store.state.cart.getSubtotal()+store.state.cart.getDeliveryCharges()).toStringAsFixed(2)} PKR'),
               ),
             ],
           ),
