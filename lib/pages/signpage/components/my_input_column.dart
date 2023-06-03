@@ -80,6 +80,14 @@ class _MyInputColumnState extends State<MyInputColumn> {
 
         ),
         const SizedBox(height: 10),
+        CustomTextField(
+          user: widget.user,
+          type: 'phone',
+          myIcon: Icon(Icons.phone),
+          label: 'phone',
+          placeholder: 'phone',
+
+        ),
       ],
     );
   }
