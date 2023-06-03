@@ -4,12 +4,14 @@ class SignupUser {
   String password = '';
   String confirmPassword = '';
   String address = '';
+  int phone =0;
 SignupUser();
   SignupUser.fromJson(Map<String, dynamic> json)
       : email = json['email'],
         username = json['username'],
         password= json['password'],
         confirmPassword = json['confirmPassword'],
+        phone = json['phone'],
         address = json['address'];
 
   Map<String, dynamic> toJson() => {
@@ -17,6 +19,7 @@ SignupUser();
         'username': username,
         'password': password,
         'address': address,
+        'phone': phone,
       };
 
 }
