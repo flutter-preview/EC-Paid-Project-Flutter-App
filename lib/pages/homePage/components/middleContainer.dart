@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class GradientContainer extends StatelessWidget {
+  
+  final String text;
+  final String image ;
+  GradientContainer({super.key,required this.text,required this.image});
+
   @override
   Widget build(BuildContext context) {
     double containerHeight = MediaQuery.of(context).size.height / 6;
@@ -40,7 +45,7 @@ class GradientContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Fuel your homes',
+                    text,
                     style: TextStyle(
                       fontSize: 24.0,
                       color: Colors.white,
@@ -52,7 +57,7 @@ class GradientContainer extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, '/gridpage');
                     },
-                    child: const Text('Order Now'),
+                    child: const Text('Order More Now'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.cyan[700],
                     ),
@@ -66,7 +71,7 @@ class GradientContainer extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage('images/LPG.jpg'),
+                  image: NetworkImage(image),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/appTheme/apptheme.dart';
-import 'package:flutter_ecommerce_app/homePage/components/gridItems.dart';
+import 'package:flutter_ecommerce_app/pages/homePage/components/gridItems.dart';
 
 class GridContainer extends StatelessWidget {
   final List<String> images = [

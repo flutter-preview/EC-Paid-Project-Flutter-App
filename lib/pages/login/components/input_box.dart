@@ -45,7 +45,7 @@ class _MyInputBoxState extends State<MyInputBox> {
           ),
           obscureText: !_isPasswordVisible,
            onChanged: (value){setState(() {
-            widget.loginuser.email=value;
+            widget.loginuser.password=value;
           });},
         ),
         SizedBox(height: 50),
