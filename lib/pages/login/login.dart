@@ -1,21 +1,23 @@
+import 'dart:convert';
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import '../../models/user.dart';
+import '../../urls/urls.dart';
+import 'components/google_apple_button.dart';
 import 'components/input_box.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
+final LoginUser loginuser=LoginUser();
+  LoginPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
+    return PlatformScaffold(
+      // extendBodyBehindAppBar: true,
+      appBar: PlatformAppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
       body: ListView(padding: const EdgeInsets.all(0.0), children: [
         Container(
@@ -74,7 +76,7 @@ class LoginPage extends StatelessWidget {
                           ],
                           color: Colors.white.withOpacity(0.0)),
 
-                      child: const MyInputBox(),
+                      child:  MyInputBox(loginuser: loginuser),
                     ),
                   ),
                 ),
@@ -83,9 +85,12 @@ class LoginPage extends StatelessWidget {
                   width: 200,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () async {
-// final a=await getAll()       ;                        print(a);
-                      Navigator.of(context).pushNamed("/gridpage");
+                    onPressed: ()async{
+                      final json=jsonEncode(loginuser);
+                     await login(json);
+                      print(json);
+print(loginuser.email);
+                      // Navigator.of(context).pushNamed("/gridpage");
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 9.9,
@@ -97,40 +102,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const Expanded(child: SizedBox()),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      onPressed: () {
-                        signInWithGoogle(context);
-                        // if (FirebaseAuth.instance.currentUser != null) {
-                        //   Navigator.of(context).pushNamed("/gridpage");
-                        // }
-                      },
-                      child: const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.android),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      onPressed: () {
-                        // signInWithGoogle();
-                        signOut();
-                      },
-                      child: const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.apple),
-                      ),
-                    ),
-                  ],
-                ),
+                GoogleAndAppleButton(),
                 const Expanded(child: SizedBox()),
                 SafeArea(
                   child: Row(
@@ -151,32 +123,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  signOut() {
-    FirebaseAuth.instance.signOut();
-  }
-}
-
-signInWithGoogle(BuildContext context) async {
-  try {
-    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-
-    if (userCredential.user != null) {
-      // Navigate to the Homepage
-      Navigator.pushReplacementNamed(context, '/gridpage');
-      print(userCredential.user?.displayName);
-    }
-  } catch (e) {
-    // Handle sign-in error
-    print('Sign-in with Google failed: $e');
-  }
 }

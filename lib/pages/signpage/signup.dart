@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 import '../../models/signup.dart';
+import 'components/google_apple_button.dart';
 import 'components/my_input_column.dart';
 
 class SignupPage extends StatelessWidget {
@@ -92,7 +94,10 @@ class SignupPage extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        // print(user.username);
+                        print(user.username);
+final json =jsonEncode(user);
+print(json);
+
                       },
                       child: const Text('Signup'),
                       style: ElevatedButton.styleFrom(
@@ -104,20 +109,7 @@ class SignupPage extends StatelessWidget {
                     ),
                   ),
                   Expanded(child: const SizedBox()),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.golf_course),
-                      ),
-                      const SizedBox(width: 20),
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.apple),
-                      ),
-                    ],
-                  ),
+                 GoogleAndAppleButtonSignup(),
                   Expanded(child: const SizedBox()),
                   SafeArea(
                     child: Row(

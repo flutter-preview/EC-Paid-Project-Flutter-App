@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../models/user.dart';
 import '../../../platfromSettings/input.dart';
 
 class MyInputBox extends StatefulWidget {
-  const MyInputBox({Key? key}) : super(key: key);
+final  LoginUser loginuser;
+  const MyInputBox({Key? key,required this.loginuser}) : super(key: key);
 
   @override
   _MyInputBoxState createState() => _MyInputBoxState();
@@ -27,6 +29,9 @@ class _MyInputBoxState extends State<MyInputBox> {
         PlatformTextField(
           labelText: 'Email',
           prefixIcon: Icon(Icons.email),
+          onChanged: (value){setState(() {
+            widget.loginuser.email=value;
+          });},
         ),
         SizedBox(height: 40),
         PlatformTextField(
@@ -39,6 +44,9 @@ class _MyInputBoxState extends State<MyInputBox> {
             ),
           ),
           obscureText: !_isPasswordVisible,
+           onChanged: (value){setState(() {
+            widget.loginuser.email=value;
+          });},
         ),
         SizedBox(height: 50),
       ],

@@ -10,7 +10,7 @@ AppState appReducer(AppState state, dynamic action) {
   return AppState(
     food: foodReducer(state.food, action),
     foodList: foodListReducer(state.foodList, action),
-    user: userReducer(state.user, action),
+    // user: userReducer(state.user, action),
     cart:cartReducer(state.cart, action)
   );
 }
@@ -33,12 +33,12 @@ List<Food> foodListReducer(List<Food> foodList, dynamic action) {
 }
 
 // Reducer for a user
-User userReducer(User user, dynamic action) {
-  if (action is SetUserAction) {
-    return action.user;
-  }
-  return user;
-}
+// User userReducer(User user, dynamic action) {
+//   if (action is SetUserAction) {
+//     return action.user;
+//   }
+//   return user;
+// }
 
 Cart cartReducer(Cart state, CartAction action) {
   final newState = Cart();

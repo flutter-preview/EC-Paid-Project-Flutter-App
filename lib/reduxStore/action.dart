@@ -17,11 +17,11 @@ class SetFoodListAction {
 }
 
 // Actions for a user
-class SetUserAction {
-  final User user;
+// class SetUserAction {
+//   final User user;
 
-  SetUserAction(this.user);
-}
+//   SetUserAction(this.user);
+// }
 
 
 enum CartActionType {

@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(),
       routes: {
-        "/login": (context) => const LoginPage(),
+        "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
         "/gridpage": (context) => GridPage(arguments: ModalRoute.of(context)?.settings.arguments),
         "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),

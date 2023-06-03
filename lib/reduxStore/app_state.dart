@@ -9,11 +9,23 @@ import 'reducer.dart';
 class AppState {
   final Food food;
   final List<Food> foodList;
-  final User user;
+  // final User user;
   final Cart cart;
 
-  AppState({required this.food, required this.foodList, required this.user,required this.cart});
-  factory AppState.initialState()=> AppState(food: Food(1,"",3.4,""), foodList: [], user: User(-1,"","",""),cart:Cart());
+  AppState({required this.food, 
+  required this.foodList, 
+  
+  // required this.user,
+
+  required this.cart});
+  factory AppState.initialState()=> AppState(food: Food(1,"",3.4,""), foodList: [],
+   
+  //  user: User(-1,"","",""),
+   
+   cart:Cart());
+
+
+
 }
 
 // Combine the reducers
