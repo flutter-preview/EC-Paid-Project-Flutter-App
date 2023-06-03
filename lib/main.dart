@@ -9,6 +9,7 @@ import 'package:redux/redux.dart';
 import 'appTheme/apptheme.dart';
 import 'googleMap/google_map.dart';
 import 'pages/login/login.dart';
+import 'pages/orderDetailPage/order_detail.dart';
 import 'pages/productDetail/product_detail_view.dart';
 import 'pages/productGrid/product_grid.dart';
 import 'pages/qrcode/qr.dart';
@@ -58,7 +59,8 @@ class MyApp extends StatelessWidget {
         "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),
         "/cart": (context) => CartPage(),
         "/qr": (context) =>const QRCodeScanner(),
-        "/orderDetail": (context) => OrderHistory(),
+        "/orderHistory": (context) => OrderHistory(),
+        "/orderDetail": (context) => OrderDetailPage(),
       },
     )
     );

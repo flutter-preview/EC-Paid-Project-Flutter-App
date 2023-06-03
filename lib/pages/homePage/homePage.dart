@@ -13,10 +13,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.cyan[50],
       appBar: AppBar(
         toolbarHeight: 80,
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 4.0),
-          child: CustomSearchBar(),
-        ),
+        title:Text("LPG"),
         actions: [
           IconButton(
               onPressed: () {
@@ -25,9 +22,10 @@ class HomePage extends StatelessWidget {
               icon: Icon(Icons.shopping_bag))
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
+            CustomSearchBar(),
             MyCarousel(),
             GradientContainer(text:"Fuel Your Homes",image: "https://media.istockphoto.com/id/1090484242/photo/two-blue-gas-bottles.jpg?s=612x612&w=0&k=20&c=EJCLIrc1YOKv6x-ku1URu8FU-8Km8Ks5B7r5qcQvzE0=",),
             Text(
