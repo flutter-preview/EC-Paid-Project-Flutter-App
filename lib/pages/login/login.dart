@@ -86,7 +86,7 @@ final LoginUser loginuser=LoginUser();
                   height: 50,
                   child: ElevatedButton(
                     onPressed: ()async{
-                      final json=jsonEncode(loginuser);
+                      final json=jsonEncode(loginuser.toJson());
                      await login(json);
                       print(json);
 print(loginuser.email);
