@@ -23,7 +23,9 @@ class GridPage extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomSearchBar(),
+          CustomSearchBar(
+            filter: true,
+          ),
           Expanded(
             child: FutureBuilder(
               future: getAllProduct(context),

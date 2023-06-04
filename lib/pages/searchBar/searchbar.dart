@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -7,15 +5,15 @@ import 'package:flutter_ecommerce_app/pages/searchBar/filter.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class CustomSearchBar extends StatelessWidget {
-  
-  final List<String> suggestions=[
-  'Laptop',
-  'mobile',
-  'tablet',
-];
- final TextEditingController _textEditingController = TextEditingController();
+  final bool filter;
+  final List<String> suggestions = [
+    'Laptop',
+    'mobile',
+    'tablet',
+  ];
+  final TextEditingController _textEditingController = TextEditingController();
 
-   CustomSearchBar({Key? key}) : super(key: key);
+  CustomSearchBar({required this.filter, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,8 @@ class CustomSearchBar extends StatelessWidget {
                 controller: _textEditingController,
                 autofocus: false,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                   border: InputBorder.none,
                   hintText: "Search product",
                   prefixIcon: Icon(Icons.search),
@@ -50,7 +49,10 @@ class CustomSearchBar extends StatelessWidget {
                 ),
               ),
               suggestionsCallback: (pattern) {
-                return suggestions.where((name) => name.toLowerCase().contains(pattern.toLowerCase())).toList();
+                return suggestions
+                    .where((name) =>
+                        name.toLowerCase().contains(pattern.toLowerCase()))
+                    .toList();
               },
               itemBuilder: (context, suggestion) {
                 return ListTile(
@@ -58,33 +60,20 @@ class CustomSearchBar extends StatelessWidget {
                 );
               },
               onSuggestionSelected: (suggestion) {
-            final jsonData = {'search': suggestion };
-    final jsonString = jsonEncode(jsonData);
-            print('Selected: $suggestion');
-            Navigator.pushNamed(context, "/gridpage",arguments: jsonString);
-            setState(){
-            _textEditingController.text = suggestion.toString();
-    
+                final jsonData = {'search': suggestion};
+                final jsonString = jsonEncode(jsonData);
+                print('Selected: $suggestion');
+                Navigator.pushNamed(context, "/gridpage",
+                    arguments: jsonString);
+                setState() {
+                  _textEditingController.text = suggestion.toString();
                 }
               },
             ),
           ),
-          
         ),
-   Filter(),
-       
+        if (filter) Filter(),
       ],
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
- 
