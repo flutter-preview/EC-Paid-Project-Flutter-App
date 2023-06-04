@@ -5,6 +5,7 @@ class PlatformTextField extends StatelessWidget {
   final Widget prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
+  final TextInputType keyboardType;
   final Function(String)? onChanged;
 
   const PlatformTextField({
@@ -13,6 +14,7 @@ class PlatformTextField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.onChanged,
+    this.keyboardType=TextInputType.text,
   });
 
   @override
@@ -24,16 +26,22 @@ class PlatformTextField extends StatelessWidget {
         suffix: suffixIcon,
         obscureText: obscureText,
         onChanged: onChanged,
+        keyboardType: keyboardType,
+        
+decoration: BoxDecoration(color: Colors.transparent),
       );
     } else {
       return TextField(
+
         decoration: InputDecoration(
           labelText: labelText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
+
         ),
         obscureText: obscureText,
         onChanged: onChanged,
+         keyboardType: keyboardType,
       );
     }
   }

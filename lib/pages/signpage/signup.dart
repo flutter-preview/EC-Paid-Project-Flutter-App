@@ -95,9 +95,8 @@ class SignupPage extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        print(user.username);
-final json =jsonEncode(user.toJson());
-                        signup(json);
+
+                        signup(user);
 print(json);
 
                       },

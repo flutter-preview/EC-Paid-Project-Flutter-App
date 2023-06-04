@@ -39,6 +39,7 @@ class _MyInputColumnState extends State<MyInputColumn> {
           label: 'Email',
           placeholder: 'Enter your email',
           myIcon: Icon(Icons.email),
+          keyboardType: TextInputType.emailAddress,
         ),
         const SizedBox(height: 10),
         CustomTextField(
@@ -66,7 +67,6 @@ class _MyInputColumnState extends State<MyInputColumn> {
             child: Icon(
               _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
             ),
-          // !_isPasswordVisible,
         ),
         obscureText: !_isPasswordVisible,
         ),
@@ -77,6 +77,7 @@ class _MyInputColumnState extends State<MyInputColumn> {
           myIcon: Icon(Icons.location_city),
           label: 'address',
           placeholder: 'address',
+          keyboardType: TextInputType.streetAddress,
 
         ),
         const SizedBox(height: 10),
@@ -86,7 +87,7 @@ class _MyInputColumnState extends State<MyInputColumn> {
           myIcon: Icon(Icons.phone),
           label: 'phone',
           placeholder: 'phone',
-
+keyboardType: TextInputType.number,
         ),
       ],
     );

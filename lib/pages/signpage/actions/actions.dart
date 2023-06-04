@@ -5,7 +5,7 @@ Function(dynamic value)? getOnChangedFunction(String type,SignupUser user) {
       'username': (value) => user.username = value,
       'email': (value) => user.email = value,
       'password': (value) => user.password = value,
-      'phone': (value) => user.phone = value,
+      'phone': (value) => user.phone =  int.tryParse(value) ?? 0,
       'confirmPassword': (value) => user.confirmPassword = value,
       'address': (value) => user.address = value,
     };
