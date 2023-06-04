@@ -6,6 +6,7 @@ import 'package:flutter_ecommerce_app/pages/orderhistoryPage/orderHistory.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'addressPage/address_add.dart';
 import 'appTheme/apptheme.dart';
 import 'googleMap/google_map.dart';
 import 'pages/login/login.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
       cupertino: (_, __) => CupertinoAppData(
         theme: MyTheme.iosThemeData,
       ),
-      home: HomePage(),
+      home: AddAddressPage(),
       routes: {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
