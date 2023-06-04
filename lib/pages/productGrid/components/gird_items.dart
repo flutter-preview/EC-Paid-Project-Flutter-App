@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class GridItem extends StatelessWidget {
   final String image;
   final String title;
@@ -9,7 +8,8 @@ class GridItem extends StatelessWidget {
   final double width;
   final double height;
 
-  const GridItem({super.key, 
+  const GridItem({
+    super.key,
     required this.image,
     required this.title,
     required this.price,
@@ -22,21 +22,28 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-      //  final a =await getOne(id);
+        //  final a =await getOne(id);
         // final store=StoreProvider.of<AppState>(context);
-        Navigator.of(context).pushNamed("/productDetail",arguments: id.toString());
+        Navigator.of(context)
+            .pushNamed("/productDetail", arguments: id.toString());
         // store.dispatch(setFood());
       },
       child: Container(
-        
-        width: width , // Reduce width by twice the margin value (13 pixels on each side)
-        height: height - 26, // Reduce height by twice the margin value (13 pixels on each side)
+        width:
+            width, // Reduce width by twice the margin value (13 pixels on each side)
+        height: height -
+            26, // Reduce height by twice the margin value (13 pixels on each side)
         margin: EdgeInsets.symmetric(vertical: 13),
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 244, 244, 244),
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 2, spreadRadius: 2, offset: Offset(3, 3))]
-        ),
+            color: Color.fromARGB(255, 244, 244, 244),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 2,
+                  spreadRadius: 2,
+                  offset: Offset(3, 3))
+            ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -47,8 +54,11 @@ class GridItem extends StatelessWidget {
               ),
               child: Image.network(
                 image,
-                width: width,isAntiAlias:true , // Adjust the width of the image to fit within the container
-                height: (height - 26) * 0.6, // Adjust the height of the image to fit within the container
+                width: width,
+                isAntiAlias:
+                    true, // Adjust the width of the image to fit within the container
+                height: (height - 26) *
+                    0.6, // Adjust the height of the image to fit within the container
                 fit: BoxFit.cover,
               ),
             ),

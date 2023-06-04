@@ -1,12 +1,11 @@
 import 'food_and_category.dart';
 
 class Cart {
-  List<Food> food =[];
+  List<Food> food = [];
 
   void addItem(Food item) {
-      food.add(item);
+    food.add(item);
   }
-
 
   void clearCart() {
     food.clear();
@@ -21,29 +20,33 @@ class Cart {
   }
 
   double getDeliveryCharges() {
-    return 5;
+    if (food.isEmpty) {
+      return 0;
+    } else {
+      return 5;
+    }
   }
 
   double getTotal() {
     return getSubtotal() + getDeliveryCharges();
   }
 
-  int getItemCount(int  id) {
-  int count = 0;
-  for (var item in food) {
-    if (item.foodId == id) {
-      count += 1;
+  int getItemCount(int id) {
+    int count = 0;
+    for (var item in food) {
+      if (item.foodId == id) {
+        count += 1;
+      }
     }
+    return count;
   }
-  return count;
-}
-void removeItem(int id) {
-  for (int i = food.length - 1; i >= 0; i--) {
-    if (food[i].foodId == id) {
-      food.removeAt(i);
-      break;
-    }
-  }
-}
 
+  void removeItem(int id) {
+    for (int i = food.length - 1; i >= 0; i--) {
+      if (food[i].foodId == id) {
+        food.removeAt(i);
+        break;
+      }
+    }
+  }
 }

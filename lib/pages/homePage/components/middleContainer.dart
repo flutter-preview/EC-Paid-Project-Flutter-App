@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/productGrid/product_grid.dart';
 
 class GradientContainer extends StatelessWidget {
-  
   final String text;
-  final String image ;
-  GradientContainer({super.key,required this.text,required this.image});
+  final String image;
+  GradientContainer({super.key, required this.text, required this.image});
 
   @override
   Widget build(BuildContext context) {
