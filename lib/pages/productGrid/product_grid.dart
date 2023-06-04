@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/productGrid/actions/actions.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../../models/food_and_category.dart';
@@ -14,9 +15,9 @@ class GridPage extends StatelessWidget {
     final itemWidth = (screenWidth - 30) / 2; // Subtracting padding and spacing
     final itemHeight = itemWidth * 1.2; // Adjust the aspect ratio as needed
 
-    return PlatformScaffold(
+    return Scaffold(
       backgroundColor: Color.fromARGB(255, 171, 226, 252),
-      appBar: PlatformAppBar(
+      appBar: AppBar(
         title: Text('Grid page'),
       ),
       body: Column(
@@ -62,6 +63,7 @@ class GridPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBarForApp(indexNum: 2),
     );
   }
 }

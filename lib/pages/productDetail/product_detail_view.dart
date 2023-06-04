@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/productDetail/action/productAction.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -12,70 +13,63 @@ class ProductDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    PlatformScaffold(
-      backgroundColor: Colors.white,
-      appBar: PlatformAppBar(
+    return PlatformScaffold(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () =>Navigator.pop(context),
-          icon: Icon(
-            Icons.adaptive.arrow_back,
-            color: Colors.black,
-          ),
-        ),
-        trailingActions: [
-          IconButton(
-            onPressed: (){},
+        appBar: PlatformAppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
             icon: Icon(
-              Icons.shopping_bag_outlined,
+              Icons.adaptive.arrow_back,
               color: Colors.black,
             ),
           ),
-        ],
-      ),
-      body: 
-      FutureBuilder(
-        future: productDetailLoad(context),
-        builder: (context, snapshot) {
-        if (snapshot.hasData){
-          Food food=snapshot.data as Food;
-        
-        return  Column(
-          children: [
-            ProductImage(image:food.image),
-            Expanded(
-              child: Stack(
-                children: [
-                  ProductDetails(title:food.title,price:food.price.toString()),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      width: 50,
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                  ),
-                ],
+          trailingActions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.shopping_bag_outlined,
+                color: Colors.black,
               ),
             ),
-            // Expanded(child: SizedBox()),
-            ProductBottomNavigationBar(food:food),
           ],
-        );}
-        else{
-          return Center(child:CircularProgressIndicator());
-        }
+        ),
+        body: FutureBuilder(
+            future: productDetailLoad(context),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                Food food = snapshot.data as Food;
 
-}     ),
-      // bottomNavBar: PlatformNavBar(),
-    );
+                return Column(
+                  children: [
+                    ProductImage(image: food.image),
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          ProductDetails(
+                              title: food.title, price: food.price.toString()),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              width: 50,
+                              height: 5,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Expanded(child: SizedBox()),
+                    ProductBottomNavigationBar(food: food),
+                  ],
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }));
   }
 }
-
-
-
