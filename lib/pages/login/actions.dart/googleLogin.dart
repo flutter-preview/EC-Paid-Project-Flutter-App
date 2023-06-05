@@ -19,7 +19,7 @@ signInWithGoogle(BuildContext context) async {
 
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
-
+print(userCredential);
     if (userCredential.user != null) {
       // Navigate to the Homepage
       Navigator.pushReplacementNamed(context, '/gridpage');

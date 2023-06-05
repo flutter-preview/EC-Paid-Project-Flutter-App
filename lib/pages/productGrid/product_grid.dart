@@ -6,8 +6,14 @@ import '../../models/food_and_category.dart';
 import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
 
-class GridPage extends StatelessWidget {
+class GridPage extends StatefulWidget {
   GridPage({Key? key, Object? arguments}) : super(key: key);
+
+  @override
+  _GridPageState createState() => _GridPageState();
+}
+
+class _GridPageState extends State<GridPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +33,13 @@ class GridPage extends StatelessWidget {
             filter: true,
           ),
           Expanded(
-            child: FutureBuilder(
-              future: getAllProduct(context),
+            child: FutureBuilder<dynamic>(
+              future:getAllProduct(context),
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<Food> food = snapshot.data as List<Food>;
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasData) {
+                  List<Food> food = snapshot.data!;
                   return CustomScrollView(
                     slivers: [
                       SliverGrid(
@@ -57,6 +65,8 @@ class GridPage extends StatelessWidget {
                       ),
                     ],
                   );
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
                 } else {
                   return Center(child: CircularProgressIndicator());
                 }

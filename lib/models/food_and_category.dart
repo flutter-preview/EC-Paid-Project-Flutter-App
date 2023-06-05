@@ -4,7 +4,7 @@ class Food {
   int categoryId=-1;
   String title;
   String image;
-  double price;
+  int price;
 
   Food( this.categoryId, this.title, this.price,this.image);
 

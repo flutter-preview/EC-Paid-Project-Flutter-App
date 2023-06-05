@@ -85,6 +85,8 @@ flutter:
       - images/LPG5.png
       - images/LPG6.jpeg
       - images/LPG7.jpeg
+      - images/LPG7.jpeg
+      - images/loginPage.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

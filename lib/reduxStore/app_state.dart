@@ -18,7 +18,7 @@ class AppState {
   // required this.user,
 
   required this.cart});
-  factory AppState.initialState()=> AppState(food: Food(1,"",3.4,""), foodList: [],
+  factory AppState.initialState()=> AppState(food: Food(1,"",3,""), foodList: [],
    
   //  user: User(-1,"","",""),
    

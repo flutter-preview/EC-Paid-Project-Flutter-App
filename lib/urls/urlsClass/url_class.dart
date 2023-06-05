@@ -8,7 +8,7 @@ class ApiClient {
 
   ApiClient({required this.baseUrl, required this.headers});
 
-  FutureOr<http.Response> post(String path, body) async {
+  Future<http.Response> post(String path, body) async {
     final uri = Uri.parse('$baseUrl$path');
     final response = await http.post(
       uri,
@@ -19,7 +19,7 @@ class ApiClient {
     return response;
   }
 
-  FutureOr<http.Response> get(String path) async {
+  Future<http.Response> get(String path) async {
     final uri = Uri.parse('$baseUrl$path');
     final response = await http.get(uri, headers: headers);
     return response;
