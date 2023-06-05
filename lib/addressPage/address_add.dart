@@ -95,7 +95,7 @@ class AddAddressPage extends StatelessWidget {
                     ],
                   ),
                   AddAddressForm(),
-                  Center(child: finishButton)
+                  Center(child: ElevatedButton(child: Text("orderDetail"),onPressed: () => {Navigator.pushNamed(context, "/orderDetail")},))
                 ],
               ),
             ),

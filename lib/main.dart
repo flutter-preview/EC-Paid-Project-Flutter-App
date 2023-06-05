@@ -4,6 +4,7 @@ import 'package:flutter_ecommerce_app/pages/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
 import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/orderhistoryPage/orderHistory.dart';
+import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -53,16 +54,18 @@ class MyApp extends StatelessWidget {
       cupertino: (_, __) => CupertinoAppData(
         theme: MyTheme.iosThemeData,
       ),
-      home: AddAddressPage(),
+      home: Splash(),
       routes: {
         "/login": (context) => LoginPage(),
         "/signup": (context) => SignupPage(),
+        "/homePage": (context) => HomePage(),
         "/gridpage": (context) => GridPage(arguments: ModalRoute.of(context)?.settings.arguments),
         "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),
         "/cart": (context) => CartPage(),
         "/qr": (context) =>const QRCodeScanner(),
         "/orderHistory": (context) => OrderHistory(),
         "/orderDetail": (context) => OrderDetailPage(),
+        "/addressPage": (context) => AddAddressPage(),
       },
     )
     );

@@ -23,12 +23,13 @@ class _LoginPageState extends State<LoginPage> {
         loginuser.password.length >= 8 &&
         RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(loginuser.password) &&
         loginuser.password != loginuser.password.toLowerCase()) {
+      Navigator.pushNamed(context, "/homePage");
       setState(() {
         message = 'Login successful';
       });
     } else {
       setState(() {
-        message = 'Invalid credentials';
+        message = 'password must contain Number Capital and Special character';
       });
     }
   }

@@ -48,8 +48,8 @@ class AddAddressForm extends StatelessWidget {
                   padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
                   decoration: BoxDecoration(
                     border: Border(
-                        bottom: BorderSide(color: Colors.orange, width: 2)),
-                    color: Colors.orange[100],
+                        bottom: BorderSide(color: Colors.lightBlue, width: 2)),
+                    color: Colors.lightBlue,
                   ),
                   child: TextField(
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

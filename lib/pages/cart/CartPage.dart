@@ -144,7 +144,7 @@ class _CartPageState extends State<CartPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/qr");
+                    Navigator.pushNamed(context, "/addressPage");
                   },
                 ),
               ),
