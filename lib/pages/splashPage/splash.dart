@@ -27,7 +27,7 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/logo2.png',
+              'images/LPG5.png',
               height: 100,
             ),
             const SizedBox(

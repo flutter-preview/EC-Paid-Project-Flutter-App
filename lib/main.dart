@@ -31,7 +31,7 @@ void main() {
     initialState: AppState.initialState(),
   );
   runApp(
-      DevicePreview(enabled: true, builder: (context) => MyApp(store: store)));
+      DevicePreview(enabled: false, builder: (context) => MyApp(store: store)));
   // MyApp(store: store));
 }
 
