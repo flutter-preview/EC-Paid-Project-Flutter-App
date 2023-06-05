@@ -17,7 +17,8 @@ SignupUser();
   Map<String, dynamic> toJson() => {
         'email': email,
         'username': username,
-        'password': password,
+        'password1': password,
+        'password2': confirmPassword,
         'address': address,
         'phone': phone,
       };
