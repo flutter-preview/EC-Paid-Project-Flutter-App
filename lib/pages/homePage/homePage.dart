@@ -26,7 +26,9 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomSearchBar(),
+            CustomSearchBar(
+              filter: false,
+            ),
             MyCarousel(),
             GradientContainer(
               text: "Fuel Your Homes",
