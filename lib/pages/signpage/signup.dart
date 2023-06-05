@@ -29,18 +29,17 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
-  void _signup() {
-  setState(() {
-    _errorMessage = null;
-  });
+   _signup()async {
+ 
+  
 
   if (_formKey.currentState!.validate()) {
+      final data=await signup(user);
     // signup =await signup()
         bool isValid = validateFields();
     if (isValid 
-    // && singnup
+    && data
     )  {
-      signup(user);
       setState(() {
         _errorMessage = 'Signup successful!';
       });
