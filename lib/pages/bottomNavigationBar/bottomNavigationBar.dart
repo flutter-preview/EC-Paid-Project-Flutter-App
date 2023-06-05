@@ -23,7 +23,7 @@ class BottomNavigationBarForApp extends StatelessWidget {
       ],
       onTap: (index) {
         if (index == 0) {
-          Navigator.pushNamed(context, '/homepage');
+          Navigator.pushNamed(context, '/homePage');
         } else if (index == 1) {
           Navigator.pushNamed(context, '/qr');
         } else if (index == 2) {
