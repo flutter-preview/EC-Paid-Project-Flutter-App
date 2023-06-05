@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/models/cart.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import '../../models/user.dart';
 import '../../urls/urls.dart';
 import 'components/google_apple_button.dart';
@@ -18,11 +20,13 @@ class _LoginPageState extends State<LoginPage> {
   final LoginUser loginuser = LoginUser();
   String message = '';
 
-  void _login() {
+  _login(BuildContext context)async{
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
         RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(loginuser.password) &&
         loginuser.password != loginuser.password.toLowerCase()) {
+      final store=StoreProvider.of(context);
+      store.state.cart= await getCartFromSession();
       Navigator.pushNamed(context, "/homePage");
       setState(() {
         message = 'Login successful';
@@ -99,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 200,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: _login,
+                      onPressed:(){_login(context);},
                       style: ElevatedButton.styleFrom(
                         elevation: 9.9,
                         shape: RoundedRectangleBorder(

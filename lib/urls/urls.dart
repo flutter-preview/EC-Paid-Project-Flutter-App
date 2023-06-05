@@ -42,8 +42,10 @@ login2() async {
   print(response);
   }
 login(body) async {
+
   final response=await apiClient2.post("/login", body);
   }
 signup(body) async {
-  final response=await apiClient2.post("/signup", body);
+  print(body);
+  // final response=await apiClient2.post("/signup", body);
 }

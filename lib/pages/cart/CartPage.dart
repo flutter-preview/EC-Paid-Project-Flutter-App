@@ -16,8 +16,8 @@ class _CartPageState extends State<CartPage> {
     return StoreConnector<AppState, dynamic>(
       converter: (store) => store.state.cart,
       builder: (context, cart) {
-        // print(cart.food[0].price);
-        print(cart.food.length);
+        // print(cart.lpg[0].price);
+        print(cart.lpg.length);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.cyan,
@@ -46,14 +46,14 @@ class _CartPageState extends State<CartPage> {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: store.state.cart.food.length,
+                  itemCount: store.state.cart.lpg.length,
                   itemBuilder: (context, index) {
-                    final item = store.state.cart.food[index];
+                    final item = store.state.cart.lpg[index];
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
                       child: ListTile(
                         title: Text(
-                          '${item.title}  ${cart.getItemCount(item.foodId)})',
+                          '${item.title}  ${cart.getItemCount(item.id)})',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         leading: Container(
@@ -80,7 +80,7 @@ class _CartPageState extends State<CartPage> {
                                 color: Colors.white,
                                 onPressed: () {
                                   store
-                                      .dispatch(CartAction(CartActionType.removeItem, payload: item.foodId));
+                                      .dispatch(CartAction(CartActionType.removeItem, payload: item.id));
                                       setState(() {});
 
                                 },

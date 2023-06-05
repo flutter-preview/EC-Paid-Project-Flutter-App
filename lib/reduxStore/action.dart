@@ -1,19 +1,19 @@
-// Actions for a single food item
+// Actions for a single LPG item
 import '../models/cart.dart';
 import '../models/food_and_category.dart';
 import '../models/user.dart';
 
-class SetFoodAction {
-  final Food food;
+class SetLPGAction {
+  final LPG lpg;
 
-  SetFoodAction(this.food);
+  SetLPGAction(this.lpg);
 }
 
-// Actions for a list of food items
-class SetFoodListAction {
-  final List<Food> foodList;
+// Actions for a list of LPG items
+class SetLPGListAction {
+  final List<LPG> lpgList;
 
-  SetFoodListAction(this.foodList);
+  SetLPGListAction(this.lpgList);
 }
 
 // Actions for a user

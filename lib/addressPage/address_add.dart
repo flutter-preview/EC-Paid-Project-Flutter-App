@@ -1,9 +1,16 @@
 
 import 'package:flutter/material.dart';
 
+import 'action/addressAction.dart';
 import 'address_form.dart';
 
+  class AddressAndPhone{
+
+String address="";
+int phone=0;
+  }
 class AddAddressPage extends StatelessWidget {
+  final AddressAndPhone addressAndPhone=AddressAndPhone();
   @override
   Widget build(BuildContext context) {
     Widget finishButton = InkWell(
@@ -94,8 +101,8 @@ class AddAddressPage extends StatelessWidget {
                               ))),
                     ],
                   ),
-                  AddAddressForm(),
-                  Center(child: ElevatedButton(child: Text("orderDetail"),onPressed: () => {Navigator.pushNamed(context, "/orderDetail")},))
+                  AddAddressForm(addressAndPhone:addressAndPhone),
+                  Center(child: ElevatedButton(child: Text("orderDetail"),onPressed: () => {getUserAddress(context)},))
                 ],
               ),
             ),

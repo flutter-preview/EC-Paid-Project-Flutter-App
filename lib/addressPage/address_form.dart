@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'address_add.dart';
+
+
 class AddAddressForm extends StatelessWidget {
+  AddressAndPhone addressAndPhone;
+  AddAddressForm({super.key,required this.addressAndPhone});
+
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,6 +25,9 @@ class AddAddressForm extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                   border: InputBorder.none, hintText: 'Flat Number/House Number'),
+                  onChanged: (value){
+                    addressAndPhone.address=value;
+                  },
             ),
           ),
           Container(
@@ -28,7 +38,14 @@ class AddAddressForm extends StatelessWidget {
             ),
             child: TextField(
               decoration:
-                  InputDecoration(border: InputBorder.none, hintText: 'Street'),
+                  InputDecoration(border: InputBorder.none, hintText: 'phone'),
+            onChanged:(value){
+int? a= int.tryParse(value);
+if(a!=null){
+  addressAndPhone.phone=a;
+}
+
+            }
             ),
           ),
           Column(

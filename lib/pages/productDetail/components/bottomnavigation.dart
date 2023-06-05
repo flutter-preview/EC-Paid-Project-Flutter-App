@@ -6,8 +6,8 @@ import '../../../reduxStore/action.dart';
 import '../../../reduxStore/app_state.dart';
 
 class ProductBottomNavigationBar extends StatelessWidget {
-  final Food food;
-  const ProductBottomNavigationBar({super.key,  required this.food});
+  final LPG lpg;
+  const ProductBottomNavigationBar({super.key,  required this.lpg});
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState,dynamic>(
@@ -39,15 +39,15 @@ class ProductBottomNavigationBar extends StatelessWidget {
             Expanded(
               child: InkWell(
                 onTap: (){
-                  final bool itemExists = store.state.cart.food.any(
-  (item) => item.foodId == food.foodId,
+                  final bool itemExists = store.state.cart.lpg.any(
+  (item) => item.id == lpg.id,
 );
 
   if (itemExists == true) {
     Navigator.of(context).pushNamed("/cart");
   } else {
     // Item does not exist in the cart, add it and navigate to the cart page
-    store.dispatch(CartAction(CartActionType.addItem, payload: food));
+    store.dispatch(CartAction(CartActionType.addItem, payload: lpg));
     Navigator.of(context).pushNamed("/cart");
   }
                 },

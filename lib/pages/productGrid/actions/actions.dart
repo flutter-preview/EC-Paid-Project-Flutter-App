@@ -22,18 +22,18 @@ print(search);
   print(decoded);
   if(decoded.length>1 ){
 final   food = decoded['products'] as List<dynamic>;
-  final products=food.map<Food>((json)=>Food.fromJson(json)).toList();
+  final products=food.map<LPG>((json)=>LPG.fromJson(json)).toList();
   return products;
   }
 if(decoded.length==1){
-final product=Food.fromJson(decoded);
+final product=LPG.fromJson(decoded);
 return product;
 }
 }else{
   final product=await  getAll();
   final decoded=jsonDecode(product);
 final   food = decoded['products'] as List<dynamic>;
-  final products=food.map<Food>((json)=>Food.fromJson(json)).toList();
+  final products=food.map<LPG>((json)=>LPG.fromJson(json)).toList();
 return products;
 }
 //   if(routeArgs != null){

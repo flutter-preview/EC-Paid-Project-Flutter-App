@@ -14,12 +14,12 @@ productDetailLoad(BuildContext context)async{
   await Future.delayed(Duration(seconds: 2));
   final a=await getOne(args);
   final decode=jsonDecode(a);
-  final Food food=Food.fromJson(decode);
-  // print(food.image+"sjk");
+  final LPG lpg=LPG.fromJson(decode);
+  // print(lpg.image+"sjk");
   // final store=StoreProvider.of<AppState>(context);
-// final product=store.state.food;
-// final a=product.map<Food>((json)=>Food.fromJson(json));
-// Food.fromJson(product);
-return food;
+// final product=store.state.lpg;
+// final a=product.map<LPG>((json)=>LPG.fromJson(json));
+// LPG.fromJson(product);
+return lpg;
 
 }

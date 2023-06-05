@@ -38,16 +38,16 @@ class ProductDetailsView extends StatelessWidget {
             future: productDetailLoad(context),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                Food food = snapshot.data as Food;
+                LPG lpg = snapshot.data as LPG;
 
                 return Column(
                   children: [
-                    ProductImage(image: food.image),
+                    ProductImage(image: lpg.image),
                     Expanded(
                       child: Stack(
                         children: [
                           ProductDetails(
-                              title: food.title, price: food.price.toString()),
+                              title: lpg.title, price: lpg.price.toString()),
                           Align(
                             alignment: Alignment.topCenter,
                             child: Container(
@@ -64,7 +64,7 @@ class ProductDetailsView extends StatelessWidget {
                       ),
                     ),
                     // Expanded(child: SizedBox()),
-                    ProductBottomNavigationBar(food: food),
+                    ProductBottomNavigationBar(lpg: lpg),
                   ],
                 );
               } else {

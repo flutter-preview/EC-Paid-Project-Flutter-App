@@ -39,7 +39,7 @@ class _GridPageState extends State<GridPage> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasData) {
-                  List<Food> food = snapshot.data!;
+                  List<LPG> lpg = snapshot.data!;
                   return CustomScrollView(
                     slivers: [
                       SliverGrid(
@@ -52,15 +52,13 @@ class _GridPageState extends State<GridPage> {
                         delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
                             return GridItem(
-                              image: food[index].image,
-                              title: food[index].title,
-                              price: food[index].price.toString(),
+                              
                               width: itemWidth,
                               height: itemHeight,
-                              id: food[index].foodId,
+                              lpg: lpg[index],
                             );
                           },
-                          childCount: food.length,
+                          childCount: lpg.length,
                         ),
                       ),
                     ],

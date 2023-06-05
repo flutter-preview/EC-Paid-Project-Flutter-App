@@ -7,18 +7,18 @@ import 'reducer.dart';
 
 // Define the state class that holds the data
 class AppState {
-  final Food food;
-  final List<Food> foodList;
+  final LPG lpg;
+  final List<LPG> lpgList;
   // final User user;
   final Cart cart;
 
-  AppState({required this.food, 
-  required this.foodList, 
+  AppState({required this.lpg, 
+  required this.lpgList, 
   
   // required this.user,
 
   required this.cart});
-  factory AppState.initialState()=> AppState(food: Food(1,"",3,""), foodList: [],
+  factory AppState.initialState()=> AppState(lpg: LPG(1,"",3,"",0), lpgList: [],
    
   //  user: User(-1,"","",""),
    

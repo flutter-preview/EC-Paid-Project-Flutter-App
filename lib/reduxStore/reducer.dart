@@ -1,4 +1,4 @@
-// Reducer for a single food item
+// Reducer for a single lpg item
 import '../models/cart.dart';
 import '../models/food_and_category.dart';
 import '../models/user.dart';
@@ -8,8 +8,8 @@ import 'app_state.dart';
 
 AppState appReducer(AppState state, dynamic action) {
   return AppState(
-    food: foodReducer(state.food, action),
-    foodList: foodListReducer(state.foodList, action),
+    lpg: lpgReducer(state.lpg, action),
+    lpgList: lpgListReducer(state.lpgList, action),
     // user: userReducer(state.user, action),
     cart:cartReducer(state.cart, action)
   );
@@ -17,19 +17,19 @@ AppState appReducer(AppState state, dynamic action) {
 
 
 
-Food foodReducer(Food food, dynamic action) {
-  if (action is SetFoodAction) {
-    return action.food;
+LPG lpgReducer(LPG lpg, dynamic action) {
+  if (action is SetLPGAction) {
+    return action.lpg;
   }
-  return food;
+  return lpg;
 }
 
-// Reducer for a list of food items
-List<Food> foodListReducer(List<Food> foodList, dynamic action) {
-  if (action is SetFoodListAction) {
-    return action.foodList;
+// Reducer for a list of lpg items
+List<LPG> lpgListReducer(List<LPG> lpgList, dynamic action) {
+  if (action is SetLPGListAction) {
+    return action.lpgList;
   }
-  return foodList;
+  return lpgList;
 }
 
 // Reducer for a user
@@ -42,7 +42,7 @@ List<Food> foodListReducer(List<Food> foodList, dynamic action) {
 
 Cart cartReducer(Cart state, CartAction action) {
   final newState = Cart();
-  newState.food.addAll(state.food);
+  newState.lpg.addAll(state.lpg);
 
   switch (action.type) {
     case CartActionType.addItem:
@@ -56,6 +56,6 @@ Cart cartReducer(Cart state, CartAction action) {
       newState.clearCart();
       break;
   }
-
+saveCartToSession(newState);
   return newState;
 }

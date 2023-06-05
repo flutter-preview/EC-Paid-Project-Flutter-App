@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/food_and_category.dart';
+
 class GridItem extends StatelessWidget {
-  final String image;
-  final String title;
-  final int id;
-  final String price;
+ final LPG lpg;
   final double width;
   final double height;
 
   const GridItem({
     super.key,
-    required this.image,
-    required this.title,
-    required this.price,
     required this.width,
     required this.height,
-    required this.id,
+    required this.lpg,
   });
 
   @override
@@ -25,7 +21,7 @@ class GridItem extends StatelessWidget {
         //  final a =await getOne(id);
         // final store=StoreProvider.of<AppState>(context);
         Navigator.of(context)
-            .pushNamed("/productDetail", arguments: id.toString());
+            .pushNamed("/productDetail", arguments: lpg.id.toString());
         // store.dispatch(setFood());
       },
       child: Container(
@@ -53,7 +49,7 @@ class GridItem extends StatelessWidget {
                 topRight: Radius.circular(10),
               ),
               child: Image.network(
-                image,
+                lpg.image,
                 width: width,
                 isAntiAlias:
                     true, // Adjust the width of the image to fit within the container
@@ -68,7 +64,7 @@ class GridItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    lpg.title,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -76,7 +72,7 @@ class GridItem extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    '\$$price',
+                    '\$${lpg.price}',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey,

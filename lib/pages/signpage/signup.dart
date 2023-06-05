@@ -32,10 +32,10 @@ class _SignupPageState extends State<SignupPage> {
    _signup()async {
  
   
+    final signu =await signup(user);
 
   if (_formKey.currentState!.validate()) {
       final data=await signup(user);
-    // signup =await signup()
         bool isValid = validateFields();
     if (isValid 
     && data

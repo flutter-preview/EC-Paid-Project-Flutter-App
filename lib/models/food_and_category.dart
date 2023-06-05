@@ -1,15 +1,16 @@
 
-class Food {
-  int foodId=-1;
+class LPG {
+  int id=-1;
   int categoryId=-1;
   String title;
+  int  quantity=0;
   String image;
   int price;
 
-  Food( this.categoryId, this.title, this.price,this.image);
+  LPG( this.categoryId, this.title, this.price,this.image,this.quantity);
 
-  Food.fromJson(Map<String, dynamic> json)
-      : foodId = json['id'],
+  LPG.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
         // categoryId = json['category_id'],
         title = json['title'],
         image = json['thumbnail'],
@@ -18,6 +19,7 @@ class Food {
   Map<String, dynamic> toJson() => {
         'category_id': categoryId,
         'title': title,
+        'quantity': quantity,
         'price': price,
         'image': price,
       };
