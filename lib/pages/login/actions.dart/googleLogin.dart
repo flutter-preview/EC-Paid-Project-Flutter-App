@@ -13,7 +13,7 @@ signInWithGoogle(BuildContext context) async {
     GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
     AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
+      accessToken: googleAuth?.accessToken,      
       idToken: googleAuth?.idToken,
     );
 
