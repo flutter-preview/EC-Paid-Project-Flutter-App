@@ -6,6 +6,8 @@
         
         android:icon="@mipmap/ic_launcher"
         android:name="androidx.multidex.MultiDexApplication">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBLQSJcaTQHHsQ8N6k1takZ-WbvtiW3s98"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

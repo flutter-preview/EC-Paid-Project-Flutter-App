@@ -11,7 +11,7 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController? mapController;
 
   // Location coordinates
-  final LatLng targetLocation = LatLng(37.422, -122.084);
+  final LatLng targetLocation = LatLng(37.422, 122.084);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _MapPageState extends State<MapPage> {
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: targetLocation,
-          zoom: 14.0,
+          zoom: 30.0,
         ),
         onMapCreated: (GoogleMapController controller) {
           setState(() {

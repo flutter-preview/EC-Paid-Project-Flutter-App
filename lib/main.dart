@@ -25,7 +25,7 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase.initializeApp();
+  Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
@@ -42,32 +42,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
-        store: store,   
-    child:PlatformApp(
-      title: 'App Title',
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      material: (_, __) => MaterialAppData(
-        theme: MyTheme.appThemeData,
-      ),
-      cupertino: (_, __) => CupertinoAppData(
-        theme: MyTheme.iosThemeData,
-      ),
-      home: AddAddressPage(),
-      routes: {
-        "/login": (context) => LoginPage(),
-        "/signup": (context) => SignupPage(),
-        "/homePage": (context) => HomePage(),
-        "/gridpage": (context) => GridPage(arguments: ModalRoute.of(context)?.settings.arguments),
-        "/productDetail": (context) => ProductDetailsView(arguments: ModalRoute.of(context)?.settings.arguments as String),
-        "/cart": (context) => CartPage(),
-        "/qr": (context) =>const QRCodeScanner(),
-        "/orderHistory": (context) => OrderHistory(),
-        "/orderDetail": (context) => OrderDetailPage(),
-        "/addressPage": (context) => AddAddressPage(),
-      },
-    )
-    );
+        store: store,
+        child: PlatformApp(
+          title: 'App Title',
+          useInheritedMediaQuery: true,
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
+          material: (_, __) => MaterialAppData(
+            theme: MyTheme.appThemeData,
+          ),
+          cupertino: (_, __) => CupertinoAppData(
+            theme: MyTheme.iosThemeData,
+          ),
+          home: MapPage(),
+          routes: {
+            "/login": (context) => LoginPage(),
+            "/signup": (context) => SignupPage(),
+            "/homePage": (context) => HomePage(),
+            "/gridpage": (context) =>
+                GridPage(arguments: ModalRoute.of(context)?.settings.arguments),
+            "/productDetail": (context) => ProductDetailsView(
+                arguments:
+                    ModalRoute.of(context)?.settings.arguments as String),
+            "/cart": (context) => CartPage(),
+            "/qr": (context) => const QRCodeScanner(),
+            "/orderHistory": (context) => OrderHistory(),
+            "/orderDetail": (context) => OrderDetailPage(),
+            "/addressPage": (context) => AddAddressPage(),
+          },
+        ));
   }
-  }
+}

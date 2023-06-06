@@ -20,13 +20,14 @@ class _LoginPageState extends State<LoginPage> {
   final LoginUser loginuser = LoginUser();
   String message = '';
 
-  _login(BuildContext context)async{
+  _login(BuildContext context) async {
+    await login2();
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
         RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(loginuser.password) &&
         loginuser.password != loginuser.password.toLowerCase()) {
-      final store=StoreProvider.of(context);
-      store.state.cart= await getCartFromSession();
+      // final store=StoreProvider.of(context);
+      // store.state.cart= await getCartFromSession();
       Navigator.pushNamed(context, "/homePage");
       setState(() {
         message = 'Login successful';
@@ -103,7 +104,9 @@ class _LoginPageState extends State<LoginPage> {
                     width: 200,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed:(){_login(context);},
+                      onPressed: () {
+                        _login(context);
+                      },
                       style: ElevatedButton.styleFrom(
                         elevation: 9.9,
                         shape: RoundedRectangleBorder(
