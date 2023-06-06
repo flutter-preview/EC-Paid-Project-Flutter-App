@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
             "/orderHistory": (context) => OrderHistory(),
             "/orderDetail": (context) => OrderDetailPage(),
             "/addressPage": (context) => AddAddressPage(),
+            "/map": (context) => MapPage(),
           },
         ));
   }

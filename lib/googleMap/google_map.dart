@@ -22,7 +22,7 @@ class _MapPageState extends State<MapPage> {
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: targetLocation,
-          zoom: 30.0,
+          zoom: 14.0,
         ),
         onMapCreated: (GoogleMapController controller) {
           setState(() {

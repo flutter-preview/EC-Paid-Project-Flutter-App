@@ -42,6 +42,7 @@ dependencies:
   qr_code_scanner: ^1.0.1
   flutter_typeahead: ^4.6.0
   google_maps_flutter: ^2.2.8
+  
 
   firebase_core:
   firebase_auth: ^4.6.2

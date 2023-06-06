@@ -19,7 +19,8 @@ class BottomNavigationBarForApp extends StatelessWidget {
         Icon(Icons.home),
         Icon(Icons.qr_code),
         Icon(Icons.shopping_bag),
-        Icon(Icons.shopping_cart_outlined)
+        Icon(Icons.shopping_cart_outlined),
+        Icon(Icons.map),
       ],
       onTap: (index) {
         if (index == 0) {
@@ -30,6 +31,9 @@ class BottomNavigationBarForApp extends StatelessWidget {
           Navigator.pushNamed(context, '/gridpage');
         } else if (index == 3) {
           Navigator.pushNamed(context, '/cart');
+        }
+         else if (index == 4) {
+          Navigator.pushNamed(context, '/map');
         }
       },
     );
