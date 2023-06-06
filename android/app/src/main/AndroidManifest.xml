@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_ecommerce_app">
     <uses-permission android:name="android.permission.INTERNET"/>
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
         android:label="flutter_ecommerce_app"
         
@@ -8,6 +10,7 @@
         android:name="androidx.multidex.MultiDexApplication">
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyBLQSJcaTQHHsQ8N6k1takZ-WbvtiW3s98"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

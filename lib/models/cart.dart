@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class Cart {
   List<LPG> lpg = [];
-Cart({this.lpg=const []});
+Cart();
 Cart.fromJson(Map<String, dynamic> json) {
     List<dynamic> lpgJson = json['lpg'];
     lpg = lpgJson.map((itemJson) => LPG.fromJson(itemJson)).toList();

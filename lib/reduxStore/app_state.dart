@@ -18,11 +18,11 @@ class AppState {
   // required this.user,
 
   required this.cart});
-  factory AppState.initialState()=> AppState(lpg: LPG(1,"",3,"",0), lpgList: [],
+  factory AppState.initialState()=> AppState(lpg: LPG(), lpgList: [],
    
   //  user: User(-1,"","",""),
    
-   cart:Cart());
+   cart:  Cart());
 
 
 

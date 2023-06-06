@@ -57,5 +57,6 @@ Cart cartReducer(Cart state, CartAction action) {
       break;
   }
 saveCartToSession(newState);
+print(getCartFromSession());
   return newState;
 }
