@@ -1,16 +1,26 @@
 import 'urlsClass/url_class.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:io';
+
 
 final apiClient = ApiClient(
   baseUrl: "https://dummyjson.com",
   headers: {'Content-Type': 'application/json'},
+);
+final apiClient3 = ApiClient(
+  baseUrl: "https://f375-111-92-140-5.ngrok-free.app",
+  headers: {'Content-Type': 'application/json',"token":"1b2546bf85fdceb004c175ed8530d5e58a2ae43c"},
 );
 final apiClient2 = ApiClient(
   baseUrl: "https://sandbox.bankalfalah.com",
   headers: {'Content-Type': 'application/json'},
 );
 getAll() async {
-  final a = await apiClient.get('/products?limit=10');
+  final a = await apiClient3.get('/products');
   print(a.body);
+
   final b = a.body;
   return (b);
 }
@@ -55,10 +65,23 @@ login2() async {
 }
 
 login(body) async {
-  final response = await apiClient2.post("/login", body);
+  final response = await apiClient3.post("/dj-rest-auth/login/", body);
+  
+    dynamic jsonData = jsonDecode(response.body);
+    String token = jsonData['key'];
+
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('authToken', token);
+    print(prefs.getString('authToken'));
+
+    print(token);
+  print(response.body);
 }
 
 signup(body) async {
   print(body);
-  // final response=await apiClient2.post("/signup", body);
+  final response=await apiClient3.post("/dj-rest-auth/registration/", body);
+
+    // Retrieve the value associated with the key 'token'
 }
