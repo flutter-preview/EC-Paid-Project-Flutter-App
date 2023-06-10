@@ -1,0 +1,62 @@
+// Reducer for a single lpg item
+import '../models/cart.dart';
+import '../models/food_and_category.dart';
+import '../models/user.dart';
+import 'action.dart';
+import 'app_state.dart';
+
+
+AppState appReducer(AppState state, dynamic action) {
+  return AppState(
+    lpg: lpgReducer(state.lpg, action),
+    lpgList: lpgListReducer(state.lpgList, action),
+    // user: userReducer(state.user, action),
+    cart:cartReducer(state.cart, action)
+  );
+}
+
+
+
+LPG lpgReducer(LPG lpg, dynamic action) {
+  if (action is SetLPGAction) {
+    return action.lpg;
+  }
+  return lpg;
+}
+
+// Reducer for a list of lpg items
+List<LPG> lpgListReducer(List<LPG> lpgList, dynamic action) {
+  if (action is SetLPGListAction) {
+    return action.lpgList;
+  }
+  return lpgList;
+}
+
+// Reducer for a user
+// User userReducer(User user, dynamic action) {
+//   if (action is SetUserAction) {
+//     return action.user;
+//   }
+//   return user;
+// }
+
+Cart cartReducer(Cart state, CartAction action) {
+  final newState = Cart();
+  newState.lpg.addAll(state.lpg);
+
+  switch (action.type) {
+    case CartActionType.addItem:
+      final item = action.payload;
+      newState.addItem(item);
+      break;
+    case CartActionType.removeItem:
+      newState.removeItem(action.payload);
+      break;
+    case CartActionType.clearCart:
+      newState.clearCart();
+      break;
+  }
+saveCartToSession(newState);
+print(getCartFromSession());
+  return newState;
+}
