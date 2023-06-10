@@ -6,9 +6,14 @@ import 'address_form.dart';
 
   class AddressAndPhone{
 
-String address="";
+String street="";
+String houseNo="";
+String postNo="";
 int phone=0;
+String address="";
   }
+
+
 class AddAddressPage extends StatelessWidget {
   final AddressAndPhone addressAndPhone=AddressAndPhone();
   @override
@@ -44,15 +49,16 @@ class AddAddressPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.grey),
-        title: Text(
-          'Add Address',
+        title: TextButton(
+          onPressed:(){print("yess");},
+          child: Text('Add Address',
           style: const TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.w500,
               fontFamily: "Montserrat",
               fontSize: 18.0),
         ),
-      ),
+      )),
       body: LayoutBuilder(
         builder: (_, viewportConstraints) => SingleChildScrollView(
           child: ConstrainedBox(

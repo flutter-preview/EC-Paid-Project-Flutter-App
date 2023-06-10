@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'address_add.dart';
 
-
 class AddAddressForm extends StatelessWidget {
   AddressAndPhone addressAndPhone;
   AddAddressForm({super.key,required this.addressAndPhone});

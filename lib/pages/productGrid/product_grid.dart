@@ -53,6 +53,7 @@ class _GridPageState extends State<GridPage> {
                           (BuildContext context, int index) {
                             return GridItem(
                               
+                              
                               width: itemWidth,
                               height: itemHeight,
                               lpg: lpg[index],

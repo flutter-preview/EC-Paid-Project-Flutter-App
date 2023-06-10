@@ -3,7 +3,7 @@ class LPG {
   int id=-1;
   int categoryId=-1;
   String title="";
-  int  quantity=0;
+  int  quantity=1;
   String image="";
   int price;
 
@@ -12,17 +12,17 @@ class LPG {
   LPG.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         // categoryId = json['category_id'],
-        title = json['title'],
-        image = json['thumbnail'],
+        title = json['name'],
+        image = "https://04ef-154-81-253-15.ngrok-free.app"+ json["image"],
         price = json['price'];
 
   Map<String, dynamic> toJson() => {
         // 'category_id': categoryId,
-        'title': title,
+        'name': title,
         'id': id,
         'quantity': quantity,
         'price': price,
-        'thumbnail': image,
+        'image': image,
       };
 }
 
