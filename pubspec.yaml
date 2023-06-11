@@ -53,6 +53,8 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.1.0
   permission_handler: ^10.3.0
+  line_awesome_flutter: ^2.0.0
+  country_picker: ^2.0.20
 
 dev_dependencies:
   flutter_test:
@@ -77,20 +79,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - images/shoe.png
-      - images/discount1.jpg
-      - images/discount2.jpg
-      - images/discount3.jpg
-      - images/LPG.jpg
-      - images/LPG1.jpeg
-      - images/LPG2.jpeg
-      - images/LPG3.jpg
-      - images/LPG4.jpeg
-      - images/LPG5.png
-      - images/LPG6.jpeg
-      - images/LPG7.jpeg
-      - images/LPG7.jpeg
-      - images/loginPage.jpeg
+      - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
