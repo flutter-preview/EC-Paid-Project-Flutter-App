@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
             "/orderDetail": (context) => OrderDetailPage(),
             "/addressPage": (context) => AddAddressPage(),
             "/map": (context) => MapPage(),
-            "/updateProfilepage": (context) => UpdateProfilePage(),
+            "/updateProfilePage": (context) => UpdateProfilePage(),
             "/tos": (context) => TermsAndConditionsPage(),
             "/billingDetailsPage": (context) => BillingDetailsPage()
           },
