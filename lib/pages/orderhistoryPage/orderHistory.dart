@@ -5,19 +5,9 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class OrderHistory extends StatelessWidget {
   final List<User> userList = [
-    User(name: "John", status: "Active", avatar: "assets/images/avatar1.png"),
-    User(name: "Lindsey", status: "Away", avatar: "assets/images/avatar2.png"),
-    User(name: "Valarie", status: "Offline", avatar: "assets/images/avatar3.png"),
-    User(name: "Elyse", status: "Active", avatar: "assets/images/avatar4.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
-    User(name: "Ethel", status: "Away", avatar: "assets/images/avatar5.png"),
+    User(name: "Valarie", status: "on the way", avatar: "assets/images/avatar3.png"),
+    User(name: "Elyse", status: "pending", avatar: "assets/images/avatar4.png"),
+    User(name: "Ethel", status: "delivered", avatar: "assets/images/avatar5.png")
   ];
 
   @override

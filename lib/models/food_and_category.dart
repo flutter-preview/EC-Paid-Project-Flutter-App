@@ -13,7 +13,7 @@ class LPG {
       : id = json['id'],
         // categoryId = json['category_id'],
         title = json['name'],
-        image = "https://04ef-154-81-253-15.ngrok-free.app"+ json["image"],
+        image = "https://6c84-154-198-124-15.ngrok-free.app"+ json["image"],
         price = json['price'];
 
   Map<String, dynamic> toJson() => {

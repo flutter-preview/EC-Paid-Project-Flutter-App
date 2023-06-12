@@ -11,10 +11,10 @@ import 'dart:convert';
 
 final apiClient3 = ApiClient(
 
-  baseUrl: "https://04ef-154-81-253-15.ngrok-free.app",
+  baseUrl:"https://a1f1-111-92-140-9.ngrok-free.app",
   headers: {'Content-Type': 'application/json'},
 
-);
+);                                                                                                                                                      
 final apiClient = ApiClient(
   baseUrl: "https://dummyjson.com",
   headers: {'Content-Type': 'application/json'},
@@ -42,18 +42,30 @@ getAll() async {
   }
 }
 
-  sendCart(cart) async{
+  sendOrder(cart,address) async{
   
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
   if (token != null && token.isNotEmpty) {
-     apiClient3.headers["Authrization"]="Token $token";
+     apiClient3.headers["Authorization"]="Token $token";
   }
-  print(cart.toJson());
-    final response=await apiClient3.post("/send_cart/",cart);
+  // print(cart.toJson())
+  ;
+    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":1,"type":"COD","address":address});
 print(response.body);
   }
 
+
+sendAddress(address)async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if (token != null && token.isNotEmpty) {
+     apiClient3.headers["Authorization"]="Token $token";
+  }
+  print(apiClient3.headers);
+final response=await apiClient3.post("/address/",address);
+print(response.body);
+}
 getOne(id) async{
   final id1=int.parse(id);
   final a = await apiClient3.get('/products/$id1');
@@ -93,44 +105,19 @@ signup(body) async {
     // Retrieve the value associated with the key 'token'
 }
 
+getDistrbutor() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+  final response = await apiClient3.get('/distributor');
+  print(response.body);
+  final body = response.body;
+  return body;
+}
 
-
-
-
-
-// from django.http import JsonResponse
-// from yourapp.models import Product
-
-// def search_products(request):
-//     search = request.GET.get('search')
-//     size = request.GET.get('size')
-//     price = request.GET.get('price')
-
-//     # Construct the initial queryset
-//     queryset = Product.objects.all()
-
-//     # Filter the queryset based on the parameters
-//     if search:
-//         queryset = queryset.filter(name__icontains=search)
-//     if size:
-//         queryset = queryset.filter(size=size)
-//     if price:
-//         queryset = queryset.filter(price=price)
-
-//     # Retrieve all products if all parameters are null
-//     if not search and not size and not price:
-//         queryset = Product.objects.all()
-
-//     # Do something with the filtered queryset
-//     # ...
-
-//     # Return a JSON response
-//     response_data = {
-//         'message': 'Success',
-//         'products': list(queryset.values()),
-//     }
-//     return JsonResponse(response_data)
-// }
+// make future builder in
 
 
 
@@ -152,22 +139,27 @@ signup(body) async {
 
 
 
-
-
-
-
+//send addresss
 
 login2(body) async {
-  final response = await apiClient2.post("/HS/api/Tran/DoTran", {
-	"HS_ChannelId": "1002",
-	"HS_MerchantId": "23063",
-	"HS_StoreId": "030678",
-	"HS_ReturnURL": "http://localhost:8080/#/",
-	"HS_MerchantHash": "0aFsbiT8uYBQKWZnuLKZtzGNl6kaNW7l7nMQMAEe7qg=",
-	"HS_MerchantUsername": "cahaca",
-	"HS_MerchantPassword": "caXHKlksZUtvFzk4yqF7CA==",
-	"HS_TransactionReferenceNumber": "2",
-	"HS_RequestHash": "AiuvyURbFEs9rahFS9j++y4p6JwQ9ZIoQtTT5c/hyTqbfctTjPXX8Adw10MZH1jUVLl96S4omMZYQa9FYfF7ROQhXV3zYH1Py5Am+n0dbTs/fuKhSCv8c5lid5tZo2OIkf6sFIhV8VvjLAUdgCuEzskCma4GsfU1Wg6bdJcQ07zamkcOwDHSkGVL25D/uTHpLnrRqDzRT1IvMLynpYLdezvRnUhxLgD68bLIktXl+fR4BPHh+S3dzGlvCpJbCYbF4Nybohu5KD+clLz/3G8SK+tDddsC1o+8JWAh0wcGpIi0SxT0tRJWHbNunafETy0oZ4BieSIz4HmUA+jzfsZMSPEZGgaSxLN19GNd6t9URq0="
+final response = await apiClient2.post("/HS/api/Tran/DoTran",{
+	"ChannelId": "1002",
+	"MerchantId": "23063",
+	"StoreId": "030678",
+	"MerchantHash": "0aFsbiT8uYBQKWZnuLKZtzGNl6kaNW7l7nMQMAEe7qg=",
+	"MerchantUsername": "cahaca",
+	"MerchantPassword": "caXHKlksZUtvFzk4yqF7CA==",
+	"ReturnURL": "http://localhost:8080/#/",
+	"Currency": "PKR",
+	"AuthToken": "zq0LxSauYpArYk3rHe0If7Sdn6Z+e8Aau80N7IW/Y5Zepea99gh0KRsG0YRu/5kxpX2w0wDOuCPDd7MPNYPY+2BOKbeHKbrPVst7GmTj6uGGqRaG6B4NCX9iYqh428fiyEMkzd7XekE=",
+	"TransactionTypeId": "2",
+	"TransactionReferenceNumber": "2222",
+	"TransactionAmount": "3433",
+	"MobileNumber": "03363042666",
+	"AccountNumber": "00141004533666",
+	"Country": "164",
+	"EmailAddress": "owaisali246.soa@gmail.com",
+	"RequestHash": "YwHCyfGUusZ47PxxQh/lwY52VPG/rv+DFG9ImfNQIqybt4K+Hjg3puHQLxuDkqn/6fblm/xA6lqwYakzc5bdHbnr03CC0ZXLScHqzEAyehCIGXlywiJZBCd2xYJ4BZAQYFfD3Fp4Vquea9fiqwCw/F7iUY/7o0Qr+lW7RYjHZ/H9QRrIl04mp2cLO+7DPD1QvvQEYQag2hGQ9k7BMYLJ/gTX40ZKtzjp72sqtKnvGQebW+0xKp3ulMILSZMoqGKAf1yoA2ZeariFPon63rkvWfxiQ9FBWadFRKgeejPcZ5aAuiQ2v6Si97TPpdubAQn3RvXTcl3EJz0U1XArtLmyP4gTSWk6swZYCBXe4JNDX5XLvenFuHcfd/pdHdmajMXTvFN+Njs2ruWr5Mfxy0QIYvRFxR9+/tcz6xm3Wa+0c5kS3D7NcVeKYfco6SFphA3YwxTpt47j3daMEgHcAEwkluNkoT36H0iogy3S2Eo7bZmFxHRa/Nym+Lo1rWwA4/8BY3Z7GcDuirB0cWsDCLm3Vi0TYEHYd5y3iM0vQjyBebXY/6yWkL4T6rvFJTEnsvWQ01qzjLGTTB7RXsbOAR8j+tUFLscKJfyQBVkkYMilm0D5psEQCOZGcC+TmzeAUIHZ"
 });
   print(response.body);
 }
