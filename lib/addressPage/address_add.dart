@@ -168,7 +168,8 @@ final store=StoreProvider.of<AppState>(context);
 // print(store.state.cart.toJson());
                           //  final cart=store.state.cart;
                           //  print(cart.toJson());
-sendOrder(cart1.lpg, addressAndPhone,);
+                 
+// sendOrder(cart1.lpg, addressAndPhone,);
 // login2(cart1);
 // dispatch addresss and phone action   to store
 

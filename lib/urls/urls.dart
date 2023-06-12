@@ -127,7 +127,21 @@ getDistrbutor() async {
 
 
 
+// get order history
+getOrderHistory() async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+  final response = await apiClient3.get('/history');
+  print(response.body);
+  final body = response.body;
+  return body;
 
+
+
+}
 
 
 
