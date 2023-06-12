@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home: AddAddressPage(),
+          home:HomePage(),
           routes: {
             "/login": (context) => LoginPage(),
             "/signup": (context) => SignupPage(),
@@ -69,7 +69,9 @@ class MyApp extends StatelessWidget {
             "/orderHistory": (context) => OrderHistory(),
             "/orderDetail": (context) => OrderDetailPage(),
             "/addressPage": (context) => AddAddressPage(),
-            "/map": (context) => MapPage(),
+            "/map": (context) => 
+            
+            MapPage(),
           },
         ));
   }

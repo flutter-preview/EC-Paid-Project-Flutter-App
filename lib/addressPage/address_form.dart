@@ -1,12 +1,13 @@
+
 import 'package:flutter/material.dart';
 
 import 'address_add.dart';
 
 class AddAddressForm extends StatelessWidget {
-  AddressAndPhone addressAndPhone;
-  AddAddressForm({super.key,required this.addressAndPhone});
+  final AddressAndPhone addressAndPhone;
 
-  
+  AddAddressForm({required this.addressAndPhone});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,10 +24,13 @@ class AddAddressForm extends StatelessWidget {
             ),
             child: TextField(
               decoration: InputDecoration(
-                  border: InputBorder.none, hintText: 'Flat Number/House Number'),
-                  onChanged: (value){
-                    addressAndPhone.address=value;
-                  },
+                border: InputBorder.none,
+                labelText: 'Flat Number/House Number',
+              ),
+              onChanged: (value) {
+                addressAndPhone.houseNo = value;
+              },
+              controller: TextEditingController(text: addressAndPhone.houseNo),
             ),
           ),
           Container(
@@ -36,59 +40,71 @@ class AddAddressForm extends StatelessWidget {
               color: Colors.white,
             ),
             child: TextField(
-              decoration:
-                  InputDecoration(border: InputBorder.none, hintText: 'phone'),
-            onChanged:(value){
-int? a= int.tryParse(value);
-if(a!=null){
-  addressAndPhone.phone=a;
-}
-
-            }
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: 'Area',
+              ),
+              onChanged: (value) {
+                addressAndPhone.area = value;
+              },
+              controller: TextEditingController(text: addressAndPhone.area),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Area',
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
+          Container(
+            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.white,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: 'City',
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-                child: Container(
-                  padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
-                  decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(color: Colors.lightBlue, width: 2)),
-                    color: Colors.lightBlue,
-                  ),
-                  child: TextField(
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Name on card',
-                      hintStyle:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              onChanged: (value) {
+                addressAndPhone.city = value;
+              },
+              controller: TextEditingController(text: addressAndPhone.city),
+            ),
           ),
-          Row(
-            children: <Widget>[
-              Checkbox(
-                value: true,
-                onChanged: (_) {},
+          Container(
+            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.white,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: 'Postcode',
               ),
-              Text('Add this to address bookmark')
-            ],
-          )
+              onChanged: (value) {
+                addressAndPhone.postCode = value;
+              },
+              controller: TextEditingController(text: addressAndPhone.postCode),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.white,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: 'Phone',
+                prefixText: '+92 ',
+              ),
+              onChanged: (value) {
+                int? parsedValue = int.tryParse(value);
+                if (parsedValue != null) {
+                  addressAndPhone.phone = parsedValue;
+                }
+              },
+              controller: TextEditingController(text: addressAndPhone.phone.toString()),
+            ),
+          ),
         ],
       ),
     );

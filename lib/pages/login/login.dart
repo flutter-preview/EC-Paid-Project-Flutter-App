@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
         loginuser.password != loginuser.password.toLowerCase()) {
       // final store=StoreProvider.of(context);
       // store.state.cart= await getCartFromSession();
-      Navigator.pushNamed(context, "/homePage");
+      Navigator.pushNamed(context, "/addressPage");
       setState(() {
         message = 'Login successful';
       });
