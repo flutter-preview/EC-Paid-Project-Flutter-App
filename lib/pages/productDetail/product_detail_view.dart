@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/productDetail/action/productAction.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
 import '../../models/food_and_category.dart';
 import 'components/bottomnavigation.dart';
 import 'components/productImage.dart';
