@@ -18,7 +18,7 @@ class AddressAndPhone {
   String postCode = "";
   int phone = 0;
   String city = "";
-Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'area': area,
       'houseNo': houseNo,
@@ -27,6 +27,7 @@ Map<String, dynamic> toJson() {
       'city': city,
     };
   }
+
   bool isValid() {
     return area.isNotEmpty &&
         houseNo.isNotEmpty &&
@@ -85,16 +86,16 @@ class _AddAddressPageState extends State<AddAddressPage> {
             Navigator.pop(context);
           },
         ),
-        title:  Text(
-            'Get Your  Address',
-            style: const TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.w500,
-              fontFamily: "Montserrat",
-              fontSize: 18.0,
-            ),
+        title: Text(
+          'Get Your  Address',
+          style: const TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.w500,
+            fontFamily: "Montserrat",
+            fontSize: 18.0,
           ),
         ),
+      ),
       body: LayoutBuilder(
         builder: (_, viewportConstraints) => SingleChildScrollView(
           child: ConstrainedBox(
@@ -128,7 +129,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 InkWell(
-                                  onTap: () {getUserAddress(context, addressAndPhone);},
+                                  onTap: () {
+                                    getUserAddress(context, addressAndPhone);
+                                  },
                                   child: Icon(Icons.home),
                                 ),
                                 Text(
@@ -150,38 +153,43 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   Center(
                     child: ElevatedButton(
                       child: Text("orderDetail"),
-                      onPressed: () async{
+                      onPressed: () async {
                         if (addressAndPhone.isValid()) {
                           // All fields are valid, proceed with sending the address
                           setState(() {
                             errorMessage = '';
                           });
                           //  store.dispatch(SetAddressAndPhoneAction(addressAndPhone));
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? cartJson = prefs.getString('cart');
-   if (cartJson != null) {
-    Map<String, dynamic> cartMap = jsonDecode(cartJson);
-    Cart cart = Cart.fromJson(cartMap);
-    final cart1= cart;
-    // print(cart1.toJson());
-final store=StoreProvider.of<AppState>(context);
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          String? cartJson = prefs.getString('cart');
+                          if (cartJson != null) {
+                            Map<String, dynamic> cartMap = jsonDecode(cartJson);
+                            Cart cart = Cart.fromJson(cartMap);
+                            final cart1 = cart;
+                            // print(cart1.toJson());
+                            final store = StoreProvider.of<AppState>(context);
 // print(store.state.cart.toJson());
-                          //  final cart=store.state.cart;
-                          //  print(cart.toJson());
-sendOrder(cart1.lpg, addressAndPhone,);
+                            //  final cart=store.state.cart;
+                            //  print(cart.toJson());
+                            sendOrder(
+                              cart1.lpg,
+                              addressAndPhone,
+                            );
 // login2(cart1);
 // dispatch addresss and phone action   to store
 
-                      //  sendAddress(addressAndPhone);
-                          // Navi?Sgator.pop(context);
-                        } else {
-                          // Invalid fields, show an error message
-                          setState(() {
-                            errorMessage =
-                                'Please fill all fields correctly and ensure the phone number has 10 digits.';
-                          });
+                            //  sendAddress(addressAndPhone);
+                            // Navi?Sgator.pop(context);
+                          } else {
+                            // Invalid fields, show an error message
+                            setState(() {
+                              errorMessage =
+                                  'Please fill all fields correctly and ensure the phone number has 10 digits.';
+                            });
+                          }
                         }
-                      }},
+                      },
                     ),
                   ),
                   errorMessage.isNotEmpty

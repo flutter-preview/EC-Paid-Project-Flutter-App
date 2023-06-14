@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'address_add.dart';
@@ -102,7 +101,8 @@ class AddAddressForm extends StatelessWidget {
                   addressAndPhone.phone = parsedValue;
                 }
               },
-              controller: TextEditingController(text: addressAndPhone.phone.toString()),
+              controller:
+                  TextEditingController(text: addressAndPhone.phone.toString()),
             ),
           ),
         ],

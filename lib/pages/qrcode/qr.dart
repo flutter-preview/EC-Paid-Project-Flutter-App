@@ -57,7 +57,10 @@ class QRCodeScannerState extends State<QRCodeScanner> {
           ),
           Positioned(
             bottom: 24.0,
-            child: Text('Scanned Data: $scannedData'),
+            child: Text(
+              'Scanned Data: $scannedData',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
