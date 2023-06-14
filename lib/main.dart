@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/PlaceOrderPage/placeorder.dart';
+import 'package:flutter_ecommerce_app/forgetPassPage/forgetPassPage.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
 import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/orderhistoryPage/orderHistory.dart';
+import 'package:flutter_ecommerce_app/pages/paymentOrCash/payment_or_cash.dart';
 import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home:HomePage(),
+          home:OrderPlacedPage(),
           routes: {
             "/login": (context) => LoginPage(),
             "/signup": (context) => SignupPage(),
@@ -67,11 +70,19 @@ class MyApp extends StatelessWidget {
             "/cart": (context) => CartPage(),
             "/qr": (context) => const QRCodeScanner(),
             "/orderHistory": (context) => OrderHistory(),
-            "/orderDetail": (context) => OrderDetailPage(),
+            "/orderDetail": (context) => OrderDetailPage(
+                arguments:
+                    ModalRoute.of(context)?.settings.arguments as String
+            ),
             "/addressPage": (context) => AddAddressPage(),
-            "/map": (context) => 
+            "/map": (context) => MapPage(),
+            "/paymentOrCash": (context) => PaymentOrCashPage(),
+            "/forgetPass": (context) => 
             
-            MapPage(),
+            ForgetPassPage(),
+            "/orderPlaced": (context) => 
+            
+            OrderPlacedPage(),
           },
         ));
   }

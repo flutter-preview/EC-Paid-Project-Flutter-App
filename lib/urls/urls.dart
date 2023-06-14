@@ -11,7 +11,7 @@ import 'dart:convert';
 
 final apiClient3 = ApiClient(
 
-  baseUrl:"https://a1f1-111-92-140-9.ngrok-free.app",
+  baseUrl:"https://d48a-115-186-48-36.ngrok-free.app",
   headers: {'Content-Type': 'application/json'},
 
 );                                                                                                                                                      
@@ -34,25 +34,26 @@ getAll() async {
     final response = await apiClient3.get('/products');
     print(response.body);
 
-    final body = response.body;
-    return body;
+    return response.body;
+
   } else {
     // Handle the case where the token is empty or null
     // return an appropriate value or throw an error
   }
 }
 
-  sendOrder(cart,address) async{
+  sendOrder(cart,address,type) async{
   
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
   if (token != null && token.isNotEmpty) {
      apiClient3.headers["Authorization"]="Token $token";
   }
-  // print(cart.toJson())
-  ;
-    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":1,"type":"COD","address":address});
-print(response.body);
+  print(jsonEncode(address));
+  
+    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":1,"type":type,"address":address});
+    print(response.body);
+    return response.body;
   }
 
 
@@ -68,16 +69,15 @@ print(response.body);
 }
 getOne(id) async{
   final id1=int.parse(id);
-  final a = await apiClient3.get('/products/$id1');
-  print(a.body);
-  final b = a.body;
-  print(b);
-  return (b);
+  final response = await apiClient3.get('/products/$id1');
+  print(response.body);
+  return response.body;
+
 }
 
 getSearch(search,size,price) async {
   print(search+size+price);
-  // final a = await apiClient3.get("/products/search?search=$search&size=$size&price=$price");
+  // final response = await apiClient3.get("/products/search?search=$search&size=$size&price=$price");
   // final b = a.body;
   // return b;
 }
@@ -94,8 +94,8 @@ login(body) async {
     prefs.setString("authToken",token);
     print(prefs.getString('authToken'));
 
-    print(token);
-  print(response.body);
+
+  return response.body;
 }
 
 signup(body) async {
@@ -113,8 +113,8 @@ getDistrbutor() async {
   }
   final response = await apiClient3.get('/distributor');
   print(response.body);
-  final body = response.body;
-  return body;
+  return response.body;
+
 }
 
 // make future builder in
@@ -127,11 +127,66 @@ getDistrbutor() async {
 
 
 
+// get order history
+getOrderHistory() async{
+  print("kjk");
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+  final response = await apiClient3.get('/history');
+  print(response.body);
+return response.body;
 
 
 
 
+}
 
+
+//get order detail 
+getOrderDetail(id)async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+
+const id1=12;
+  final response = await apiClient3.get('/order/$id1');
+  print(response.body);
+  return response.body;
+
+
+}
+
+
+// forget pass function 
+forgetPass()async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+const email="mohb@gmail.com";
+  final response = await apiClient3.post('/dj-rest-auth/password/reset/',{"email":email});
+  print(response.body);
+   return response.body;
+
+}
+getUser()async{
+// const email="mohb@gmail.com";
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+  final response = await apiClient3.get('/dj-rest-auth/user/',);
+  print(response.body);
+   return response.body;
+
+}
 
 
 
