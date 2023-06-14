@@ -3,6 +3,7 @@ import 'package:flutter_ecommerce_app/reduxStore/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../models/cart.dart';
 import '../../reduxStore/action.dart';
+import '../../urls/urls.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -53,7 +54,7 @@ class _CartPageState extends State<CartPage> {
                           horizontal: 8.0, vertical: 8),
                       child: ListTile(
                         title: Text(
-                          '${item.title}  ${cart.getItemCount(item.id)})',
+                          '${item.title}  ${item.quantity})',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         leading: Container(
@@ -147,6 +148,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, "/addressPage");
+// sendCart(store.state.cart);
                   },
                 ),
               ),

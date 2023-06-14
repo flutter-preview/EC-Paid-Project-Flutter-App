@@ -4,16 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/searchBar/filter.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class CustomSearchBar extends StatelessWidget {
+class CustomSearchBar extends StatefulWidget {
   final bool filter;
-  final List<String> suggestions = [
-    'Laptop',
-    'mobile',
-    'tablet',
-  ];
-  final TextEditingController _textEditingController = TextEditingController();
 
   CustomSearchBar({required this.filter, Key? key}) : super(key: key);
+
+  @override
+  _CustomSearchBarState createState() => _CustomSearchBarState();
+}
+
+class _CustomSearchBarState extends State<CustomSearchBar> {
+  late String search = "";
+  final List<String> suggestions = [
+    'Laptop',
+    'c',
+    'm',
+  ];
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,19 +67,19 @@ class CustomSearchBar extends StatelessWidget {
                 );
               },
               onSuggestionSelected: (suggestion) {
-                final jsonData = {'search': suggestion};
+                final Map<String, String> jsonData = {'search': suggestion.toString()};
                 final jsonString = jsonEncode(jsonData);
-                print('Selected: $suggestion');
-                Navigator.pushNamed(context, "/gridpage",
-                    arguments: jsonString);
-                setState() {
+                setState(() {
+                  search = jsonData["search"]!;
                   _textEditingController.text = suggestion.toString();
-                }
+                });
+                print('Selected: $suggestion');
+                Navigator.pushNamed(context, "/gridpage", arguments: jsonString);
               },
             ),
           ),
         ),
-        if (filter) Filter(),
+        if (widget.filter) Filter(search: search),
       ],
     );
   }

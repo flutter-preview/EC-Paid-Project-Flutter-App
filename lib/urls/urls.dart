@@ -1,5 +1,20 @@
 import 'urlsClass/url_class.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
+ fun()async{
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token=prefs.getString("authToken");
+    return token;
+}
+
+final apiClient3 = ApiClient(
+
+  baseUrl:"https://a1f1-111-92-140-9.ngrok-free.app",
+  headers: {'Content-Type': 'application/json'},
+
+);                                                                                                                                                      
 final apiClient = ApiClient(
   baseUrl: "https://dummyjson.com",
   headers: {'Content-Type': 'application/json'},
@@ -9,56 +24,142 @@ final apiClient2 = ApiClient(
   headers: {'Content-Type': 'application/json'},
 );
 getAll() async {
-  final a = await apiClient.get('/products?limit=10');
-  print(a.body);
-  final b = a.body;
-  return (b);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+
+  if (token != null && token.isNotEmpty) {
+
+     apiClient3.headers["Authorization"]="Token $token";
+
+    final response = await apiClient3.get('/products');
+    print(response.body);
+
+    final body = response.body;
+    return body;
+  } else {
+    // Handle the case where the token is empty or null
+    // return an appropriate value or throw an error
+  }
 }
 
-getOne(id) async {
-  final a = await apiClient.get('/products/$id');
-  // print(a.body);
+  sendOrder(cart,address) async{
+  
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if (token != null && token.isNotEmpty) {
+     apiClient3.headers["Authorization"]="Token $token";
+  }
+  // print(cart.toJson())
+  ;
+    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":1,"type":"COD","address":address});
+print(response.body);
+  }
+
+
+sendAddress(address)async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if (token != null && token.isNotEmpty) {
+     apiClient3.headers["Authorization"]="Token $token";
+  }
+  print(apiClient3.headers);
+final response=await apiClient3.post("/address/",address);
+print(response.body);
+}
+getOne(id) async{
+  final id1=int.parse(id);
+  final a = await apiClient3.get('/products/$id1');
+  print(a.body);
   final b = a.body;
   print(b);
   return (b);
 }
 
-getSearch(searchItem) async {
-  final a = await apiClient.get("/products/search?q=$searchItem");
-  final b = a.body;
-  return b;
-}
-
-login2() async {
-  final response = await apiClient2.post("/HS/api/Tran/DoTran", {
-    "ChannelId": "1002",
-    "MerchantId": "23063",
-    "StoreId": "030678",
-    "MerchantHash": "0aFsbiT8uYBQKWZnuLKZtzGNl6kaNW7l7nMQMAEe7qg=",
-    "MerchantUsername": "cahaca",
-    "MerchantPassword": "caXHKlksZUtvFzk4yqF7CA==",
-    "ReturnURL": "http://localhost:8080/#/",
-    "Currency": "PKR",
-    "AuthToken":
-        "b1rPU6Gl+Q1/8pZgEzlwUiA05IxPeWMu9sPUi5hXv70wzVFCR15zMlhGaXKIXhn5KYEbUJIbGT00AbqV9CXly63kRmWyV43bQsEanbC6Ke5nENkZ6LpSdk+cBGbjsBttobb1PfMojAQ=",
-    "TransactionTypeId": "2",
-    "TransactionReferenceNumber": "1",
-    "TransactionAmount": "1000",
-    "MobileNumber": "03363042666",
-    "AccountNumber": "933503363042666",
-    "Country": "164",
-    "EmailAddress": "owaisali246.soa@gmail.com",
-    "RequestHash":
-        "YwHCyfGUusZ47PxxQh/lwY52VPG/rv+DFG9ImfNQIqybt4K+Hjg3puHQLxuDkqn/6fblm/xA6lqwYakzc5bdHbnr03CC0ZXLScHqzEAyehCIGXlywiJZBCd2xYJ4BZAQYFfD3Fp4Vquea9fiqwCw/F7iUY/7o0Qr+lW7RYjHZ/H9QRrIl04mp2cLO+7DPD1QvvQEYQag2hGQ9k7BMYLJ/gTX40ZKtzjp72sqtKnvGQebW+0xKp3ulMILSZMoqGKAf1yoA2ZeariFPon63rkvWfxiQ9FBWadFRKgeejPcZ5b4irTY6RMXXljWu/r+ztTBU8KFKOzUv3zTYTSqKTc5VdCsESksstxIVqiDeM0xzPWTeUQv9RdnSIJrS7jZd8NL4O14vZn3zSqYrnZH6u7h3O5K7BmjQ+8TF4fNsTRbTnTruPZjlAYtRr87Sr1ugjx+MJKErtPjek9jG4axBJG/Ctsq0w56hLoYdSlgbOucgkmIdlQNoVAkqpboiJLYnoGTTCY8QQomwz9a9xGkEhNv4wAK4eAHt35UH6EabiUZzNvwQus9iyqMKOsD15kqpM33TepNLsS7OdQtVwOtoVAkXKbXWwQbrauVllb4sbz8kVDsldBxKP+ftJFvJ+QbuwQO"
-  });
-  print(response.body);
+getSearch(search,size,price) async {
+  print(search+size+price);
+  // final a = await apiClient3.get("/products/search?search=$search&size=$size&price=$price");
+  // final b = a.body;
+  // return b;
 }
 
 login(body) async {
-  final response = await apiClient2.post("/login", body);
+  
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+
+  final response = await apiClient3.post("/dj-rest-auth/login/", body);
+    dynamic jsonData = jsonDecode(response.body);
+    print(response);
+    String token = jsonData['key'];
+    prefs.setString("authToken",token);
+    print(prefs.getString('authToken'));
+
+    print(token);
+  print(response.body);
 }
 
 signup(body) async {
   print(body);
-  // final response=await apiClient2.post("/signup", body);
+  final response=await apiClient3.post("/dj-rest-auth/registration/", body);
+
+    // Retrieve the value associated with the key 'token'
+}
+
+getDistrbutor() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+  final response = await apiClient3.get('/distributor');
+  print(response.body);
+  final body = response.body;
+  return body;
+}
+
+// make future builder in
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//send addresss
+
+login2(body) async {
+final response = await apiClient2.post("/HS/api/Tran/DoTran",{
+	"ChannelId": "1002",
+	"MerchantId": "23063",
+	"StoreId": "030678",
+	"MerchantHash": "0aFsbiT8uYBQKWZnuLKZtzGNl6kaNW7l7nMQMAEe7qg=",
+	"MerchantUsername": "cahaca",
+	"MerchantPassword": "caXHKlksZUtvFzk4yqF7CA==",
+	"ReturnURL": "http://localhost:8080/#/",
+	"Currency": "PKR",
+	"AuthToken": "zq0LxSauYpArYk3rHe0If7Sdn6Z+e8Aau80N7IW/Y5Zepea99gh0KRsG0YRu/5kxpX2w0wDOuCPDd7MPNYPY+2BOKbeHKbrPVst7GmTj6uGGqRaG6B4NCX9iYqh428fiyEMkzd7XekE=",
+	"TransactionTypeId": "2",
+	"TransactionReferenceNumber": "2222",
+	"TransactionAmount": "3433",
+	"MobileNumber": "03363042666",
+	"AccountNumber": "00141004533666",
+	"Country": "164",
+	"EmailAddress": "owaisali246.soa@gmail.com",
+	"RequestHash": "YwHCyfGUusZ47PxxQh/lwY52VPG/rv+DFG9ImfNQIqybt4K+Hjg3puHQLxuDkqn/6fblm/xA6lqwYakzc5bdHbnr03CC0ZXLScHqzEAyehCIGXlywiJZBCd2xYJ4BZAQYFfD3Fp4Vquea9fiqwCw/F7iUY/7o0Qr+lW7RYjHZ/H9QRrIl04mp2cLO+7DPD1QvvQEYQag2hGQ9k7BMYLJ/gTX40ZKtzjp72sqtKnvGQebW+0xKp3ulMILSZMoqGKAf1yoA2ZeariFPon63rkvWfxiQ9FBWadFRKgeejPcZ5aAuiQ2v6Si97TPpdubAQn3RvXTcl3EJz0U1XArtLmyP4gTSWk6swZYCBXe4JNDX5XLvenFuHcfd/pdHdmajMXTvFN+Njs2ruWr5Mfxy0QIYvRFxR9+/tcz6xm3Wa+0c5kS3D7NcVeKYfco6SFphA3YwxTpt47j3daMEgHcAEwkluNkoT36H0iogy3S2Eo7bZmFxHRa/Nym+Lo1rWwA4/8BY3Z7GcDuirB0cWsDCLm3Vi0TYEHYd5y3iM0vQjyBebXY/6yWkL4T6rvFJTEnsvWQ01qzjLGTTB7RXsbOAR8j+tUFLscKJfyQBVkkYMilm0D5psEQCOZGcC+TmzeAUIHZ"
+});
+  print(response.body);
 }

@@ -1,5 +1,6 @@
 import 'package:redux/redux.dart';
 
+import '../addressPage/address_add.dart';
 import '../models/cart.dart';
 import '../models/food_and_category.dart';
 import '../models/user.dart';
@@ -10,16 +11,17 @@ class AppState {
   final LPG lpg;
   final List<LPG> lpgList;
   // final User user;
-  final Cart cart;
+  final AddressAndPhone addressAndPhone;
+  final Cart cart; 
 
   AppState({required this.lpg, 
   required this.lpgList, 
-  
+  required this.addressAndPhone,
   // required this.user,
 
   required this.cart});
   factory AppState.initialState()=> AppState(lpg: LPG(), lpgList: [],
-   
+   addressAndPhone: AddressAndPhone(),
   //  user: User(-1,"","",""),
    
    cart:  Cart());

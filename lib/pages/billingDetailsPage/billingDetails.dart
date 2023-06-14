@@ -56,7 +56,7 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
                       value: option,
                       child: Text(
                         option,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                     );
@@ -208,7 +208,6 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {}
                   },
-                  child: Text('Submit'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 5, 154, 173),
                     foregroundColor: Colors.white,
@@ -216,6 +215,7 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
+                  child: Text('Submit'),
                 ),
               ],
             ),

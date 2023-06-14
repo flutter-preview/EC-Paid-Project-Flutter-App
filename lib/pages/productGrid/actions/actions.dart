@@ -15,13 +15,16 @@ getAllProduct (BuildContext context)async{
     if (jsonString != null && jsonString.isNotEmpty) {
       final jsonData = jsonDecode(jsonString);
       final search = jsonData['search'];
+      final size = jsonData['size'];
+      final price = jsonData['price'];
 print(search);
 
-  final product=await  getSearch(search);
+  final product=await  getSearch(search,size,price);
+  
   final decoded=jsonDecode(product);
   print(decoded);
   if(decoded.length>1 ){
-final   food = decoded['products'] as List<dynamic>;
+final   food = decoded as List<dynamic>;
   final products=food.map<LPG>((json)=>LPG.fromJson(json)).toList();
   return products;
   }
@@ -32,7 +35,7 @@ return product;
 }else{
   final product=await  getAll();
   final decoded=jsonDecode(product);
-final   food = decoded['products'] as List<dynamic>;
+final   food = decoded as List<dynamic>;
   final products=food.map<LPG>((json)=>LPG.fromJson(json)).toList();
 return products;
 }

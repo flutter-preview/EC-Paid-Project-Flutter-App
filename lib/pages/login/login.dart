@@ -21,14 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   String message = '';
 
   _login(BuildContext context) async {
-    await login2();
+    await login(loginuser);
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
         RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(loginuser.password) &&
         loginuser.password != loginuser.password.toLowerCase()) {
       // final store=StoreProvider.of(context);
       // store.state.cart= await getCartFromSession();
-      Navigator.pushNamed(context, "/homePage");
+      Navigator.pushNamed(context, "/addressPage");
       setState(() {
         message = 'Login successful';
       });

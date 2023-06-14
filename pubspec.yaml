@@ -46,7 +46,7 @@ dependencies:
 
   firebase_core:
   firebase_auth: ^4.6.2
-  google_sign_in: ^5.4.4
+  google_sign_in: ^6.1.4
   carousel_slider: ^4.2.1
   filter_list: ^1.0.2
   curved_navigation_bar: ^1.0.3
@@ -55,6 +55,7 @@ dependencies:
   permission_handler: ^10.3.0
   line_awesome_flutter: ^2.0.0
   country_picker: ^2.0.20
+  shared_preferences: ^2.1.2
 
 dev_dependencies:
   flutter_test:

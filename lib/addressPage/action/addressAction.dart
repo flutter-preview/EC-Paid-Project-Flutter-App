@@ -3,7 +3,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-void getUserAddress(BuildContext context) async {
+import '../address_add.dart';
+
+void getUserAddress(BuildContext context, AddressAndPhone addressAndPhone) async {
   // Request permission to access the device's location
   var status = await Permission.location.request();
   if (status.isGranted) {
@@ -20,13 +22,34 @@ void getUserAddress(BuildContext context) async {
       );
 
       // Extract the home address from the placemark
-      String homeAddress = placemarks.first.street ?? '';
+      String area = placemarks.first.subLocality ?? '';
+      String postcode = placemarks.first.postalCode ?? '';
+      String houseNo = placemarks.first.street ?? '';
+      String city = placemarks.first.locality ?? '';
 
+      // Set the address in the AddressAndPhone object
+      addressAndPhone.houseNo = houseNo;
+      addressAndPhone.area = area;
+      addressAndPhone.postCode = postcode;
+      addressAndPhone.city = city;
+
+      // Show the address in the input boxes
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: Text('Home Address'),
-          content: Text('Your home address is: $homeAddress'),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Your home address is:'),
+              SizedBox(height: 8),
+              Text('Flat Number/House Number: ${addressAndPhone.area}'),
+              Text('Street: ${addressAndPhone.houseNo}'),
+              Text('City: ${addressAndPhone.city}'),
+              Text('PostCode: ${addressAndPhone.postCode}'),
+            ],
+          ),
           actions: [
             TextButton(
               onPressed: () {

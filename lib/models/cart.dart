@@ -4,8 +4,10 @@ import 'dart:convert';
 
 class Cart {
   List<LPG> lpg = [];
-Cart();
-Cart.fromJson(Map<String, dynamic> json) {
+
+  Cart();
+
+  Cart.fromJson(Map<String, dynamic> json) {
     List<dynamic> lpgJson = json['lpg'];
     lpg = lpgJson.map((itemJson) => LPG.fromJson(itemJson)).toList();
   }
@@ -14,9 +16,31 @@ Cart.fromJson(Map<String, dynamic> json) {
         'lpg': lpg.map((item) => item.toJson()).toList(),
       };
 
-
   void addItem(LPG item) {
-    lpg.add(item);
+    bool itemExists = false;
+    for (int i = 0; i < lpg.length; i++) {
+      if (lpg[i].id == item.id) {
+        lpg[i].quantity += 1;
+        itemExists = true;
+        break;
+      }
+    }
+    if (!itemExists) {
+      lpg.add(item);
+    }
+  }
+
+  void removeItem(int id) {
+    for (int i = lpg.length - 1; i >= 0; i--) {
+      if (lpg[i].id == id) {
+        if (lpg[i].quantity > 1) {
+          lpg[i].quantity -= 1;
+        } else {
+          lpg.removeAt(i);
+        }
+        break;
+      }
+    }
   }
 
   void clearCart() {
@@ -26,7 +50,7 @@ Cart.fromJson(Map<String, dynamic> json) {
   double getSubtotal() {
     double subtotal = 0;
     for (var item in lpg) {
-      subtotal += item.price;
+      subtotal += item.price * item.quantity;
     }
     return subtotal;
   }
@@ -47,29 +71,18 @@ Cart.fromJson(Map<String, dynamic> json) {
     int count = 0;
     for (var item in lpg) {
       if (item.id == id) {
-        count += 1;
+        count += item.quantity;
       }
     }
     return count;
   }
-
-  void removeItem(int id) {
-    for (int i = lpg.length - 1; i >= 0; i--) {
-      if (lpg[i].id == id) {
-        lpg.removeAt(i);
-        break;
-      }
-    }
-  }
 }
-
 
 void saveCartToSession(Cart cart) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String cartJson = jsonEncode(cart.toJson());
   await prefs.setString('cart', cartJson);
 }
-
 
 Future<Cart> getCartFromSession() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
