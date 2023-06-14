@@ -10,7 +10,6 @@ import 'actions/orderHistoryActions.dart';
 
 class OrderHistory extends StatelessWidget {
   
-
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -23,7 +22,7 @@ class OrderHistory extends StatelessWidget {
                 "https://www.shutterstock.com/image-vector/wallet-mascot-character-design-vector-1660276741",
           ),
           Expanded(
-            child: FutureBuilder<List<OrderHistoryData>>(
+            child: FutureBuilder(
               future: fetchOrderHistory(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -35,8 +34,9 @@ class OrderHistory extends StatelessWidget {
                 } else {
                   // Data has been successfully fetched
                   if (snapshot.hasData) {
-                    List<OrderHistoryData> orderHistory =
-                        snapshot.data!;
+                    print(snapshot.data);
+                     List<OrderHistoryData> orderHistory =snapshot.data as List<OrderHistoryData> ;
+                        // snapshot.data as List<OrderHistoryData>;
                     return ListView.builder(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       itemCount: orderHistory.length,
@@ -56,6 +56,10 @@ class OrderHistory extends StatelessWidget {
                             ],
                           ),
                           child: ListTile(
+                            onTap: () {
+                              
+                              Navigator.pushNamed(context, '/orderDetail',arguments: order.id);
+                              },
                             leading: Container(
                               width: 48,
                               height: 48,

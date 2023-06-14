@@ -1,21 +1,19 @@
- 
- import 'dart:convert';
+import 'dart:convert';
 
 import '../../../models/orderHistory.dart';
 import '../../../urls/urls.dart';
 
-fetchOrderHistory() async {
+  Future<List<OrderHistoryData>> fetchOrderHistory() async {
+  // delay for 2 seconds to simulate a network call
   final response = await getOrderHistory();
-  final decoded = jsonDecode(response);
+  final decoded = jsonDecode(response) as List<dynamic>;
+  await Future.delayed(Duration(seconds: 2));
 
-  if (decoded is List<dynamic>) {
-    final orderHistoryDataList = decoded
+  print(response);
+  
+    final orderHistoryDataList = decoded 
         .map<OrderHistoryData>((data) => OrderHistoryData.fromJson(data))
         .toList();
     return orderHistoryDataList;
-  } else {
-    // Handle the case where the response is not a list
-    return <OrderHistoryData>[];
-  }
+  
 }
-

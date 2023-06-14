@@ -11,18 +11,16 @@ class OrderHistoryData {
     required this.totalItemsQty,
   });
 
-  factory OrderHistoryData.fromJson(Map<String, dynamic> json) {
-    return OrderHistoryData(
-      id: json['id'] as int,
-      date: json['date'] as String,
-      status: json['status'] as String,
-      totalItemsQty: json['total_items_qty'] as int,
+  OrderHistoryData.fromJson(Map<String, dynamic> json):
+      id= json['id'] ,
+      date= json['date'] ,
+      status= json['status'] ,
+      totalItemsQty= json['total_items_qty'] ;
 
-    );
-  }
+  
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson()=> {
+
       'id': id,
       'date': date,
       'status': status,
@@ -30,4 +28,4 @@ class OrderHistoryData {
 
     };
   }
-}
+

@@ -1,40 +1,18 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/orderDetailPage/order_detail.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/addressAndPhone.dart';
 import '../models/cart.dart';
 import '../reduxStore/action.dart';
 import '../reduxStore/app_state.dart';
 import '../urls/urls.dart';
 import 'action/addressAction.dart';
 import 'address_form.dart';
-
-class AddressAndPhone {
-  String area = "";
-  String houseNo = "";
-  String postCode = "";
-  int phone = 0;
-  String city = "";
-Map<String, dynamic> toJson() {
-    return {
-      'area': area,
-      'houseNo': houseNo,
-      'postCode': postCode,
-      'phone': phone,
-      'city': city,
-    };
-  }
-  bool isValid() {
-    return area.isNotEmpty &&
-        houseNo.isNotEmpty &&
-        postCode.isNotEmpty &&
-        phone.toString().length == 10 &&
-        city.isNotEmpty;
-  }
-}
 
 class AddAddressPage extends StatefulWidget {
   @override
@@ -151,30 +129,16 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     child: ElevatedButton(
                       child: Text("orderDetail"),
                       onPressed: () async{
-                        if (addressAndPhone.isValid()) {
+                //  print(await getOrderHistory());
                           // All fields are valid, proceed with sending the address
+                        if (addressAndPhone.isValid()) {
                           setState(() {
                             errorMessage = '';
                           });
-                          //  store.dispatch(SetAddressAndPhoneAction(addressAndPhone));
                           SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? cartJson = prefs.getString('cart');
-   if (cartJson != null) {
-    Map<String, dynamic> cartMap = jsonDecode(cartJson);
-    Cart cart = Cart.fromJson(cartMap);
-    final cart1= cart;
-    // print(cart1.toJson());
-final store=StoreProvider.of<AppState>(context);
-// print(store.state.cart.toJson());
-                          //  final cart=store.state.cart;
-                          //  print(cart.toJson());
-                 
-// sendOrder(cart1.lpg, addressAndPhone,);
-// login2(cart1);
-// dispatch addresss and phone action   to store
+                          prefs.setString("lpgAddress",jsonEncode(addressAndPhone.toJson()));
+                          Navigator.pushNamed(context, "/paymentOrCash");
 
-                      //  sendAddress(addressAndPhone);
-                          // Navi?Sgator.pop(context);
                         } else {
                           // Invalid fields, show an error message
                           setState(() {
@@ -182,7 +146,7 @@ final store=StoreProvider.of<AppState>(context);
                                 'Please fill all fields correctly and ensure the phone number has 10 digits.';
                           });
                         }
-                      }},
+                      },
                     ),
                   ),
                   errorMessage.isNotEmpty
