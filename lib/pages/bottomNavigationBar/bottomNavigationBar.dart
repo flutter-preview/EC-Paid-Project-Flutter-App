@@ -28,7 +28,7 @@ class BottomNavigationBarForApp extends StatelessWidget {
         } else if (index == 1) {
           Navigator.pushNamed(context, '/qr');
         } else if (index == 2) {
-          Navigator.pushNamed(context, '/gridpage');
+          Navigator.pushNamed(context, '/orderHistory');
         } else if (index == 3) {
           Navigator.pushNamed(context, '/cart');
         }

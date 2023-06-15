@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/orderHistory');
               },
-              icon: Icon(Icons.shopping_bag))
+              icon: Icon(Icons.history))
         ],
       ),
       body: SingleChildScrollView(
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-        bottomNavigationBar: BottomNavigationBarForApp(indexNum: 0),
+        // bottomNavigationBar: BottomNavigationBarForApp(indexNum: 0),
     );
   }
 }

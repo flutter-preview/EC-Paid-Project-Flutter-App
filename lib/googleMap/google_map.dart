@@ -1,11 +1,14 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/models/distributor.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/distributor.dart';
 import 'action/mapAction.dart';
-// Import the distributor service file
 
 class MapPage extends StatefulWidget {
   @override
@@ -16,6 +19,7 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController? mapController;
   LatLng? userLocation;
   Distributor? nearestDistributor;
+  List<Distributor> distributors = [];
 
   @override
   void initState() {
@@ -23,10 +27,9 @@ class _MapPageState extends State<MapPage> {
     fetchDistributorData().then((data) {
       print('Fetched distributor data: $data');
       setState(() {
-        nearestDistributor = findNearestDistributor(data, userLocation);
-        print('Nearest distributor: $nearestDistributor');
+        distributors = data;
       });
-      _determinePosition();
+      _getUserLocation();
     }).catchError((error) {
       print('Error fetching distributor data: $error');
     });
@@ -38,18 +41,7 @@ class _MapPageState extends State<MapPage> {
       appBar: PlatformAppBar(
         title: Text('Map Page'),
       ),
-      body: FutureBuilder<void>(
-        future: fetchDistributorData(),
-        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-          if (snapshot.hasData) {
-            return _buildMap();
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      body: _buildMap(),
     );
   }
 
@@ -102,62 +94,59 @@ class _MapPageState extends State<MapPage> {
     };
   }
 
-  Future<void> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+  Future<void> _getUserLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      setState(() {
+        userLocation = LatLng(position.latitude, position.longitude);
+      });
+      _findNearestDistributor();
+    } catch (error) {
+      print('Error getting user location: $error');
+    }
+  }
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      throw 'Location services are disabled.';
+  void _findNearestDistributor() async {
+    if (distributors.isEmpty || userLocation == null) {
+      return;
     }
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.deniedForever) {
-      throw 'Location permissions are permanently denied, we cannot request permissions.';
-    }
+    LatLng userLatLng = LatLng(userLocation!.latitude, userLocation!.longitude);
+    double minDistance = double.infinity;
+    Distributor? foundDistributor;
 
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission != LocationPermission.whileInUse && permission != LocationPermission.always) {
-        throw 'Location permissions are denied (actual value: $permission).';
+    for (Distributor distributor in distributors) {
+      LatLng location = LatLng(
+        double.parse(distributor.location.split(',')[0]),
+        double.parse(distributor.location.split(',')[1]),
+      );
+
+      double distance = Geolocator.distanceBetween(
+        userLatLng.latitude,
+        userLatLng.longitude,
+        location.latitude,
+        location.longitude,
+      );
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        foundDistributor = distributor;
       }
     }
 
-    Position position = await Geolocator.getCurrentPosition();
-    print('User location: ${position.latitude}, ${position.longitude}');
     setState(() {
-      userLocation = LatLng(position.latitude, position.longitude);
+      nearestDistributor = foundDistributor;
     });
-  }
-}
 
-Distributor? findNearestDistributor(List<Distributor> distributors, LatLng? userLocation) {
-  if (distributors.isEmpty || userLocation == null) {
-    return null;
-  }
-
-  LatLng userLatLng = LatLng(userLocation.latitude, userLocation.longitude);
-  double minDistance = double.infinity;
-  Distributor? nearestDistributor;
-
-  for (Distributor distributor in distributors) {
-    LatLng location = LatLng(
-      double.parse(distributor.location.split(',')[0]),
-      double.parse(distributor.location.split(',')[1]),
-    );
-
-    double distance = Geolocator.distanceBetween(
-      userLatLng.latitude,
-      userLatLng.longitude,
-      location.latitude,
-      location.longitude,
-    );
-
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearestDistributor = distributor;
+    if (nearestDistributor != null) {
+      await saveNearestDistributor(nearestDistributor!);
     }
   }
 
-  return nearestDistributor;
+  Future<void> saveNearestDistributor(Distributor distributor) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('LpgDistributor', jsonEncode(distributor.toJson()));
+  }
 }

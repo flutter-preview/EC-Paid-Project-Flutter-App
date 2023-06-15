@@ -17,9 +17,9 @@ class _MainPageState extends State<MainPage> {
   int index = 2;
   final screens = [
     ProfilePage(ProfileData(
-        name: 'Usman Khalid',
-        email: 'uksiddiqu88@gmail.com',
-        password: 'helloworld24',
+        name: 'Mohib Qureshi',
+        email: 'mohb@gmail.com',
+        password: 'Mohib123#',
         phoneNo: '03123742371',
         address: 'Karachi')),
     QRCodeScanner(),

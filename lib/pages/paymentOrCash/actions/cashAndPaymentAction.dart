@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/addressPage/address_add.dart';
+import 'package:flutter_ecommerce_app/models/distributor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/addressAndPhone.dart';
@@ -29,16 +30,19 @@ void cashOnDeliveryDialogue(BuildContext context) async{
                 String type="COD";
 SharedPreferences prefs = await SharedPreferences.getInstance();
 String? cartJson = prefs.getString('cart');
+String? LpgDistributor = prefs.getString('LpgDistributor');
 String? addressAndPhoneJson = prefs.getString('lpgAddress');
-   if (cartJson != null && addressAndPhoneJson!=null) {
+   if (cartJson != null && addressAndPhoneJson!=null && LpgDistributor !=null) {
     Map<String, dynamic> cartMap = jsonDecode(cartJson);
     Map<String, dynamic> addressAndPhoneJson1 = jsonDecode(addressAndPhoneJson);
+    Map<String, dynamic> LpgDistributor1 = jsonDecode(LpgDistributor);
 
     Cart cart = Cart.fromJson(cartMap);
     AddressAndPhone addressAndPhone = AddressAndPhone.fromJson(addressAndPhoneJson1);
+    Distributor distributor = Distributor.fromJson(LpgDistributor1);
     // print(cart.lpg.length);
     // print(addressAndPhone.area);
-sendOrder(cart.lpg, addressAndPhone,type);
+sendOrder(cart.lpg, addressAndPhone,type,(distributor.id).toString());
 
 Navigator.of(context).pop();
                 Navigator.pushNamed(context, "/orderPlaced");

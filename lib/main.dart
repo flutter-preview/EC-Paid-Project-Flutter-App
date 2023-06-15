@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home:HomePage(),
+          home:MainPage(),
           routes: {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),

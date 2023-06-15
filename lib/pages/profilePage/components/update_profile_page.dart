@@ -26,9 +26,9 @@ class UpdateProfilePage extends StatelessWidget {
               const SizedBox(height: 50),
               ProfilePageForm(
                   userProfile: ProfileData(
-                      name: 'Usman',
-                      email: 'uksiddiqu88@gmail.com',
-                      password: 'helloworld24',
+                      name: 'Mohib Qureshi',
+                      email: 'mohb@gmail.com',
+                      password: 'Mohib123',
                       phoneNo: '03123742371',
                       address: 'Karachi'))
             ]),

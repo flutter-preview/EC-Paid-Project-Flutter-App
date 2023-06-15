@@ -80,15 +80,15 @@ class ProfilePage extends StatelessWidget {
                 trailingIcon: true,
                 textColor: Colors.black,
               ),
-              ProfileMenuWidget(
-                name: 'Change Address',
-                leadingIcon: LineAwesomeIcons.location_arrow,
-                onTap: () {
-                  Navigator.pushNamed(context, '/addressPage');
-                },
-                trailingIcon: true,
-                textColor: Colors.black,
-              ),
+              // ProfileMenuWidget(
+              //   name: 'Change Address',
+              //   leadingIcon: LineAwesomeIcons.location_arrow,
+              //   onTap: () {
+              //     Navigator.pushNamed(context, '/addressPage');
+              //   },
+              //   trailingIcon: true,
+              //   textColor: Colors.black,
+              // ),
               ProfileMenuWidget(
                 name: 'Terms of Service',
                 leadingIcon: LineAwesomeIcons.info,
@@ -111,7 +111,7 @@ class ProfilePage extends StatelessWidget {
               ProfileMenuWidget(
                   name: 'Logout',
                   leadingIcon: LineAwesomeIcons.alternate_sign_out,
-                  onTap: () {},
+                  onTap: () {Navigator.pushNamed(context, '/login');},
                   trailingIcon: false,
                   textColor: Colors.red),
             ],

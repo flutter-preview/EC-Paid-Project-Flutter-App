@@ -69,6 +69,7 @@ class PaymentOrCashPage extends StatelessWidget {
                   widthFactor: 0.8,
                   child: TextButton.icon(
                     onPressed: () {
+                      Navigator.pushNamed(context, "/billingDetailsPage");
                       // Perform action for Online Payment
                     },
                     icon: Icon(Icons.payment),

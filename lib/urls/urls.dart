@@ -42,7 +42,7 @@ getAll() async {
   }
 }
 
-  sendOrder(cart,address,type) async{
+  sendOrder(cart,address,type,id) async{
   
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
@@ -51,7 +51,7 @@ getAll() async {
   }
   print(jsonEncode(address));
   
-    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":1,"type":type,"address":address});
+    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":int.parse(id),"type":type,"address":address});
     print(response.body);
     return response.body;
   }

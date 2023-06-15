@@ -78,7 +78,8 @@ class QRCodeScannerState extends State<QRCodeScanner> {
          scannedData = scanData.code! ;
         print(scannedData);
          String orderId = getOrderIDFromScannedData(scannedData);
-      print('Order ID: $orderId');
+    Navigator.pushNamed(context, "/orderDetails", arguments: orderId.toString());
+        // Navigator.pushNamed(context, "/orderDetails
         
       });
     });
