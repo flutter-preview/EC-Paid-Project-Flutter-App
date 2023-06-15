@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home:Splash(),
+          home:HomePage(),
           routes: {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),
@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
             '/mainPage': (context) => MainPage(),
             "/homePage": (context) => HomePage(),
             "/gridPage": (context) =>
-                GridPage(arguments: ModalRoute.of(context)?.settings.arguments),
+                GridPage(arguments: ModalRoute.of(context)?.settings.arguments as String),
             "/productDetail": (context) => ProductDetailsView(
                 arguments:
                     ModalRoute.of(context)?.settings.arguments as String),

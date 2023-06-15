@@ -58,7 +58,7 @@ class OrderHistory extends StatelessWidget {
                           child: ListTile(
                             onTap: () {
                               
-                              Navigator.pushNamed(context, '/orderDetail',arguments: order.id);
+                              Navigator.pushNamed(context, '/orderDetail',arguments: (order.id).toString());
                               },
                             leading: Container(
                               width: 48,
@@ -74,9 +74,9 @@ class OrderHistory extends StatelessWidget {
                                 ],
                               ),
                               child: ClipOval(
-                                child: Image.asset(
-                                  'assets/images/avatar3.png',
-                                  fit: BoxFit.cover,
+                                child: Icon(
+                                  Icons.shopping_bag,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),

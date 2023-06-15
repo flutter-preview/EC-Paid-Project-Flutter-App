@@ -11,7 +11,7 @@ import 'dart:convert';
 
 final apiClient3 = ApiClient(
 
-  baseUrl:"https://d48a-115-186-48-36.ngrok-free.app",
+  baseUrl:"https://owaisali246.pythonanywhere.com",
   headers: {'Content-Type': 'application/json'},
 
 );                                                                                                                                                      
@@ -153,7 +153,7 @@ getOrderDetail(id)async{
     apiClient3.headers["Authorization"]="Token $token";
   }
 
-const id1=12;
+final id1=int.parse(id);
   final response = await apiClient3.get('/order/$id1');
   print(response.body);
   return response.body;
