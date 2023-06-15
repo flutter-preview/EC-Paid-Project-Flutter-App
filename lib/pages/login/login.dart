@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
         loginuser.password != loginuser.password.toLowerCase()) {
       // final store=StoreProvider.of(context);
       // store.state.cart= await getCartFromSession();
-      Navigator.pushNamed(context, "/addressPage");
+      Navigator.pushNamed(context, "/mainPage");
       setState(() {
         message = 'Login successful';
       });
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {Navigator.pushNamed(context, "/signup");},
                           child: const Text("Not signed up yet? Signup"),
                         )
                       
