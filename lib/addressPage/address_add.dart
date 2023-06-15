@@ -63,16 +63,16 @@ class _AddAddressPageState extends State<AddAddressPage> {
             Navigator.pop(context);
           },
         ),
-        title:  Text(
-            'Get Your  Address',
-            style: const TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.w500,
-              fontFamily: "Montserrat",
-              fontSize: 18.0,
-            ),
+        title: Text(
+          'Get Your  Address',
+          style: const TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.w500,
+            fontFamily: "Montserrat",
+            fontSize: 18.0,
           ),
         ),
+      ),
       body: LayoutBuilder(
         builder: (_, viewportConstraints) => SingleChildScrollView(
           child: ConstrainedBox(
@@ -106,7 +106,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 InkWell(
-                                  onTap: () {getUserAddress(context, addressAndPhone);},
+                                  onTap: () {
+                                    getUserAddress(context, addressAndPhone);
+                                  },
                                   child: Icon(Icons.home),
                                 ),
                                 Text(

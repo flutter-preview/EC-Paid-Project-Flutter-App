@@ -74,7 +74,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                   _textEditingController.text = suggestion.toString();
                 });
                 print('Selected: $suggestion');
-                Navigator.pushNamed(context, "/gridpage", arguments: jsonString);
+                Navigator.pushNamed(context, "/gridPage", arguments: jsonString);
               },
             ),
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/productGrid/actions/actions.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../../models/food_and_category.dart';
@@ -14,7 +13,6 @@ class GridPage extends StatefulWidget {
 }
 
 class _GridPageState extends State<GridPage> {
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -34,7 +32,7 @@ class _GridPageState extends State<GridPage> {
           ),
           Expanded(
             child: FutureBuilder<dynamic>(
-              future:getAllProduct(context),
+              future: getAllProduct(context),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
@@ -52,8 +50,6 @@ class _GridPageState extends State<GridPage> {
                         delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {
                             return GridItem(
-                              
-                              
                               width: itemWidth,
                               height: itemHeight,
                               lpg: lpg[index],
@@ -74,7 +70,6 @@ class _GridPageState extends State<GridPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarForApp(indexNum: 2),
     );
   }
 }

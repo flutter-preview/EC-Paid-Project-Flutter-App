@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/components/carousel.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/components/homeGrid.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/components/middleContainer.dart';
-import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
 import 'package:flutter_ecommerce_app/pages/searchBar/searchbar.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +17,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/cart');
+                Navigator.pushNamed(context, '/orderHistory');
               },
               icon: Icon(Icons.shopping_bag))
         ],
@@ -43,7 +42,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBarForApp(indexNum: 0),
     );
   }
 }

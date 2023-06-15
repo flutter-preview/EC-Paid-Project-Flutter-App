@@ -40,9 +40,9 @@ String? addressAndPhoneJson = prefs.getString('lpgAddress');
     // print(addressAndPhone.area);
 sendOrder(cart.lpg, addressAndPhone,type);
 
+Navigator.of(context).pop();
+                Navigator.pushNamed(context, "/orderPlaced");
    }
-                Navigator.of(context).pop();
-                Navigator.pushNamed(context, "orderPlaced");
               },
             ),
           ],

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/productGrid/product_grid.dart';
 
@@ -55,7 +57,9 @@ class GradientContainer extends StatelessWidget {
                   SizedBox(height: 8.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/gridpage');
+                       final Map<String, String> jsonData = {'search': "".toString()};
+                final jsonString = jsonEncode(jsonData);
+                      Navigator.pushNamed(context, '/gridPage',arguments: jsonString);
                     },
                     child: const Text('Order More Now'),
                     style: ElevatedButton.styleFrom(
