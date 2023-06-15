@@ -169,7 +169,7 @@ class OrderDetailPage extends StatelessWidget {
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 // Navigate to HomePage
-                                Navigator.of(context).pushNamed('/homePage');
+                                Navigator.of(context).pushNamed('/mainPage');
                               },
                               child: Text('Yes'),
                             ),
