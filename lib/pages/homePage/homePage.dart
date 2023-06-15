@@ -4,6 +4,8 @@ import 'package:flutter_ecommerce_app/pages/homePage/components/homeGrid.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/components/middleContainer.dart';
 import 'package:flutter_ecommerce_app/pages/searchBar/searchbar.dart';
 
+import '../bottomNavigationBar/bottomNavigationBar.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -42,6 +44,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+        bottomNavigationBar: BottomNavigationBarForApp(indexNum: 0),
     );
   }
 }
