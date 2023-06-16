@@ -12,7 +12,7 @@ class OrderPlacedPageState extends State<OrderPlacedPage> {
     
     // Wait for two seconds and navigate to the other page
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(
+      Navigator.popAndPushNamed(
         context,
         "/orderHistory"
       );

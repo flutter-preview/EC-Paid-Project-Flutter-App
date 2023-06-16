@@ -1,6 +1,8 @@
+import 'package:encrypt/encrypt.dart';
 import 'urlsClass/url_class.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'dart:async';
 
  fun()async{
 
@@ -190,31 +192,96 @@ getUser()async{
 
 
 
+getOffer()async{
+  final res=await apiClient3.get('/offers');
+  print(res.body);
+
+}
+
 
 
 
 
 //send addresss
 
-login2(body) async {
-final response = await apiClient2.post("/HS/api/Tran/DoTran",{
-	"ChannelId": "1002",
-	"MerchantId": "23063",
-	"StoreId": "030678",
-	"MerchantHash": "0aFsbiT8uYBQKWZnuLKZtzGNl6kaNW7l7nMQMAEe7qg=",
-	"MerchantUsername": "cahaca",
-	"MerchantPassword": "caXHKlksZUtvFzk4yqF7CA==",
-	"ReturnURL": "http://localhost:8080/#/",
-	"Currency": "PKR",
-	"AuthToken": "zq0LxSauYpArYk3rHe0If7Sdn6Z+e8Aau80N7IW/Y5Zepea99gh0KRsG0YRu/5kxpX2w0wDOuCPDd7MPNYPY+2BOKbeHKbrPVst7GmTj6uGGqRaG6B4NCX9iYqh428fiyEMkzd7XekE=",
-	"TransactionTypeId": "2",
-	"TransactionReferenceNumber": "2222",
-	"TransactionAmount": "3433",
-	"MobileNumber": "03363042666",
-	"AccountNumber": "00141004533666",
-	"Country": "164",
-	"EmailAddress": "owaisali246.soa@gmail.com",
-	"RequestHash": "YwHCyfGUusZ47PxxQh/lwY52VPG/rv+DFG9ImfNQIqybt4K+Hjg3puHQLxuDkqn/6fblm/xA6lqwYakzc5bdHbnr03CC0ZXLScHqzEAyehCIGXlywiJZBCd2xYJ4BZAQYFfD3Fp4Vquea9fiqwCw/F7iUY/7o0Qr+lW7RYjHZ/H9QRrIl04mp2cLO+7DPD1QvvQEYQag2hGQ9k7BMYLJ/gTX40ZKtzjp72sqtKnvGQebW+0xKp3ulMILSZMoqGKAf1yoA2ZeariFPon63rkvWfxiQ9FBWadFRKgeejPcZ5aAuiQ2v6Si97TPpdubAQn3RvXTcl3EJz0U1XArtLmyP4gTSWk6swZYCBXe4JNDX5XLvenFuHcfd/pdHdmajMXTvFN+Njs2ruWr5Mfxy0QIYvRFxR9+/tcz6xm3Wa+0c5kS3D7NcVeKYfco6SFphA3YwxTpt47j3daMEgHcAEwkluNkoT36H0iogy3S2Eo7bZmFxHRa/Nym+Lo1rWwA4/8BY3Z7GcDuirB0cWsDCLm3Vi0TYEHYd5y3iM0vQjyBebXY/6yWkL4T6rvFJTEnsvWQ01qzjLGTTB7RXsbOAR8j+tUFLscKJfyQBVkkYMilm0D5psEQCOZGcC+TmzeAUIHZ"
-});
-  print(response.body);
+
+
+// Function to initiate handshake
+ initiateHandshake() async {
+  final url = Uri.parse('/HS/api/HSAPI/HSAPI');
+
+  final encryptionKey = Key.fromUtf8('your_encryption_key');
+  final iv = IV.fromLength(16);
+  final encrypter = Encrypter(AES(encryptionKey, mode: AESMode.cbc));
+
+  final requestData = {
+    'HS_ChannelId': '1002',
+    'HS_MerchantId': '197',
+    'HS_StoreId': '000001',
+    'HS_ReturnURL': 'http://sample.com/SamplePage',
+    'HS_MerchantHash': '0aFsbiT8uYBQKWZnuLKZtzGNl6kaNW7l7nMQMAEe7qg=',
+    'HS_MerchantUsername': 'cahaca',
+    'HS_MerchantPassword': 'caXHKlksZUtvFzk4yqF7CA==',
+    'HS_TransactionReferenceNumber': 'a100',
+    'HS_RequestHash': 'BgfY8+t5rCC+oXhl5mrLuJ434+kb+76t6Ju6w1gXPvjWNjHMIltfC4N1M26WWVZrElutixOLePTwqarYEMOiDRxkMMXuEQRHSE2GFxgtmMYez1YQRa5kCsvsOU4GlRUqElv+BgLkA6uFNWAhqSg5Sq7IR59rnKk2MngAUF+6NO3aMkNEx4FtoxjwADfSa2EIFHYdBq5Vxi1DTIa0zfz1OCfB54wB52RvV49wrNcgfSn0FfK1bC5NkjjGf9UYCjd6BsjuMCLDaN8Fj/gtgI34kCZzP4PKPKI9pqCMOgy3mnkaBDrvn73f3GUTvms95EyV1ZL1pcz1gxjb7r4pfXOhztWtX28TbtLTCP4HuePdXGAEbzlNrorUDJHvQ3MBXkj8dPQRQA1gANNe2JIgq601lwDIadR7tBybf5M/mh846bP7y/hv/KeEx6UBjA9w8sKnsE5LCwqSNGYsnGd6zdJMFA==',
+  };
+
+  final encryptedData = encrypter.encrypt(jsonEncode(requestData), iv: iv);
+  final encryptedBase64 = base64.encode(encryptedData.bytes);
+
+  final response = await apiClient2.post("/HS/api/HSAPI/HSAPI", {"body": {'data': encryptedBase64}});
+
+  final encryptedResponse = base64.decode(response.body);
+  final decryptedResponse = encrypter.decrypt64(encryptedResponse as String, iv: iv);
+  final jsonResponse = jsonDecode(decryptedResponse);
+
+  if (jsonResponse['success'] == 'true') {
+    final transactionId = jsonResponse['TransactionId'];
+
+    // Proceed with the next API calls or operations
+    // ...
+  } else {
+    final errorMessage = jsonResponse['ErrorMessage'];
+    print('Error: $errorMessage');
+  }
 }
+
+// Function to initiate transaction
+ initiateTransaction() async {
+  final url = Uri.parse('https://sandbox.bankalfalah.com/API/Transaction/Initiate');
+
+  final encryptionKey = Key.fromUtf8('your_encryption_key');
+  final iv = IV.fromLength(16);
+  final encrypter = Encrypter(AES(encryptionKey, mode: AESMode.cbc));
+
+  final requestData = {
+    'MerchantUsername': 'cahaca',
+    'AuthToken': '9b23e9b6-af76-4a32-a2bb-d4d29af5ccdd',
+    'Amount': '100.00',
+    'Currency': 'PKR',
+    'TransactionReferenceNumber': 'a100',
+    'RequestHash': 'BUjB0XpZFn1AdRZmShLyc1CzmM1mdrGeL2BZDBzgWfSZW55yItq1i+hrmy+ztSSSnfX2sEf+TKyhlTw5B/9EXKnLMng1tZTN',
+  };
+
+  final encryptedData = encrypter.encrypt(jsonEncode(requestData), iv: iv);
+  final encryptedBase64 = base64.encode(encryptedData.bytes);
+
+  final response = await apiClient2.post("/API/Transaction/Initiate", {"body": {'data': encryptedBase64}});
+
+  final encryptedResponse = base64.decode(response.body);
+  final decryptedResponse = encrypter.decrypt64(encryptedResponse as String, iv: iv);
+  final jsonResponse = jsonDecode(decryptedResponse);
+
+  if (jsonResponse['success'] == 'true') {
+    final transactionId = jsonResponse['TransactionId'];
+
+    // Proceed with the next API calls or operations
+    // ...
+  } else {
+    final errorMessage = jsonResponse['ErrorMessage'];
+    print('Error: $errorMessage');
+  }
+}
+
+// Call the functions to test the APIs
+

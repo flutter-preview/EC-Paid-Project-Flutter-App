@@ -22,13 +22,15 @@ class _LoginPageState extends State<LoginPage> {
 
   _login(BuildContext context) async {
     await login(loginuser);
+    // await getOffer();
+    // await initiateHandshake();
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
         RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(loginuser.password) &&
         loginuser.password != loginuser.password.toLowerCase()) {
       // final store=StoreProvider.of(context);
       // store.state.cart= await getCartFromSession();
-      Navigator.pushNamed(context, "/mainPage");
+      // Navigator.pushNamed(context, "/mainPage");
       setState(() {
         message = 'Login successful';
       });

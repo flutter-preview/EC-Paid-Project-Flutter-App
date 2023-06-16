@@ -45,7 +45,7 @@ String? addressAndPhoneJson = prefs.getString('lpgAddress');
 sendOrder(cart.lpg, addressAndPhone,type,(distributor.id).toString());
 
 Navigator.of(context).pop();
-                Navigator.pushNamed(context, "/orderPlaced");
+                Navigator.popAndPushNamed(context, "/orderPlaced");
    }
               },
             ),
