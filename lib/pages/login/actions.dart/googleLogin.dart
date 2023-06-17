@@ -22,7 +22,7 @@ signInWithGoogle(BuildContext context) async {
 print(userCredential);
     if (userCredential.user != null) {
       // Navigate to the Homepage
-      Navigator.pushReplacementNamed(context, '/gridpage');
+      Navigator.pushReplacementNamed(context, '/mainPage');
       print(userCredential.user?.displayName);
     }
   } catch (e) {

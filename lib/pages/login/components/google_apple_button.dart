@@ -17,7 +17,7 @@ class GoogleAndAppleButton extends StatelessWidget {
                       onPressed: () {
                         signInWithGoogle(context);
                         // if (FirebaseAuth.instance.currentUser != null) {
-                        //   Navigator.of(context).pushNamed("/gridpage");
+                          // Navigator.of(context).pushNamed("/mainPage");
                         // }
                       },
                       child: const CircleAvatar(

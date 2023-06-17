@@ -32,7 +32,7 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase.initializeApp();
+  Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),
             "/signup": (context) => SignupPage(),
-            '/mainPage': (context) => MainPage(),
+            "/mainPage": (context) => MainPage(),
             "/homePage": (context) => HomePage(),
             "/gridPage": (context) =>
                 GridPage(arguments: ModalRoute.of(context)?.settings.arguments as String),
