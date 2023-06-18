@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+import '../../../reduxStore/app_state.dart';
 
 
 class SmallProduct {
@@ -16,7 +19,8 @@ List<SmallProduct> smProducts = [
 class ProductDetails extends StatelessWidget {
    String title;
    String price;
-  ProductDetails({super.key, required this.title,required this.price});
+   String description;
+  ProductDetails({super.key, required this.title,required this.price,required this.description});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,7 +65,7 @@ class ProductDetails extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor consectetur tortor vitae interdum.',
+              description,
               style: TextStyle(
                 fontSize: 15,
                 color: Colors.grey,
@@ -80,22 +84,30 @@ class ProductDetails extends StatelessWidget {
               height: 110,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: smProducts.length,
-                itemBuilder: (context, index) => Container(
-                  margin: const EdgeInsets.only(right: 6),
-                  width: 110,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Center(
-                    child: Image.network(
-                      smProducts[index].image,
-                      height: 70,
+                itemCount: 3,
+                itemBuilder: (context, index) { 
+                   final lpg= StoreProvider.of<AppState>(context).state.lpgList[index];
+                 return InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, "/productDetail",arguments: lpg.id.toString());
+                  },
+                   child: Container(
+                 
+                    margin: const EdgeInsets.only(right: 6),
+                    width: 110,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                ),
+                    child: Center(
+                      child: Image.network(
+                        lpg.image,
+                        height: 70,
+                      ),
+                    ),
+                                 ),
+                 );}
               ),
             ),
             SizedBox(height: 20),

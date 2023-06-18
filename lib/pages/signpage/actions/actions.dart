@@ -8,6 +8,7 @@ Function(dynamic value)? getOnChangedFunction(String type,SignupUser user) {
       'phone': (value) => user.phone =  int.tryParse(value) ?? 0,
       'confirmPassword': (value) => user.confirmPassword = value,
       'address': (value) => user.address = value,
+      'last_name': (value) => user.last_name = value,
     };
     return fieldMap[type];
   }

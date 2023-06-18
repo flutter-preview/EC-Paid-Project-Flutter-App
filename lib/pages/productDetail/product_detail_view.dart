@@ -45,7 +45,7 @@ class ProductDetailsView extends StatelessWidget {
                       child: Stack(
                         children: [
                           ProductDetails(
-                              title: lpg.title, price: lpg.price.toString()),
+                              title: lpg.title, price: lpg.price.toString(),description: lpg.description),
                           Align(
                             alignment: Alignment.topCenter,
                             child: Container(

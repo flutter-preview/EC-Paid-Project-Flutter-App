@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/PlaceOrderPage/placeorder.dart';
@@ -17,6 +19,7 @@ import 'package:redux/redux.dart';
 import 'addressPage/address_add.dart';
 import 'appTheme/apptheme.dart';
 import 'googleMap/google_map.dart';
+import 'pages/distributorsPage/distributor.dart';
 import 'pages/login/login.dart';
 import 'pages/orderDetailPage/order_detail.dart';
 import 'pages/productDetail/product_detail_view.dart';
@@ -32,11 +35,13 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase.initializeApp();
+  
+  Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
   );
+  HttpOverrides.global = MyHttpOverrides();
   runApp(
       DevicePreview(enabled: false, builder: (context) => MyApp(store: store)));
   // MyApp(store: store));
@@ -61,7 +66,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home:Splash(),
+          home:MainPage(),
           routes: {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),
@@ -94,5 +99,13 @@ class MyApp extends StatelessWidget {
             "/billingDetailsPage": (context) => BillingDetailsPage()
           },
         ));
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }

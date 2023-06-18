@@ -25,12 +25,13 @@ class UpdateProfilePage extends StatelessWidget {
               ProfileIconWidget(),
               const SizedBox(height: 50),
               ProfilePageForm(
-                  userProfile: ProfileData(
-                      name: 'Mohib Qureshi',
-                      email: 'mohb@gmail.com',
-                      password: 'Mohib123',
-                      phoneNo: '03123742371',
-                      address: 'Karachi'))
+                  // userProfile: ProfileData(
+                  //     name: 'Mohib Qureshi',
+                  //     email: 'mohb@gmail.com',
+                  //     password: 'Mohib123',
+                  //     phoneNo: '03123742371',
+                  //     address: 'Karachi')
+                      )
             ]),
           ),
         ));

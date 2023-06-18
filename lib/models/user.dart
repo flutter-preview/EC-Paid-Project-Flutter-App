@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class LoginUser {
   int userId=-1;
   String email="";
@@ -15,4 +17,12 @@ class LoginUser {
         'email': email,
         'password': password,
       };
+}
+class User{
+  String username="";
+  String email="";
+User({this.username="",this.email=""});
+  User.fromJson(Map<String, dynamic> json)
+      :username = json['first_name'],
+        email = json['email'];
 }

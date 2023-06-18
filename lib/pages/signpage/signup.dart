@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/signup.dart';
 import '../../urls/urls.dart';
+import '../login/components/google_apple_button.dart';
 import 'components/google_apple_button.dart';
 import 'components/my_input_column.dart';
 
@@ -35,10 +36,9 @@ class _SignupPageState extends State<SignupPage> {
     final signu =await signup(user);
 
   if (_formKey.currentState!.validate()) {
-      final data=await signup(user);
+      // final data=await signup(user);
         bool isValid = validateFields();
     if (isValid 
-    && data
     )  {
       setState(() {
         _errorMessage = 'Signup successful!';
@@ -56,9 +56,7 @@ class _SignupPageState extends State<SignupPage> {
   if (user.email.contains('@') &&
       user.password.length >= 8 &&
       specialCharsRegex.hasMatch(user.password) &&
-      user.confirmPassword == user.password &&
-      user.phone.toString().length == 12 &&
-      user.address.isNotEmpty) {
+      user.confirmPassword == user.password ) {
     return true;
   } else {
     return false;
@@ -76,10 +74,6 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: ListView(
         children: [
           Container(
@@ -161,7 +155,7 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                     Expanded(child: const SizedBox()),
-                    GoogleAndAppleButtonSignup(),
+                    GoogleAndAppleButton(),
                     Expanded(child: const SizedBox()),
                     SafeArea(
                       child: Row(

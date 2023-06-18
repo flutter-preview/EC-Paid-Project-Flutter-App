@@ -10,11 +10,11 @@ import 'app_state.dart';
 
 AppState appReducer(AppState state, dynamic action) {
   return AppState(
+    cart:cartReducer(state.cart, action),
     lpg: lpgReducer(state.lpg, action),
     addressAndPhone: addressAndPhoneReducer(state.addressAndPhone, action),
     lpgList: lpgListReducer(state.lpgList, action),
     // user: userReducer(state.user, action),
-    cart:cartReducer(state.cart, action),
   );
 }
 
@@ -41,6 +41,7 @@ List<LPG> lpgListReducer(List<LPG> lpgList, dynamic action) {
   return lpgList;
 }
 
+
 // Reducer for a user
 // User userReducer(User user, dynamic action) {
 //   if (action is SetUserAction) {
@@ -49,9 +50,10 @@ List<LPG> lpgListReducer(List<LPG> lpgList, dynamic action) {
 //   return user;
 // }
 
-Cart cartReducer(Cart state, CartAction action) {
+Cart cartReducer(Cart state,  action) {
   final newState = Cart();
   newState.lpg.addAll(state.lpg);
+if(action is CartAction){
 
   switch (action.type) {
     case CartActionType.addItem:
@@ -65,6 +67,7 @@ Cart cartReducer(Cart state, CartAction action) {
       newState.clearCart();
       break;
   }
+}
   // print(newState.lpg);
 saveCartToSession(newState);
 // print(getCartFromSession());

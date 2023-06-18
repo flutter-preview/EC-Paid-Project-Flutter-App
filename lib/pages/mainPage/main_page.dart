@@ -16,12 +16,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int index = 2;
   final screens = [
-    ProfilePage(ProfileData(
-        name: 'Mohib Qureshi',
-        email: 'mohb@gmail.com',
-        password: 'Mohib123#',
-        phoneNo: '03123742371',
-        address: 'Karachi')),
+    ProfilePage(),
     QRCodeScanner(),
     HomePage(),
     CartPage(),

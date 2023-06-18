@@ -1,4 +1,6 @@
 
+import 'package:flutter_ecommerce_app/urls/urls.dart';
+
 class LPG {
   int id=-1;
   int categoryId=-1;
@@ -6,14 +8,15 @@ class LPG {
   int  quantity=1;
   String image="";
   int price;
+  String description="";
 
   LPG( {this.id=-1,this.categoryId=-1, this.title="", this.price=0,this.image='',this.quantity=0});
 
   LPG.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        // categoryId = json['category_id'],
+        description = json['description'],
         title = json['name'],
-        image = "https://owaisali246.pythonanywhere.com"+ json["image"],
+        image = baseUrl+ json["image"],
         price = json['price'];
 
   Map<String, dynamic> toJson() => {
@@ -22,6 +25,7 @@ class LPG {
         'id': id,
         'quantity': quantity,
         'price': price,
+        'description': description,
         'image': image,
       };
 }

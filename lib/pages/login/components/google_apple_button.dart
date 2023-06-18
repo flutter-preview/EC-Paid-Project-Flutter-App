@@ -2,8 +2,32 @@ import 'package:flutter/material.dart';
 
 import '../actions.dart/googleLogin.dart';
 
+import 'package:google_sign_in/google_sign_in.dart';
+
+ GoogleSignIn _googleSignIn = new GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
+
+  initLogin() {
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) async {
+      if (account != null) {
+print("account: $account");
+        return account;
+      } else {
+        print("---------");
+        return null;
+        // user NOT logged
+      }
+    } as void Function(GoogleSignInAccount? event)?);
+    _googleSignIn.signInSilently().whenComplete(() => print("done"));
+  }
+
 class GoogleAndAppleButton extends StatelessWidget {
   const GoogleAndAppleButton({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +38,9 @@ class GoogleAndAppleButton extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                       ),
-                      onPressed: () {
+                      onPressed: () async{
                         signInWithGoogle(context);
+                        //  await _googleSignIn.signIn();
                         // if (FirebaseAuth.instance.currentUser != null) {
                         //   Navigator.of(context).pushNamed("/gridpage");
                         // }

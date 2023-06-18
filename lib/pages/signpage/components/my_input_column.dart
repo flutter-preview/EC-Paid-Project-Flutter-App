@@ -28,8 +28,15 @@ class _MyInputColumnState extends State<MyInputColumn> {
         CustomTextField(
           user: widget.user,
           type: 'username',
-          label: 'Username',
-          placeholder: 'Enter your username',
+          label: 'First Name',
+          placeholder: 'Enter your First Name',
+          myIcon: Icon(Icons.person),
+        ),
+        CustomTextField(
+          user: widget.user,
+          type: 'last_name',
+          label: 'Last Name',
+          placeholder: 'Enter your Last Name',
           myIcon: Icon(Icons.person),
         ),
         const SizedBox(height: 10),
@@ -70,25 +77,8 @@ class _MyInputColumnState extends State<MyInputColumn> {
         ),
         obscureText: !_isPasswordVisible,
         ),
-        const SizedBox(height: 10),
-        CustomTextField(
-          user: widget.user,
-          type: 'address',
-          myIcon: Icon(Icons.location_city),
-          label: 'address',
-          placeholder: 'address',
-          keyboardType: TextInputType.streetAddress,
-
-        ),
-        const SizedBox(height: 10),
-        CustomTextField(
-          user: widget.user,
-          type: 'phone',
-          myIcon: Icon(Icons.phone),
-          label: 'phone',
-          placeholder: 'phone',
-keyboardType: TextInputType.number,
-        ),
+        // const SizedBox(height: 10),
+        // const SizedBox(height: 10),
       ],
     );
   }

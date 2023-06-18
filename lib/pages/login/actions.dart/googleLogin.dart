@@ -2,12 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../urls/urls.dart';
+
 signOut() {
     FirebaseAuth.instance.signOut();
   }
 
 signInWithGoogle(BuildContext context) async {
   try {
+    print("dfddddddd");
     GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
@@ -16,17 +19,19 @@ signInWithGoogle(BuildContext context) async {
       accessToken: googleAuth?.accessToken,      
       idToken: googleAuth?.idToken,
     );
+// print(credential );
+// print(googleAuth?.accessToken); 
+final a =await googlelogin(googleAuth?.idToken);
+if(a!=null){
+  Navigator.of(context).pushNamed("/mainPage");
+}
 
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-print(userCredential);
-    if (userCredential.user != null) {
-      // Navigate to the Homepage
-      Navigator.pushReplacementNamed(context, '/gridpage');
-      print(userCredential.user?.displayName);
-    }
+// print(userCredential);
+// getAll();
+print('-------------------');
   } catch (e) {
+
     // Handle sign-in error
-    print('Sign-in with Google failed: $e');
+    // print('Sign-in with Google failed: $e');
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../models/distributor.dart';
 import 'action/mapAction.dart';
@@ -19,6 +20,7 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController? mapController;
   LatLng? userLocation;
   Distributor? nearestDistributor;
+  List<Distributor> nearestDistributors = [];
   List<Distributor> distributors = [];
 
   @override
@@ -61,92 +63,103 @@ class _MapPageState extends State<MapPage> {
   }
 
   Set<Marker> _buildMarkers() {
-    if (userLocation == null || nearestDistributor == null) {
+    if (userLocation == null || nearestDistributors.isEmpty) {
       return {};
     }
 
     final userLatLng = userLocation!;
-    final location = LatLng(
-      double.parse(nearestDistributor!.location.split(',')[0]),
-      double.parse(nearestDistributor!.location.split(',')[1]),
-    );
+    final markers = <Marker>{};
 
-    final distance = Geolocator.distanceBetween(
-      userLatLng.latitude,
-      userLatLng.longitude,
-      location.latitude,
-      location.longitude,
-    );
-
-    print('Nearest distributor location: $location');
-    print('Distance: $distance meters');
-
-    // Add a marker for the nearest distributor
-    return {
-      Marker(
-        markerId: MarkerId('nearestMarker'),
-        position: location,
-        infoWindow: InfoWindow(
-          title: nearestDistributor!.name,
-          snippet: 'Distance: ${distance.toStringAsFixed(2)} meters',
-        ),
-      ),
-    };
-  }
-
-  Future<void> _getUserLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-      setState(() {
-        userLocation = LatLng(position.latitude, position.longitude);
-      });
-      _findNearestDistributor();
-    } catch (error) {
-      print('Error getting user location: $error');
-    }
-  }
-
-  void _findNearestDistributor() async {
-    if (distributors.isEmpty || userLocation == null) {
-      return;
-    }
-
-    LatLng userLatLng = LatLng(userLocation!.latitude, userLocation!.longitude);
-    double minDistance = double.infinity;
-    Distributor? foundDistributor;
-
-    for (Distributor distributor in distributors) {
-      LatLng location = LatLng(
+    for (Distributor distributor in nearestDistributors) {
+      final location = LatLng(
         double.parse(distributor.location.split(',')[0]),
         double.parse(distributor.location.split(',')[1]),
       );
 
-      double distance = Geolocator.distanceBetween(
+      final distance = Geolocator.distanceBetween(
         userLatLng.latitude,
         userLatLng.longitude,
         location.latitude,
         location.longitude,
       );
 
-      if (distance < minDistance) {
-        minDistance = distance;
-        foundDistributor = distributor;
-      }
+      distributor.distance = distance;
+
+      print('Distributor location: $location');
+      print('Distributor distance: ${distributor.distance}');
+      // print('Distance: $distance meters');
+
+      markers.add(
+        Marker(
+          markerId: MarkerId(distributor.name),
+          position: location,
+          infoWindow: InfoWindow(
+            title: distributor.name,
+            snippet: 'Distance: ${distance.toStringAsFixed(2)} meters',
+          ),
+        ),
+      );
     }
+
+    return markers;
+  }
+
+  Future<void> _getUserLocation() async {
+    try {
+      PermissionStatus status = await Permission.location.request();
+      if (status.isGranted) {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+        );
+        setState(() {
+          userLocation = LatLng(position.latitude, position.longitude);
+        });
+        _findNearestDistributors();
+      } else {
+        // Handle case when location permission is not granted
+      }
+    } catch (error) {
+      print('Error getting user location: $error');
+    }
+  }
+
+  Future<void> _findNearestDistributors() async {
+    if (distributors.isEmpty || userLocation == null) {
+      return;
+    }
+
+    LatLng userLatLng = LatLng(userLocation!.latitude, userLocation!.longitude);
+    int limit = 3; // Number of nearest distributors to fetch
+
+    List<Distributor> updatedDistributors = List.from(distributors); // Create a copy of the distributors list
+
+    for (int i = 0; i < updatedDistributors.length; i++) {
+      Distributor distributor = updatedDistributors[i];
+
+      double distance = Geolocator.distanceBetween(
+        userLatLng.latitude,
+        userLatLng.longitude,
+        double.parse(distributor.location.split(',')[0]),
+        double.parse(distributor.location.split(',')[1]),
+      );
+
+      distributor.distance = distance;
+    }
+
+    updatedDistributors.sort((a, b) => a.distance.compareTo(b.distance));
 
     setState(() {
-      nearestDistributor = foundDistributor;
+      nearestDistributors = updatedDistributors.take(limit).toList();
     });
 
-    if (nearestDistributor != null) {
-      await saveNearestDistributor(nearestDistributor!);
-    }
+    await saveNearestDistributors(nearestDistributors); // Save the updated distributors to local storage
   }
 
-  Future<void> saveNearestDistributor(Distributor distributor) async {
+  Future<void> saveNearestDistributors(List<Distributor> distributors) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('LpgDistributor', jsonEncode(distributor.toJson()));
+    print(distributors[0].distance);
+    List<String> encodedDistributors = distributors.map((distributor) => jsonEncode(distributor.toJson())).toList();
+    await prefs.setStringList('LpgDistributors', encodedDistributors);
   }
 }
+

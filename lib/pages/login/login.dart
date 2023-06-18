@@ -21,8 +21,9 @@ class _LoginPageState extends State<LoginPage> {
   String message = '';
 
   _login(BuildContext context) async {
-    await login(loginuser);
-    // await getOffer();
+    // await login(loginuser);
+    // await getAll();
+    await bank();
     // await initiateHandshake();
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
