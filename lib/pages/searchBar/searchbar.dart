@@ -16,9 +16,11 @@ class CustomSearchBar extends StatefulWidget {
 class _CustomSearchBarState extends State<CustomSearchBar> {
   late String search = "";
   final List<String> suggestions = [
-    'Laptop',
-    'c',
-    'm',
+    'cylinder',
+    'small',
+    '8kg',
+    '10kg',
+    'large',
   ];
   final TextEditingController _textEditingController = TextEditingController();
 

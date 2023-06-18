@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),
             "/signup": (context) => SignupPage(),
-            '/mainPage': (context) => MainPage(),
+            "/mainPage": (context) => MainPage(),
             "/homePage": (context) => HomePage(),
             "/gridPage": (context) =>
                 GridPage(arguments: ModalRoute.of(context)?.settings.arguments as String),
