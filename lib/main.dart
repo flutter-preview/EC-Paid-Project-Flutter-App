@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/PlaceOrderPage/placeorder.dart';
-import 'package:flutter_ecommerce_app/forgetPassPage/forgetPassPage.dart';
+import 'package:flutter_ecommerce_app/pages/PlaceOrderPage/placeorder.dart';
+import 'package:flutter_ecommerce_app/pages/forgetPassPage/forgetPassPage.dart';
 import 'package:flutter_ecommerce_app/pages/billingDetailsPage/billingDetails.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
@@ -11,12 +11,13 @@ import 'package:flutter_ecommerce_app/pages/mainPage/main_page.dart';
 import 'package:flutter_ecommerce_app/pages/orderhistoryPage/orderHistory.dart';
 import 'package:flutter_ecommerce_app/pages/paymentOrCash/payment_or_cash.dart';
 import 'package:flutter_ecommerce_app/pages/profilePage/components/update_profile_page.dart';
+import 'package:flutter_ecommerce_app/pages/profilePage/profile_page.dart';
 import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
-import 'package:flutter_ecommerce_app/pages/termsAndConditionsPage/tos.dart';
+import 'package:flutter_ecommerce_app/pages/profilePage/components/tos.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'addressPage/address_add.dart';
+import 'pages/addressPage/address_add.dart';
 import 'appTheme/apptheme.dart';
 import 'googleMap/google_map.dart';
 import 'pages/distributorsPage/distributor.dart';
@@ -91,7 +92,6 @@ class MyApp extends StatelessWidget {
             "/orderPlaced": (context) => OrderPlacedPage(),
             "/map": (context) => MapPage(),
             "/updateProfilePage": (context) => UpdateProfilePage(),
-            "/tos": (context) => TermsAndConditionsPage(),
             "/billingDetailsPage": (context) => BillingDetailsPage()
           },
         ));

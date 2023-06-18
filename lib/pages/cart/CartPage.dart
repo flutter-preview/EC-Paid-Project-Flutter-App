@@ -62,7 +62,6 @@ class _CartPageState extends State<CartPage> {
                             width: 80,
                             padding: EdgeInsets.all(4.0),
                             decoration: BoxDecoration(
-                              color: Colors.cyan[300],
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Image.network(item.image)),
@@ -74,7 +73,7 @@ class _CartPageState extends State<CartPage> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: Colors.cyan[300],
+                                  color: Colors.black,
                                   borderRadius: BorderRadius.circular(4.0)),
                               child: IconButton(
                                 icon: Icon(Icons.remove_circle),
@@ -91,7 +90,7 @@ class _CartPageState extends State<CartPage> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: Colors.cyan[300],
+                                  color: Colors.black,
                                   borderRadius: BorderRadius.circular(4.0)),
                               child: IconButton(
                                 icon: Icon(Icons.add_circle),
@@ -129,10 +128,11 @@ class _CartPageState extends State<CartPage> {
             ],
           ),
           bottomNavigationBar: BottomAppBar(
+            color: Colors.cyan.shade50,
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: MaterialButton(
-                color: Colors.cyan,
+                color: Colors.black,
                 height: 50,
                 minWidth: double.infinity,
                 shape: RoundedRectangleBorder(
@@ -147,9 +147,8 @@ class _CartPageState extends State<CartPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    if(store.state.cart.lpg.isNotEmpty){
-
-                    Navigator.pushNamed(context, "/addressPage");
+                    if (store.state.cart.lpg.isNotEmpty) {
+                      Navigator.pushNamed(context, "/addressPage");
                     }
 // sendCart(store.state.cart);
                   },

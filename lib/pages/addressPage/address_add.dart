@@ -6,11 +6,11 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/addressAndPhone.dart';
-import '../models/cart.dart';
-import '../reduxStore/action.dart';
-import '../reduxStore/app_state.dart';
-import '../urls/urls.dart';
+import '../../models/addressAndPhone.dart';
+import '../../models/cart.dart';
+import '../../reduxStore/action.dart';
+import '../../reduxStore/app_state.dart';
+import '../../urls/urls.dart';
 import 'action/addressAction.dart';
 import 'address_form.dart';
 
@@ -44,7 +44,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
             "Finish",
             style: const TextStyle(
               color: const Color(0xfffefefe),
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
               fontStyle: FontStyle.normal,
               fontSize: 20.0,
             ),
@@ -54,9 +54,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
     );
 
     return PlatformScaffold(
-      backgroundColor: Colors.grey[100],
       appBar: PlatformAppBar(
-        backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.adaptive.arrow_back),
           onPressed: () {
@@ -64,11 +62,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
           },
         ),
         title: Text(
-          'Get Your  Address',
+          'Address Details',
           style: const TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.w500,
-            fontFamily: "Montserrat",
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
             fontSize: 18.0,
           ),
         ),
@@ -129,18 +126,22 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   AddAddressForm(addressAndPhone: addressAndPhone),
                   Center(
                     child: ElevatedButton(
-                      child: Text("orderDetail"),
-                      onPressed: () async{
-                //  print(await getOrderHistory());
-                          // All fields are valid, proceed with sending the address
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white),
+                      child: Text("Proceed"),
+                      onPressed: () async {
+                        //  print(await getOrderHistory());
+                        // All fields are valid, proceed with sending the address
                         if (addressAndPhone.isValid()) {
                           setState(() {
                             errorMessage = '';
                           });
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-                          prefs.setString("lpgAddress",jsonEncode(addressAndPhone.toJson()));
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setString("lpgAddress",
+                              jsonEncode(addressAndPhone.toJson()));
                           Navigator.pushNamed(context, "/map");
-
                         } else {
                           // Invalid fields, show an error message
                           setState(() {

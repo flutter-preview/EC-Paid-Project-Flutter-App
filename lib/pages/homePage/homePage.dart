@@ -12,25 +12,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan[50],
       appBar: AppBar(
         automaticallyImplyLeading: false,
         toolbarHeight: 80,
         title: Text("LPG"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/orderHistory');
-              },
-              icon: Icon(Icons.history))
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomSearchBar(
-              filter: false,
-            ),
             MyCarousel(),
             GradientContainer(
               text: "Fuel Your Homes",
@@ -45,7 +34,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-        // bottomNavigationBar: BottomNavigationBarForApp(indexNum: 0),
+      // bottomNavigationBar: BottomNavigationBarForApp(indexNum: 0),
     );
   }
 }

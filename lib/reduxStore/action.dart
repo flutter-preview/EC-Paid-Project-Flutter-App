@@ -1,5 +1,5 @@
 // Actions for a single LPG item
-import '../addressPage/address_add.dart';
+import '../pages/addressPage/address_add.dart';
 import '../models/addressAndPhone.dart';
 import '../models/cart.dart';
 import '../models/food_and_category.dart';
@@ -10,11 +10,13 @@ class SetAddressAndPhoneAction {
 
   SetAddressAndPhoneAction(this.addressAndPhone);
 }
+
 class SetLPGAction {
   final LPG lpg;
 
   SetLPGAction(this.lpg);
 }
+
 // set address and phone
 // Actions for a list of LPG items
 class SetLPGListAction {
@@ -30,7 +32,6 @@ class SetLPGListAction {
 //   SetUserAction(this.user);
 // }
 
-
 enum CartActionType {
   addItem,
   removeItem,
@@ -43,4 +44,3 @@ class CartAction {
 
   CartAction(this.type, {this.payload});
 }
-

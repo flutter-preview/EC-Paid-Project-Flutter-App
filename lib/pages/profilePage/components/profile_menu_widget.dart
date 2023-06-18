@@ -26,10 +26,10 @@ class ProfileMenuWidget extends StatelessWidget {
         height: 30,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Colors.cyan.withOpacity(0.1)),
+            color: Colors.orange.withOpacity(0.1)),
         child: Icon(
           leadingIcon,
-          color: Colors.cyan,
+          color: Colors.black,
         ),
       ),
       title: Text(
@@ -42,7 +42,7 @@ class ProfileMenuWidget extends StatelessWidget {
               height: 30,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey.withOpacity(0.1)),
+                  color: Colors.orange.withOpacity(0.1)),
               child: Icon(
                 LineAwesomeIcons.angle_right,
                 color: Colors.grey,

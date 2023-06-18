@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class MyTheme {
   static ThemeData appThemeData = ThemeData(
     fontFamily: 'Nunito',
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Colors.cyan[100],
     appBarTheme: AppBarTheme(
-        backgroundColor: Color.fromARGB(151, 82, 199, 253),
+        backgroundColor: Colors.cyan.shade600,
         shadowColor: Color.fromARGB(155, 0, 0, 0)),
     buttonTheme: ButtonThemeData(
       buttonColor: Color.fromARGB(148, 3, 168, 244).withOpacity(0.3),
