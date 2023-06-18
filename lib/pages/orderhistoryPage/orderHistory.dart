@@ -9,7 +9,6 @@ import '../homePage/components/middleContainer.dart';
 import 'actions/orderHistoryActions.dart';
 
 class OrderHistory extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -32,16 +31,15 @@ class OrderHistory extends StatelessWidget {
                   // Show an error message if the data fetching failed
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
-                
                   // Data has been successfully fetched
                   if (snapshot.hasData) {
-                    
                     // print(snapshot.data);
-                     List<OrderHistoryData> orderHistory =snapshot.data as List<OrderHistoryData> ;
-                     if(orderHistory.length==0){
+                    List<OrderHistoryData> orderHistory =
+                        snapshot.data as List<OrderHistoryData>;
+                    if (orderHistory.length == 0) {
                       return Center(child: Text("No Data Found"));
-                     }
-                        // snapshot.data as List<OrderHistoryData>;
+                    }
+                    // snapshot.data as List<OrderHistoryData>;
                     return ListView.builder(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       itemCount: orderHistory.length,
@@ -62,9 +60,9 @@ class OrderHistory extends StatelessWidget {
                           ),
                           child: ListTile(
                             onTap: () {
-                              
-                              Navigator.pushNamed(context, '/orderDetail',arguments: (order.id).toString());
-                              },
+                              Navigator.pushNamed(context, '/orderDetail',
+                                  arguments: (order.id).toString());
+                            },
                             leading: Container(
                               width: 48,
                               height: 48,
@@ -72,7 +70,7 @@ class OrderHistory extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
+                                    color: Colors.orange.withOpacity(0.5),
                                     offset: Offset(0, 2),
                                     blurRadius: 4,
                                   ),

@@ -20,9 +20,9 @@ class _GridPageState extends State<GridPage> {
     final itemHeight = itemWidth * 1.2; // Adjust the aspect ratio as needed
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 171, 226, 252),
+      backgroundColor: Colors.cyan[100],
       appBar: AppBar(
-        title: Text('Grid page'),
+        title: Text('Catalog'),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,

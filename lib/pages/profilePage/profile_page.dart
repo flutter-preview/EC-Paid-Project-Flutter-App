@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/user.dart';
 import 'package:flutter_ecommerce_app/pages/profilePage/components/profile_icon_widget.dart';
 import 'package:flutter_ecommerce_app/pages/profilePage/components/profile_menu_widget.dart';
+import 'package:flutter_ecommerce_app/pages/profilePage/components/tos.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../urls/urls.dart';
 
 // class ProfileData {
-  // String name;
-  // String email;
-  // String password;
-  // String phoneNo;
-  // String address;
+// String name;
+// String email;
+// String password;
+// String phoneNo;
+// String address;
 
-  // ProfileData();
+// ProfileData();
 // }
 
 class ProfilePage extends StatelessWidget {
@@ -58,12 +59,12 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(
                       width: 200,
                       child: ElevatedButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           await bank();
                           // Navigator.pushNamed(context, '/updateProfilePage');
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.cyan,
+                          backgroundColor: Colors.black,
                           side: BorderSide.none,
                           shape: const StadiumBorder(),
                         ),
@@ -85,10 +86,23 @@ class ProfilePage extends StatelessWidget {
                       textColor: Colors.black,
                     ),
                     ProfileMenuWidget(
+                      name: 'Order History',
+                      leadingIcon: LineAwesomeIcons.history,
+                      onTap: () {
+                        Navigator.pushNamed(context, '/orderHistory');
+                      },
+                      trailingIcon: true,
+                      textColor: Colors.black,
+                    ),
+                    ProfileMenuWidget(
                       name: 'Terms of Service',
                       leadingIcon: LineAwesomeIcons.info,
                       onTap: () {
-                        Navigator.pushNamed(context, '/tos');
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return TOSDialog();
+                            });
                       },
                       trailingIcon: true,
                       textColor: Colors.black,
@@ -106,7 +120,7 @@ class ProfilePage extends StatelessWidget {
                     ProfileMenuWidget(
                       name: 'Logout',
                       leadingIcon: LineAwesomeIcons.alternate_sign_out,
-                      onTap: () async{
+                      onTap: () async {
                         final prefs = await SharedPreferences.getInstance();
                         prefs.remove('lpguser');
                         await logout();
@@ -133,12 +147,14 @@ Future<User> loadUserProfile() async {
 
   final userData = prefs.getString('lpguser');
   if (userData != null) {
-       final userMap = jsonDecode(userData);
+    final userMap = jsonDecode(userData);
     print(userData);
-    final userMap1=jsonDecode(userMap);
+    final userMap1 = jsonDecode(userMap);
     print(userMap1);
     // String b=userMap["email"] as String;
-User user=User(email: userMap1["email"], username: userMap1["first_name"]+" "+userMap1["last_name"]);
+    User user = User(
+        email: userMap1["email"],
+        username: userMap1["first_name"] + " " + userMap1["last_name"]);
     return user;
   } else {
     throw Exception('User profile data not found in shared preferences.');

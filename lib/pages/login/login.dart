@@ -22,8 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _login(BuildContext context) async {
     await login(loginuser);
-    // await getAll();
-    // await bank();
+    // await getOffer();
     // await initiateHandshake();
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
@@ -46,7 +45,16 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        title: Text(
+          'Welcome!',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/login-background.jpg'),
+                  fit: BoxFit.fill)),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(0.0),
@@ -56,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/loginPage.jpeg'),
+                image: AssetImage('images/login-background.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -65,42 +73,38 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Expanded(child: SizedBox()),
-                  const SizedBox(
-                    child: CircleAvatar(
-                      radius: 60,
-                      backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60',
-                      ),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
                   const SizedBox(height: 40),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                      child: Container(
+                    child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            style: BorderStyle.solid,
-                            width: 2,
-                            color: Colors.black.withOpacity(0.2),
-                          ),
-                          boxShadow: const <BoxShadow>[
-                            BoxShadow(
-                              blurRadius: 10,
-                              spreadRadius: 40.0,
-                              offset: Offset(0, 10),
-                              color: Color.fromARGB(4, 247, 240, 240),
-                            )
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color.fromARGB(255, 95, 203, 230),
+                                  Color.fromARGB(255, 213, 238, 238),
+                                ]),
+                            border: Border.all(
+                                style: BorderStyle.solid,
+                                width: 5,
+                                color: Colors.white),
+                            color: Colors.white),
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage('images/logo2.jpg'),
+                                      fit: BoxFit.contain)),
+                              height: 180,
+                            ),
+                            MyInputBox(loginuser: loginuser),
                           ],
-                          color: Colors.white.withOpacity(0.0),
-                        ),
-                        child: MyInputBox(loginuser: loginuser),
-                      ),
-                    ),
+                        )),
                   ),
                   const SizedBox(height: 10),
                   SizedBox(
@@ -111,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                         _login(context);
                       },
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.cyan,
                         elevation: 9.9,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),
@@ -138,10 +143,11 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
-                          onPressed: () {Navigator.pushNamed(context, "/signup");},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/signup");
+                          },
                           child: const Text("Not signed up yet? Signup"),
                         )
-                      
                       ],
                     ),
                   )

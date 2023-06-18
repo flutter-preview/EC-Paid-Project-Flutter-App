@@ -59,7 +59,8 @@ class QRCodeScannerState extends State<QRCodeScanner> {
             bottom: 24.0,
             child: Text(
               'Scanned Data: $scannedData',
-              style: TextStyle(color: Colors.white),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -73,18 +74,19 @@ class QRCodeScannerState extends State<QRCodeScanner> {
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-         scannedData = scanData.code! ;
-       final  productId = scannedData.split(":")[1].trim();
+        scannedData = scanData.code!;
+        final productId = scannedData.split(":")[1].trim();
 
         print(productId);
-    //      String orderId = getOrderIDFromScannedData(scannedData);
-    Navigator.popAndPushNamed(context, "/productDetail", arguments: productId.toString());
+        //      String orderId = getOrderIDFromScannedData(scannedData);
+        Navigator.popAndPushNamed(context, "/productDetail",
+            arguments: productId.toString());
         // Navigator.pushNamed(context, "/orderDetails
-        
       });
     });
   }
 }
+
 String getOrderIDFromScannedData(String scannedData) {
   // Split the scanned data using commas
   List<String> dataParts = scannedData.split(',');

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/addressAndPhone.dart';
+import '../../models/addressAndPhone.dart';
 import 'address_add.dart';
 
 class AddAddressForm extends StatelessWidget {
@@ -17,7 +17,7 @@ class AddAddressForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
@@ -34,7 +34,7 @@ class AddAddressForm extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
@@ -51,14 +51,13 @@ class AddAddressForm extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
             child: TextField(
               decoration: InputDecoration(
-                border: InputBorder.none,
                 labelText: 'City',
               ),
               onChanged: (value) {
@@ -68,7 +67,7 @@ class AddAddressForm extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
@@ -85,7 +84,7 @@ class AddAddressForm extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,

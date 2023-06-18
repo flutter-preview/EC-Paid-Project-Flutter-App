@@ -48,26 +48,22 @@ class GridContainer extends StatelessWidget {
           final List<LPG> products = snapshot.data! as List<LPG>;
 
           // Update the store with all the products
-         
 
           return Padding(
             padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
             child: Container(
               height: containerHeight,
               width: containerWidth,
-              color: Theme.of(context).appBarTheme.backgroundColor,
+              color: Colors.cyan[50],
               child: GridView.count(
                 padding: EdgeInsets.all(0),
                 crossAxisCount: 3,
                 childAspectRatio: containerWidth / (containerHeight * 1.5),
-
                 children: products.map((product) {
-    final index = products.indexOf(product);
-    final lpg = products[index];
-    return PopularGridItem(
-     lpg:lpg
-    );
-  }).toList(),
+                  final index = products.indexOf(product);
+                  final lpg = products[index];
+                  return PopularGridItem(lpg: lpg);
+                }).toList(),
               ),
             ),
           );
@@ -78,5 +74,4 @@ class GridContainer extends StatelessWidget {
       },
     );
   }
-
 }

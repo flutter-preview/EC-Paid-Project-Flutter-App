@@ -57,13 +57,16 @@ class GradientContainer extends StatelessWidget {
                   SizedBox(height: 8.0),
                   ElevatedButton(
                     onPressed: () {
-                       final Map<String, String> jsonData = {'search': "".toString()};
-                final jsonString = jsonEncode(jsonData);
-                      Navigator.pushNamed(context, '/gridPage',arguments: jsonString);
+                      final Map<String, String> jsonData = {
+                        'search': "".toString()
+                      };
+                      final jsonString = jsonEncode(jsonData);
+                      Navigator.pushNamed(context, '/gridPage',
+                          arguments: jsonString);
                     },
-                    child: const Text('Order More Now'),
+                    child: const Text('Order Now'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.cyan[700],
+                      backgroundColor: Colors.black,
                     ),
                   ),
                 ],

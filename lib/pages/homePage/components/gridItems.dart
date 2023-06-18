@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/food_and_category.dart';
 
 class PopularGridItem extends StatelessWidget {
- final LPG lpg;
+  final LPG lpg;
 
-   PopularGridItem({ super.key, required this.lpg});
+  PopularGridItem({super.key, required this.lpg});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.pushNamed(context, '/productDetail',arguments: lpg.id.toString());
+      onTap: () {
+        Navigator.pushNamed(context, '/productDetail',
+            arguments: lpg.id.toString());
       },
       child: Container(
         margin: EdgeInsets.only(right: 4.0, left: 4.0, top: 4.0),
@@ -29,9 +30,8 @@ class PopularGridItem extends StatelessWidget {
             ),
             Text(
               lpg.title,
-              style: TextStyle(fontSize: 10.0),
+              style: TextStyle(fontSize: 13),
             ),
-          
           ],
         ),
       ),
