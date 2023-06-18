@@ -70,9 +70,11 @@ Future<void> makePayment() async {
       print('$e');
     }
   
-
+  }
+    
+    
     calculateAmount(String amount) {
     final calculatedAmout = (int.parse(amount)) * 100;
     return calculatedAmout.toString();
-  }
+
 }
