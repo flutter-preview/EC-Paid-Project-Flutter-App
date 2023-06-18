@@ -26,6 +26,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: screens[index],
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,

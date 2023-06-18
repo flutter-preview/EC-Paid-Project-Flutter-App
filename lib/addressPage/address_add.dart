@@ -139,7 +139,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           });
                           SharedPreferences prefs = await SharedPreferences.getInstance();
                           prefs.setString("lpgAddress",jsonEncode(addressAndPhone.toJson()));
-                          Navigator.pushNamed(context, "/paymentOrCash");
+                          Navigator.pushNamed(context, "/map");
 
                         } else {
                           // Invalid fields, show an error message

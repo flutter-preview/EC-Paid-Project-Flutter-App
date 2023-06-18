@@ -54,7 +54,7 @@ class _CartPageState extends State<CartPage> {
                           horizontal: 8.0, vertical: 8),
                       child: ListTile(
                         title: Text(
-                          '${item.title}  ${item.quantity})',
+                          '${item.title}  (${item.quantity})',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         leading: Container(
@@ -147,7 +147,10 @@ class _CartPageState extends State<CartPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
+                    if(store.state.cart.lpg.isNotEmpty){
+
                     Navigator.pushNamed(context, "/addressPage");
+                    }
 // sendCart(store.state.cart);
                   },
                 ),

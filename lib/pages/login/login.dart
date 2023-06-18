@@ -21,9 +21,9 @@ class _LoginPageState extends State<LoginPage> {
   String message = '';
 
   _login(BuildContext context) async {
-    // await login(loginuser);
+    await login(loginuser);
     // await getAll();
-    await bank();
+    // await bank();
     // await initiateHandshake();
     if (loginuser.email.contains('@') &&
         loginuser.password.length >= 8 &&
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
         loginuser.password != loginuser.password.toLowerCase()) {
       // final store=StoreProvider.of(context);
       // store.state.cart= await getCartFromSession();
-      // Navigator.pushNamed(context, "/mainPage");
+      Navigator.pushNamed(context, "/mainPage");
       setState(() {
         message = 'Login successful';
       });

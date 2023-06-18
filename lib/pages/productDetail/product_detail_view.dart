@@ -16,7 +16,7 @@ class ProductDetailsView extends StatelessWidget {
         appBar: PlatformAppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.popAndPushNamed(context, "/mainPage"),
             icon: Icon(
               Icons.adaptive.arrow_back,
               color: Colors.black,

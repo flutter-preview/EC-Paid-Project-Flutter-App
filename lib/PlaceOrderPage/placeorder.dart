@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/reduxStore/action.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../reduxStore/app_state.dart';
 
 class OrderPlacedPage extends StatefulWidget {
   @override
@@ -11,7 +16,10 @@ class OrderPlacedPageState extends State<OrderPlacedPage> {
     super.initState();
     
     // Wait for two seconds and navigate to the other page
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 2), () async{
+      // clear cart 
+   final store=StoreProvider.of<AppState>(context);
+   store.dispatch(CartAction(CartActionType.clearCart));
       Navigator.popAndPushNamed(
         context,
         "/orderHistory"

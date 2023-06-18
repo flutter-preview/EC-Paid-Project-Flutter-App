@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/pages/distributorsPage/distributor.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,6 +11,8 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../models/distributor.dart';
 import 'action/mapAction.dart';
+
+
 
 class MapPage extends StatefulWidget {
   @override
@@ -41,18 +44,28 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        title: Text('Map Page'),
+        title: Text('Select Distributor'),
       ),
       body: _buildMap(),
     );
   }
 
   Widget _buildMap() {
+    if (userLocation == null) {
+      return Center(
+        child: PlatformCircularProgressIndicator(),
+      );
+    }
     return GoogleMap(
       initialCameraPosition: CameraPosition(
-        target: userLocation ?? LatLng(0, 0),
-        zoom: 14.0,
+        target: userLocation!,
+        zoom: 10.0,
+
       ),
+      // liteModeEnabled: true
+      // ,
+      myLocationEnabled: true,
+      
       onMapCreated: (GoogleMapController controller) {
         setState(() {
           mapController = controller;
@@ -63,6 +76,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   Set<Marker> _buildMarkers() {
+
     if (userLocation == null || nearestDistributors.isEmpty) {
       return {};
     }
@@ -91,16 +105,30 @@ class _MapPageState extends State<MapPage> {
 
       markers.add(
         Marker(
+
+onTap: () {
+onDistributorTap(distributor);
+Navigator.pushNamed(context, "/paymentOrCash");
+},
+
           markerId: MarkerId(distributor.name),
           position: location,
-          infoWindow: InfoWindow(
+          infoWindow: 
+          InfoWindow(
             title: distributor.name,
             snippet: 'Distance: ${distance.toStringAsFixed(2)} meters',
+onTap: (){
+  onDistributorTap(distributor);
+Navigator.pushNamed(context, "/paymentOrCash");
+},
           ),
         ),
       );
     }
 
+if (mapController != null && markers.isNotEmpty) {
+    mapController!.showMarkerInfoWindow(markers.first.markerId);
+  }
     return markers;
   }
 

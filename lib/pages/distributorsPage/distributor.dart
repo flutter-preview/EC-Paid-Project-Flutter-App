@@ -12,7 +12,7 @@ class DistributorsPage extends StatefulWidget {
   @override
   _DistributorsPage createState() => _DistributorsPage();
 }
-void _onDistributorTap(Distributor distributor) async {
+void onDistributorTap(Distributor distributor) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String encodedDistributor = jsonEncode(distributor.toJson());
   await prefs.setString('LpgDistributor', encodedDistributor);
@@ -53,7 +53,7 @@ class _DistributorsPage extends State<DistributorsPage> {
             subtitle: Text('Distance: ${distributor.distance.toStringAsFixed(2)} meters'),
             // trailing: Text(distributor.location),
              onTap: () {
-    _onDistributorTap(distributor);
+    onDistributorTap(distributor);
   },
           );
         },

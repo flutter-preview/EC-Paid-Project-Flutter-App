@@ -32,10 +32,8 @@ class QRCodeScannerState extends State<QRCodeScanner> {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        leading: BackButton(onPressed: () {
-          Navigator.pop(context);
-        }),
         title: Text('QR Code Scanner'),
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         alignment: Alignment.center,
@@ -76,9 +74,11 @@ class QRCodeScannerState extends State<QRCodeScanner> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
          scannedData = scanData.code! ;
-        print(scannedData);
-         String orderId = getOrderIDFromScannedData(scannedData);
-    Navigator.popAndPushNamed(context, "/orderDetail", arguments: orderId.toString());
+       final  productId = scannedData.split(":")[1].trim();
+
+        print(productId);
+    //      String orderId = getOrderIDFromScannedData(scannedData);
+    Navigator.popAndPushNamed(context, "/productDetail", arguments: productId.toString());
         // Navigator.pushNamed(context, "/orderDetails
         
       });

@@ -109,6 +109,7 @@ class ProfilePage extends StatelessWidget {
                       onTap: () async{
                         final prefs = await SharedPreferences.getInstance();
                         prefs.remove('lpguser');
+                        await logout();
                         Navigator.pushNamed(context, '/login');
                       },
                       trailingIcon: false,
@@ -137,7 +138,7 @@ Future<User> loadUserProfile() async {
     final userMap1=jsonDecode(userMap);
     print(userMap1);
     // String b=userMap["email"] as String;
-User user=User(email: userMap1["email"], username: userMap1["first_name"]);
+User user=User(email: userMap1["email"], username: userMap1["first_name"]+" "+userMap1["last_name"]);
     return user;
   } else {
     throw Exception('User profile data not found in shared preferences.');

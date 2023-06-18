@@ -5,7 +5,8 @@ import 'dart:convert';
 import 'dart:async';
 
 
-final String baseUrl="https://9077-154-198-116-56.ngrok-free.app";
+// final String baseUrl="https://9077-154-198-116-56.ngrok-free.app";
+final String baseUrl="https://owaisali246.pythonanywhere.com";
  fun()async{
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -48,7 +49,9 @@ getAll() async {
 }
 
   sendOrder(cart,address,type,id) async{
-  
+  print(jsonEncode(cart));
+  print(jsonEncode(address));
+  print(jsonEncode(id));
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
   if (token != null && token.isNotEmpty) {
@@ -134,7 +137,16 @@ getDistrbutor() async {
 
 
 
-
+// logout from django
+logout()async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+  if(token!=null && token.isNotEmpty){
+    apiClient3.headers["Authorization"]="Token $token";
+  }
+final response=await apiClient3.get("/dj-rest-auth/logout/");
+return response.body;
+}
 
 
 
