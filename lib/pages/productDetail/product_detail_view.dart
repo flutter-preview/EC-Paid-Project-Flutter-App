@@ -12,22 +12,26 @@ class ProductDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-        backgroundColor: Colors.white,
         appBar: PlatformAppBar(
-          backgroundColor: Colors.white,
+          title: Text(
+            'Cylinder Details',
+            style: TextStyle(color: Colors.white),
+          ),
           leading: IconButton(
             onPressed: () => Navigator.popAndPushNamed(context, "/mainPage"),
             icon: Icon(
               Icons.adaptive.arrow_back,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
           trailingActions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/cart');
+              },
               icon: Icon(
                 Icons.shopping_bag_outlined,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ],
@@ -45,7 +49,9 @@ class ProductDetailsView extends StatelessWidget {
                       child: Stack(
                         children: [
                           ProductDetails(
-                              title: lpg.title, price: lpg.price.toString(),description: lpg.description),
+                              title: lpg.title,
+                              price: lpg.price.toString(),
+                              description: lpg.description),
                           Align(
                             alignment: Alignment.topCenter,
                             child: Container(

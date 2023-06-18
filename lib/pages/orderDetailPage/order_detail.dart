@@ -6,7 +6,7 @@ import 'action/orderDetailAction.dart';
 
 class OrderDetailPage extends StatelessWidget {
   OrderDetailPage({Key? key, required String arguments}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,25 +30,22 @@ class OrderDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-SizedBox(height: 10,),
-Text("Order Details",style: TextStyle(
-  fontSize: 39,
-  fontWeight: FontWeight.bold,
-),
-
-textAlign:TextAlign.center,),
-SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   Container(
-                    padding: EdgeInsets.all(5),
-                    decoration:BoxDecoration( borderRadius: BorderRadius.circular(10),
-    boxShadow: [
-      BoxShadow(
-        color: Color.fromARGB(255, 212, 235, 255).withOpacity(0.5),
-        spreadRadius: 2,
-        blurRadius: 5,
-        offset: Offset(0, 3),
-      ),
-    ],),
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 212, 235, 255)
+                              .withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -63,7 +60,8 @@ SizedBox(height: 10,),
                             ),
                           ),
                           trailing: Text(
-                           DateFormat.yMMMd().format(DateTime.parse(order.orderInfo.date)),
+                            DateFormat.yMMMd()
+                                .format(DateTime.parse(order.orderInfo.date)),
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -154,8 +152,21 @@ SizedBox(height: 10,),
                   ),
                   SizedBox(height: 5),
                   Container(
-                    color: Color.fromARGB(255, 238, 247, 249),
-                    padding: EdgeInsets.all(5),
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 238, 247, 249),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 212, 235, 255)
+                              .withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -200,13 +211,17 @@ SizedBox(height: 10,),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.orange)),
                       onPressed: () {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: Text('Confirm'),
-                              content: Text('Are you sure you want to cancel this order?'),
+                              content: Text(
+                                  'Are you sure you want to cancel this order?'),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -218,7 +233,8 @@ SizedBox(height: 10,),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                     // Navigate to HomePage
-                                    Navigator.of(context).pushNamed('/mainPage');
+                                    Navigator.of(context)
+                                        .pushNamed('/mainPage');
                                   },
                                   child: Text('Yes'),
                                 ),
@@ -230,9 +246,9 @@ SizedBox(height: 10,),
                       child: Text(
                         'Cancel Order',
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                   ),

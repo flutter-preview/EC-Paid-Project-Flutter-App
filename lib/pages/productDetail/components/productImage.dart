@@ -44,15 +44,20 @@ class _ProductImageState extends State<ProductImage> {
           ],
         ),
         height: MediaQuery.of(context).size.height * 0.35,
-        padding: const EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
         width: double.infinity,
         child: ClipRect(
           child: Transform.scale(
             scale: _scale,
-            child: Image.network(
-              widget.image,
-              colorBlendMode: BlendMode.softLight,
-              fit: BoxFit.contain,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 3, color: Colors.white),
+              ),
+              child: Image.network(
+                widget.image,
+                colorBlendMode: BlendMode.softLight,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),

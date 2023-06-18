@@ -3,10 +3,11 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../models/addressAndPhone.dart';
+import '../../../models/addressAndPhone.dart';
 import '../address_add.dart';
 
-void getUserAddress(BuildContext context, AddressAndPhone addressAndPhone) async {
+void getUserAddress(
+    BuildContext context, AddressAndPhone addressAndPhone) async {
   // Request permission to access the device's location
   var status = await Permission.location.request();
   if (status.isGranted) {
