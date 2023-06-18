@@ -35,7 +35,7 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
@@ -43,7 +43,7 @@ void main() {
   );
   HttpOverrides.global = MyHttpOverrides();
   runApp(
-      DevicePreview(enabled: false, builder: (context) => MyApp(store: store)));
+      DevicePreview(enabled: true, builder: (context) => MyApp(store: store)));
   // MyApp(store: store));
 }
 
@@ -66,15 +66,16 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home:MainPage(),
+          home: LoginPage(),
           routes: {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),
             "/signup": (context) => SignupPage(),
             "/mainPage": (context) => MainPage(),
             "/homePage": (context) => HomePage(),
-            "/gridPage": (context) =>
-                GridPage(arguments: ModalRoute.of(context)?.settings.arguments as String),
+            "/gridPage": (context) => GridPage(
+                arguments:
+                    ModalRoute.of(context)?.settings.arguments as String),
             "/productDetail": (context) => ProductDetailsView(
                 arguments:
                     ModalRoute.of(context)?.settings.arguments as String),
@@ -83,16 +84,11 @@ class MyApp extends StatelessWidget {
             "/orderHistory": (context) => OrderHistory(),
             "/orderDetail": (context) => OrderDetailPage(
                 arguments:
-                    ModalRoute.of(context)?.settings.arguments as String
-            ),
+                    ModalRoute.of(context)?.settings.arguments as String),
             "/addressPage": (context) => AddAddressPage(),
             "/paymentOrCash": (context) => PaymentOrCashPage(),
-            "/forgetPass": (context) => 
-            
-            ForgetPassPage(),
-            "/orderPlaced": (context) => 
-            
-            OrderPlacedPage(),
+            "/forgetPass": (context) => ForgetPassPage(),
+            "/orderPlaced": (context) => OrderPlacedPage(),
             "/map": (context) => MapPage(),
             "/updateProfilePage": (context) => UpdateProfilePage(),
             "/tos": (context) => TermsAndConditionsPage(),
@@ -102,10 +98,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHttpOverrides extends HttpOverrides{
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

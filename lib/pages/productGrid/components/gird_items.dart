@@ -4,7 +4,7 @@ import 'package:flutter_ecommerce_app/urls/urls.dart';
 import '../../../models/food_and_category.dart';
 
 class GridItem extends StatelessWidget {
- final LPG lpg;
+  final LPG lpg;
   final double width;
   final double height;
 
@@ -26,6 +26,7 @@ class GridItem extends StatelessWidget {
         // store.dispatch(setFood());
       },
       child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         width:
             width, // Reduce width by twice the margin value (13 pixels on each side)
         height: height -
