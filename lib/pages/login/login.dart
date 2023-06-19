@@ -51,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
           'Welcome!',
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
+        centerTitle: true,
         flexibleSpace: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -58,107 +59,111 @@ class _LoginPageState extends State<LoginPage> {
                   fit: BoxFit.fill)),
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(0.0),
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/login-background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Expanded(child: SizedBox()),
-                  const SizedBox(height: 40),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color.fromARGB(255, 95, 203, 230),
-                                  Color.fromARGB(255, 213, 238, 238),
-                                ]),
-                            border: Border.all(
-                                style: BorderStyle.solid,
-                                width: 5,
-                                color: Colors.white),
-                            color: Colors.white),
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image: AssetImage('images/logo2.jpg'),
-                                      fit: BoxFit.contain)),
-                              height: 180,
-                            ),
-                            MyInputBox(loginuser: loginuser),
-                          ],
-                        )),
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: 200,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _login(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.cyan,
-                        elevation: 9.9,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                      ),
-                      child: const Text('Login'),
-                    ),
-                  ),
-                  if (message.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        message,
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  const Expanded(child: SizedBox()),
-                  GoogleAndAppleButton(),
-                  const Expanded(child: SizedBox()),
-                  SafeArea(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/signup");
-                          },
-                          child: const Text("Not signed up yet? Signup"),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+      body: ListView(children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/login-background.jpg'),
+              fit: BoxFit.cover,
             ),
           ),
-        ],
-      ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color.fromARGB(255, 95, 203, 230),
+                                Color.fromARGB(255, 213, 238, 238),
+                              ]),
+                          border: Border.all(
+                              style: BorderStyle.solid,
+                              width: 5,
+                              color: Colors.white),
+                          color: Colors.white),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: AssetImage('images/logo2.jpg'),
+                                    fit: BoxFit.contain)),
+                            height: 180,
+                          ),
+                          MyInputBox(loginuser: loginuser),
+                        ],
+                      )),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _login(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.cyan,
+                      elevation: 9.9,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                      ),
+                    ),
+                    child: const Text('Login'),
+                  ),
+                ),
+                if (message.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Text(
+                      message,
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                const SizedBox(height: 20),
+                GoogleAndAppleButton(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/signup");
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            color: Colors.cyan,
+                            border: Border.all(width: 2, color: Colors.white)),
+                        child: const Text(
+                          "Not signed up yet? Signup",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ]),
     );
   }
 }
