@@ -34,6 +34,9 @@ class _SignupPageState extends State<SignupPage> {
  
   
     final signu =await signup(user);
+    // if(signu){
+      Navigator.pushNamed(context, "/login");
+    // }
 
   if (_formKey.currentState!.validate()) {
       // final data=await signup(user);

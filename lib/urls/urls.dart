@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'dart:async';
 
 
-// final String baseUrl="https://9077-154-198-116-56.ngrok-free.app";
-final String baseUrl="https://owaisali246.pythonanywhere.com";
+final String baseUrl="https://f4a9-154-81-252-168.ngrok-free.app";
+// final String baseUrl="https://owaisali246.pythonanywhere.com";
  fun()async{
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -48,7 +48,7 @@ getAll() async {
   }
 }
 
-  sendOrder(cart,address,type,id) async{
+  sendOrder(cart,address,type,id,transId) async{
   print(jsonEncode(cart));
   print(jsonEncode(address));
   print(jsonEncode(id));
@@ -59,7 +59,7 @@ getAll() async {
   }
   print(jsonEncode(address));
   
-    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":int.parse(id),"type":type,"address":address});
+    final response=await apiClient3.post("/order/",{"cart":cart,"dis_id":int.parse(id),"type":type,"address":address,"Transcation_id":transId});
     print(response.body);
     return response.body;
   }
@@ -109,14 +109,16 @@ final a=await getUser();
 }
 
 signup(body) async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  // String? token = prefs.getString("authToken");
+  // print(token);
     print(jsonEncode(body));
-  // final response=await apiClient3.post("/dj-rest-auth/registration/", body);
+  final response=await apiClient3.post("/dj-rest-auth/registration/", body);
 // print(response.body);
 // print("------------------")
 // ;
   // print(jsonEncode(body));
-// return response.body;
+return response.body;
     // final a=prefs.getString("lpguser");
     // Retrieve the value associated with the key 'token'
 }
@@ -228,16 +230,22 @@ getCrousel ()async{
 
 }
 
-bank()async{
+bank(email,phone,account,country)async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("authToken");
   if(token!=null && token.isNotEmpty){
     apiClient3.headers["Authorization"]="Token $token";
-  final res=await apiClient3.get('/alfa_pay');
+  final res=await apiClient3.post('/alfa_pay/',{"MobileNumber": phone,
+        "AccountNumber": account,
+        "Country": "164",
+        "EmailAddress": email,});
   print(res.body);
-  return res.body;
+  return jsonDecode(res.body)["Transaction ID "];
   }
-
+// "MobileNumber": "03363042666",
+//         "AccountNumber": "930003009542301",
+//         "Country": "164",
+//         "EmailAddress": "owaisali246.soa@gmail.com",
 }
 googlelogin(token1)async{
   print("-------------------------");
