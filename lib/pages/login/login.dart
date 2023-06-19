@@ -5,6 +5,7 @@ import 'package:flutter_ecommerce_app/models/cart.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../models/user.dart';
+import '../../stripe/stripe.dart';
 import '../../urls/urls.dart';
 import 'components/google_apple_button.dart';
 import 'components/input_box.dart';
@@ -21,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   String message = '';
 
   _login(BuildContext context) async {
+    // await makePayment();
     await login(loginuser);
     // await getOffer();
     // await initiateHandshake();

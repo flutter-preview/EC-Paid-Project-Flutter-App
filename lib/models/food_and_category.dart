@@ -7,7 +7,8 @@ class LPG {
   int quantity = 1;
   String image = "";
   int price;
-  String description = "";
+  double size=0;
+  String description="";
 
   LPG(
       {this.id = -1,
@@ -20,6 +21,7 @@ class LPG {
   LPG.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         description = json['description'],
+        size = json['size'],
         title = json['name'],
         image = baseUrl + json["image"],
         price = json['price'];
@@ -30,6 +32,7 @@ class LPG {
         'id': id,
         'quantity': quantity,
         'price': price,
+        'size': size,
         'description': description,
         'image': image,
       };

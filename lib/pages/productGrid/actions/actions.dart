@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/food_and_category.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -23,11 +22,45 @@ Future<dynamic> getAllProduct(BuildContext context) async {
     final price = jsonData['price'];
 
     if (search != null && storedProducts.isNotEmpty) {
-      // Return filtered products from the store
+      // Return filtered and sorted products from the store
       final filteredProducts = storedProducts
           .where((product) =>
               product.title.toLowerCase().contains(search.toLowerCase()))
           .toList();
+
+      if (price != null && price is String) {
+        if (price == "Min") {
+          // Sort the products by price in ascending order
+          final sortedProducts = filteredProducts.toList()
+            ..sort((a, b) => a.price.compareTo(b.price));
+          return sortedProducts;
+        } else if (price == "Max") {
+          // Sort the products by price in descending order
+          final sortedProducts = filteredProducts.toList()
+            ..sort((a, b) => b.price.compareTo(a.price));
+          return sortedProducts;
+        }
+      }
+
+      if (size != null && size is String) {
+        if (size == "Small") {
+          // Filter the products with size below 5
+          final filteredBySizeProducts =
+              filteredProducts.where((product) => product.size < 5).toList();
+          return filteredBySizeProducts;
+        } else if (size == "Medium") {
+          // Filter the products with size between 5 and 15
+          final filteredBySizeProducts = filteredProducts
+              .where((product) => product.size >= 5 && product.size <= 15)
+              .toList();
+          return filteredBySizeProducts;
+        } else if (size == "Large") {
+          // Filter the products with size above 15
+          final filteredBySizeProducts =
+              filteredProducts.where((product) => product.size > 15).toList();
+          return filteredBySizeProducts;
+        }
+      }
 
       return filteredProducts;
     } else {
@@ -47,11 +80,46 @@ Future<dynamic> getAllProduct(BuildContext context) async {
           final filteredProducts = products.where((product) =>
               product.title.toLowerCase().contains(search.toLowerCase()));
 
+          if (price != null && price is String) {
+            if (price == "Min") {
+              // Sort the products by price in ascending order
+              final sortedProducts = filteredProducts.toList()
+                ..sort((a, b) => a.price.compareTo(b.price));
+              return sortedProducts;
+            } else if (price == "Max") {
+              // Sort the products by price in descending order
+              final sortedProducts = filteredProducts.toList()
+                ..sort((a, b) => b.price.compareTo(a.price));
+              return sortedProducts;
+            }
+          }
+
+          if (size != null && size is String) {
+            if (size == "Small") {
+              // Filter the products with size below 5
+              final filteredBySizeProducts =
+                  filteredProducts.where((product) => product.size < 5).toList();
+              return filteredBySizeProducts;
+            } else if (size == "Medium") {
+              // Filter the products with size between 5 and 15
+              final filteredBySizeProducts = filteredProducts
+                  .where((product) => product.size >= 5 && product.size <= 15)
+                  .toList();
+              return filteredBySizeProducts;
+            } else if (size == "Large") {
+              // Filter the products with size above 15
+              final filteredBySizeProducts =
+                  filteredProducts.where((product) => product.size > 15).toList();
+              return filteredBySizeProducts;
+            }
+          }
+
           return filteredProducts.toList();
         } else {
           return products;
         }
       }
+
       if (decoded.length == 1) {
         final product = LPG.fromJson(decoded);
 

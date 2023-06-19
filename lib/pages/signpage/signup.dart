@@ -30,8 +30,13 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
-  _signup() async {
-    final signu = await signup(user);
+   _signup()async {
+ 
+  
+    final signu =await signup(user);
+    // if(signu){
+      Navigator.pushNamed(context, "/login");
+    // }
 
     if (_formKey.currentState!.validate()) {
       // final data=await signup(user);

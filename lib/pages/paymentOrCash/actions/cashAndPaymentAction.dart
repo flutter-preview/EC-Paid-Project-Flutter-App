@@ -9,14 +9,14 @@ import '../../../models/addressAndPhone.dart';
 import '../../../models/cart.dart';
 import '../../../urls/urls.dart';
 
-void cashOnDeliveryDialogue(BuildContext context) async {
+void cashOnDeliveryDialogue(BuildContext context,{String type="COD",String transId="-1"}) async {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text('Confirm Payment'),
         content:
-            Text('Are you sure you want to proceed with Cash on Delivery?'),
+            Text('Are you sure you want to proceed ?'),
         actions: <Widget>[
           TextButton(
             child: Text('Cancel'),
@@ -27,7 +27,6 @@ void cashOnDeliveryDialogue(BuildContext context) async {
           TextButton(
             child: Text('Confirm'),
             onPressed: () async {
-              String type = "COD";
               SharedPreferences prefs = await SharedPreferences.getInstance();
               String? cartJson = prefs.getString('cart');
               String? LpgDistributor = prefs.getString('LpgDistributor');
@@ -49,7 +48,7 @@ void cashOnDeliveryDialogue(BuildContext context) async {
                 // print(addressAndPhone.area);
                 print(cart.lpg);
                 sendOrder(cart.lpg, addressAndPhone, type,
-                    (distributor.id).toString());
+                    (distributor.id).toString(),transId);
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();

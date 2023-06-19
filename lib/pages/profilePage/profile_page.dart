@@ -60,8 +60,8 @@ class ProfilePage extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                         onPressed: () async {
-                          await bank();
-                          // Navigator.pushNamed(context, '/updateProfilePage');
+                          // await bank();
+                          Navigator.pushNamed(context, '/updateProfilePage');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,

@@ -56,6 +56,15 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                     color: Color(0xFF212121),
                   ),
                 ),
+                onSubmitted: (value){
+                  final Map<String, String> jsonData = {'search': _textEditingController.text};
+                  final jsonString = jsonEncode(jsonData);
+                  setState(() {
+                    search = jsonData["search"]!;
+                  });
+                  print('Selected: ${_textEditingController.text}');
+                  Navigator.pushNamed(context, "/gridPage", arguments: jsonString);
+                }
               ),
               suggestionsCallback: (pattern) {
                 return suggestions

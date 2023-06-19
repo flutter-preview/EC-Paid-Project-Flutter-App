@@ -83,7 +83,7 @@ void openFilterDialog(BuildContext context, String search) async {
     if (selectedFilters != null) {
       final encoded = jsonEncode(selectedFilters);
       // Do something with selected filters
-      Navigator.pushNamed(context, "/gridpage", arguments: encoded);
+      Navigator.pushNamed(context, "/gridPage", arguments: encoded);
 
       print(selectedFilters);
     }
