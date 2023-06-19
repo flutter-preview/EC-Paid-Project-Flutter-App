@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/urls/urls.dart';
+
+import '../paymentOrCash/actions/cashAndPaymentAction.dart';
 
 class BillingDetailsPage extends StatefulWidget {
   @override
@@ -12,6 +15,8 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
   String cardNumber = '';
   String cvv = '';
   String expiryDate = '';
+  String phoneNumber = '';
+  String email = '';
   String name = '';
   String accountNumber = '';
 
@@ -191,6 +196,10 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
+                  onChanged: (value) {
+                      setState(() {
+                        phoneNumber = value;
+                      });}
                 ),
                 SizedBox(height: 16.0),
                 TextFormField(
@@ -202,11 +211,24 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
+                    onChanged: (value) {
+                      setState(() {
+                        email = value;
+                      });}
                 ),
                 SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                  onPressed: () async{
+                    if (_formKey.currentState!.validate()) {
+                      print(accountNumber);
+                      print(email);
+                      print(phoneNumber);
+                      final a=await bank(email,phoneNumber,accountNumber,"pakistan");
+                      if(a!=""){
+                        cashOnDeliveryDialogue(context,type:"Alfa Pay",transId: a);
+                      }
+                      
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 5, 154, 173),
