@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'dart:async';
 
 
-final String baseUrl="https://f4a9-154-81-252-168.ngrok-free.app";
-// final String baseUrl="https://owaisali246.pythonanywhere.com";
+// final String baseUrl="https://f4a9-154-81-252-168.ngrok-free.app";
+final String baseUrl="https://owaisali246.pythonanywhere.com";
  fun()async{
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
