@@ -45,7 +45,7 @@ if(sharedPreferences.containsKey("authToken")){
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/LPG5.png',
+              'images/ec-logo.png',
               height: 100,
             ),
             const SizedBox(
