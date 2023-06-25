@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/platformSettings/button.dart';
 import 'package:flutter_ecommerce_app/reduxStore/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../models/cart.dart';
@@ -25,7 +27,9 @@ class _CartPageState extends State<CartPage> {
             title: Text('Cart'),
             centerTitle: true,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Theme.of(context).platform == TargetPlatform.iOS
+                  ? Icon(CupertinoIcons.back)
+                  : Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -37,7 +41,9 @@ class _CartPageState extends State<CartPage> {
                   setState(() {});
                   // Navigator.of(context).pushNamed("/cart");
                 },
-                icon: Icon(Icons.delete_rounded),
+                icon: Theme.of(context).platform == TargetPlatform.iOS
+                    ? Icon(CupertinoIcons.delete)
+                    : Icon(Icons.delete_rounded),
                 tooltip: 'Empty the entire cart',
               )
             ],
@@ -76,7 +82,10 @@ class _CartPageState extends State<CartPage> {
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(4.0)),
                               child: IconButton(
-                                icon: Icon(Icons.remove_circle),
+                                icon: Theme.of(context).platform ==
+                                        TargetPlatform.iOS
+                                    ? Icon(CupertinoIcons.minus_circle)
+                                    : Icon(Icons.remove_circle),
                                 color: Colors.white,
                                 onPressed: () {
                                   store.dispatch(CartAction(
@@ -93,7 +102,10 @@ class _CartPageState extends State<CartPage> {
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(4.0)),
                               child: IconButton(
-                                icon: Icon(Icons.add_circle),
+                                icon: Theme.of(context).platform ==
+                                        TargetPlatform.iOS
+                                    ? Icon(CupertinoIcons.add_circled)
+                                    : Icon(Icons.add_circle),
                                 color: Colors.white,
                                 onPressed: () {
                                   store.dispatch(CartAction(
@@ -137,31 +149,16 @@ class _CartPageState extends State<CartPage> {
           bottomNavigationBar: BottomAppBar(
             color: Colors.cyan.shade50,
             child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: MaterialButton(
-                color: Colors.black,
-                height: 50,
-                minWidth: double.infinity,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                onPressed: () {},
-                child: TextButton(
-                  child: Text(
-                    'Proceed to Checkout',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+                padding: EdgeInsets.all(16.0),
+                child: CustomButton(
+                  text: 'Checkout',
                   onPressed: () {
                     if (store.state.cart.lpg.isNotEmpty) {
                       Navigator.pushNamed(context, "/addressPage");
                     }
 // sendCart(store.state.cart);
                   },
-                ),
-              ),
-            ),
+                )),
           ),
         );
       },
