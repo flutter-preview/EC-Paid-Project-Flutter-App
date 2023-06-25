@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/productGrid/product_grid.dart';
+import 'package:flutter_ecommerce_app/platformSettings/button.dart';
 
 class GradientContainer extends StatelessWidget {
   final String text;
@@ -12,6 +13,8 @@ class GradientContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     double containerHeight = MediaQuery.of(context).size.height / 6;
     double containerWidth = MediaQuery.of(context).size.width;
+    double buttonHeight = MediaQuery.of(context).size.height / 19.5;
+    double buttonWidth = MediaQuery.of(context).size.width / 2;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -55,19 +58,19 @@ class GradientContainer extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      final Map<String, String> jsonData = {
-                        'search': "".toString()
-                      };
-                      final jsonString = jsonEncode(jsonData);
-                      Navigator.pushNamed(context, '/gridPage',
-                          arguments: jsonString);
-                    },
-                    child: const Text('Order Now'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
+                  SizedBox(
+                    height: buttonHeight,
+                    width: buttonWidth,
+                    child: CustomButton(
+                        text: 'Order Now',
+                        onPressed: () {
+                          final Map<String, String> jsonData = {
+                            'search': "".toString()
+                          };
+                          final jsonString = jsonEncode(jsonData);
+                          Navigator.pushNamed(context, '/gridPage',
+                              arguments: jsonString);
+                        }),
                   ),
                 ],
               ),
