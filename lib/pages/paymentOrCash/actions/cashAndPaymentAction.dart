@@ -1,64 +1,63 @@
-import 'dart:convert';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/pages/addressPage/address_add.dart';
-import 'package:flutter_ecommerce_app/models/distributor.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 import '../../../models/addressAndPhone.dart';
 import '../../../models/cart.dart';
+import '../../../models/distributor.dart';
+import '../../../platformSettings/dialoguebox.dart';
 import '../../../urls/urls.dart';
+import 'package:flutter_ecommerce_app/pages/addressPage/address_add.dart';
 
-void cashOnDeliveryDialogue(BuildContext context,{String type="COD",String transId="-1"}) async {
-  showDialog(
+void cashOnDeliveryDialogue(BuildContext context, {String type = "COD", String transId = "-1"}) async {
+  showPlatformDialog(
     context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Confirm Payment'),
-        content:
-            Text('Are you sure you want to proceed ?'),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Cancel'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            child: Text('Confirm'),
-            onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              String? cartJson = prefs.getString('cart');
-              String? LpgDistributor = prefs.getString('LpgDistributor');
-              String? addressAndPhoneJson = prefs.getString('lpgAddress');
-              if (cartJson != null &&
-                  addressAndPhoneJson != null &&
-                  LpgDistributor != null) {
-                Map<String, dynamic> cartMap = jsonDecode(cartJson);
-                Map<String, dynamic> addressAndPhoneJson1 =
-                    jsonDecode(addressAndPhoneJson);
-                Map<String, dynamic> LpgDistributor1 =
-                    jsonDecode(LpgDistributor);
+    builder: (_) => PlatformAlertDialog(
+      title: 'Confirm Payment',
+      content: 'Are you sure you want to proceed?',
+      onCancelPressed: () {
+        Navigator.of(context).pop();
+      },
+      onConfirmPressed: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        String? cartJson = prefs.getString('cart');
+        String? LpgDistributor = prefs.getString('LpgDistributor');
+        String? addressAndPhoneJson = prefs.getString('lpgAddress');
+        if (cartJson != null &&
+            addressAndPhoneJson != null &&
+            LpgDistributor != null) {
+          Map<String, dynamic> cartMap = jsonDecode(cartJson);
+          Map<String, dynamic> addressAndPhoneJson1 =
+              jsonDecode(addressAndPhoneJson);
+          Map<String, dynamic> LpgDistributor1 =
+              jsonDecode(LpgDistributor);
 
-                Cart cart = Cart.fromJson(cartMap);
-                AddressAndPhone addressAndPhone =
-                    AddressAndPhone.fromJson(addressAndPhoneJson1);
-                Distributor distributor = Distributor.fromJson(LpgDistributor1);
-                // print(cart.lpg.length);
-                // print(addressAndPhone.area);
-                print(cart.lpg);
-                sendOrder(cart.lpg, addressAndPhone, type,
-                    (distributor.id).toString(),transId);
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Navigator.pushNamed(context, "/orderPlaced");
-              }
-            },
-          ),
-        ],
-      );
-    },
+          Cart cart = Cart.fromJson(cartMap);
+          AddressAndPhone addressAndPhone =
+              AddressAndPhone.fromJson(addressAndPhoneJson1);
+          Distributor distributor = Distributor.fromJson(LpgDistributor1);
+
+          print(cart.lpg);
+          sendOrder(
+            cart.lpg,
+            addressAndPhone,
+            type,
+            distributor.id.toString(),
+            transId,
+          );
+
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          Navigator.pushNamed(context, "/orderPlaced");
+        }
+      },
+    ),
   );
 }

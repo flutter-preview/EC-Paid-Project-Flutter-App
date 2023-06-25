@@ -16,6 +16,6 @@ Future<List<String>> fetchImageList() async {
     return imageList;
     
   } catch (error) {
-    throw Exception('Error: $error');
+    throw Exception('Error: Something Went Wrong!');
   }
 }

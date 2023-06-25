@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../models/addressAndPhone.dart';
+import '../../platformSettings/input.dart';
 import 'address_add.dart';
 
 class AddAddressForm extends StatelessWidget {
@@ -22,11 +22,9 @@ class AddAddressForm extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Flat Number/House Number',
-              ),
+            child: PlatformTextField(
+              labelText: 'Flat Number/House Number',
+              prefixIcon: Icon(Icons.home),
               onChanged: (value) {
                 addressAndPhone.houseNo = value;
               },
@@ -39,11 +37,9 @@ class AddAddressForm extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Area',
-              ),
+            child: PlatformTextField(
+              labelText: 'Area',
+              prefixIcon: Icon(Icons.location_on),
               onChanged: (value) {
                 addressAndPhone.area = value;
               },
@@ -56,10 +52,9 @@ class AddAddressForm extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'City',
-              ),
+            child: PlatformTextField(
+              labelText: 'City',
+              prefixIcon: Icon(Icons.location_city),
               onChanged: (value) {
                 addressAndPhone.city = value;
               },
@@ -72,11 +67,9 @@ class AddAddressForm extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Postcode',
-              ),
+            child: PlatformTextField(
+              labelText: 'Postcode',
+              prefixIcon: Icon(Icons.mail),
               onChanged: (value) {
                 addressAndPhone.postCode = value;
               },
@@ -89,12 +82,9 @@ class AddAddressForm extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Phone',
-                prefixText: '+92 ',
-              ),
+            child: PlatformTextField(
+              labelText: 'Phone',
+              prefixIcon: Icon(Icons.phone),
               onChanged: (value) {
                 int? parsedValue = int.tryParse(value);
                 if (parsedValue != null) {
@@ -103,6 +93,7 @@ class AddAddressForm extends StatelessWidget {
               },
               controller:
                   TextEditingController(text: addressAndPhone.phone.toString()),
+              keyboardType: TextInputType.phone,
             ),
           ),
         ],

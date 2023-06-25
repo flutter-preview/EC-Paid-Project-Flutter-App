@@ -110,11 +110,15 @@ class _CartPageState extends State<CartPage> {
                   },
                 ),
               ),
-              ListTile(
-                title: Text('Subtotal'),
-                trailing: Text(
-                    '${store.state.cart.getSubtotal().toStringAsFixed(2)} PKR'),
-              ),
+              Container(
+                height: MediaQuery.of(context).size.height/4,
+                child: ListView(
+                  children: [
+                    ListTile(
+                      title: Text('Subtotal'),
+                      trailing: Text(
+                          '${store.state.cart.getSubtotal().toStringAsFixed(2)} PKR'),
+                    ),
               ListTile(
                 title: Text('Delivery Charges'),
                 trailing: Text(
@@ -124,6 +128,9 @@ class _CartPageState extends State<CartPage> {
                 title: Text('Total'),
                 trailing: Text(
                     '${(store.state.cart.getSubtotal() + store.state.cart.getDeliveryCharges()).toStringAsFixed(2)} PKR'),
+              ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -3,6 +3,7 @@ import 'package:flutter_ecommerce_app/pages/homePage/components/carousel.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/components/homeGrid.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/components/middleContainer.dart';
 import 'package:flutter_ecommerce_app/pages/searchBar/searchbar.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import '../bottomNavigationBar/bottomNavigationBar.dart';
 
@@ -11,10 +12,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return PlatformScaffold(
+      appBar: PlatformAppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 80,
         title: Text("LPG"),
       ),
       body: SingleChildScrollView(

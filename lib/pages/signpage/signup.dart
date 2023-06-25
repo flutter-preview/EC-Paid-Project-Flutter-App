@@ -30,16 +30,9 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
-   _signup()async {
- 
-  
-    final signu =await signup(user);
-    // if(signu){
-      Navigator.pushNamed(context, "/login");
-    // }
-
+  _signup() async {
+  final a=signup(user);
     if (_formKey.currentState!.validate()) {
-      // final data=await signup(user);
       bool isValid = validateFields();
       if (isValid) {
         setState(() {
@@ -47,7 +40,8 @@ class _SignupPageState extends State<SignupPage> {
         });
       } else {
         setState(() {
-          _errorMessage = 'Please fill in all the required fields correctly.';
+          _errorMessage =
+              'Please fill in all the required fields correctly.';
         });
       }
     }
@@ -76,11 +70,22 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.cyan[400],
-      body: ListView(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Center(
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          final isPortrait = orientation == Orientation.portrait;
+          // final centerContent = isPortrait ? Center : SingleChildScrollView;
+
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: isPortrait
+                  ? BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height,
+                    )
+                  : BoxConstraints(),
+
+           child: IntrinsicHeight(
+             child: SizedBox(
+              // height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -163,9 +168,9 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ],
               ),
-            ),
-          ),
-        ],
+                     ),
+           ),),);
+        },
       ),
     );
   }

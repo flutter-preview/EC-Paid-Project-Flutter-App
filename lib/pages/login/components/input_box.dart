@@ -23,9 +23,13 @@ class _MyInputBoxState extends State<MyInputBox> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double spacing = screenHeight * 0.06;
+    final double textFieldHeight = screenHeight * 0.08;
+
     return Column(
       children: <Widget>[
-        SizedBox(height: 30),
+        SizedBox(height: spacing),
         PlatformTextField(
           labelText: 'Email',
           prefixIcon: Icon(Icons.email),
@@ -35,7 +39,7 @@ class _MyInputBoxState extends State<MyInputBox> {
             });
           },
         ),
-        SizedBox(height: 40),
+        SizedBox(height: spacing),
         PlatformTextField(
           labelText: 'Password',
           prefixIcon: Icon(Icons.lock),
@@ -52,7 +56,7 @@ class _MyInputBoxState extends State<MyInputBox> {
             });
           },
         ),
-        SizedBox(height: 50),
+        SizedBox(height: spacing),
       ],
     );
   }

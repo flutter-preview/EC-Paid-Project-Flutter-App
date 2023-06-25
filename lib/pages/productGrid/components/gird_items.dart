@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/urls/urls.dart';
-
 import '../../../models/food_and_category.dart';
 
 class GridItem extends StatelessWidget {
@@ -9,58 +8,71 @@ class GridItem extends StatelessWidget {
   final double height;
 
   const GridItem({
-    super.key,
+    Key? key,
     required this.width,
     required this.height,
     required this.lpg,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //  final a =await getOne(id);
-        // final store=StoreProvider.of<AppState>(context);
-        Navigator.of(context)
-            .pushNamed("/productDetail", arguments: lpg.id.toString());
-        // store.dispatch(setFood());
+        Navigator.of(context).pushNamed("/productDetail", arguments: lpg.id.toString());
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
-          width:
-              width, // Reduce width by twice the margin value (13 pixels on each side)
-          height: height -
-              26, // Reduce height by twice the margin value (13 pixels on each side)
+          width: width,
+          height: height - 26,
           margin: EdgeInsets.symmetric(vertical: 13, horizontal: 5),
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 244, 244, 244),
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 2,
-                    spreadRadius: 2,
-                    offset: Offset(3, 3))
-              ]),
+            color: Color.fromARGB(255, 244, 244, 244),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 2,
+                spreadRadius: 2,
+                offset: Offset(3, 3),
+              ),
+            ],
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
+              if (lpg.discount != 0.0)
+                Banner(
+                  message: '${lpg.discount.toString()} % off}',
+                  location: BannerLocation.topEnd,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    child: Image.network(
+                      lpg.image,
+                      width: width,
+                      isAntiAlias: true,
+                      height: (height - 26) * 0.6,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                )
+              else
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image.network(
+                    lpg.image,
+                    width: width,
+                    isAntiAlias: true,
+                    height: (height - 26) * 0.6,
+                    fit: BoxFit.fill,
+                  ),
                 ),
-                child: Image.network(
-                  lpg.image,
-                  width: width,
-                  isAntiAlias:
-                      true, // Adjust the width of the image to fit within the container
-                  height: (height - 26) *
-                      0.6, // Adjust the height of the image to fit within the container
-                  fit: BoxFit.fill,
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.all(8),
                 child: Column(

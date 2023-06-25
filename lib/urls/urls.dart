@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'dart:async';
 
 
-// final String baseUrl="https://f4a9-154-81-252-168.ngrok-free.app";
-final String baseUrl="https://owaisali246.pythonanywhere.com";
+final String baseUrl="https://5058-154-198-127-80.ngrok-free.app";
+// final String baseUrl="https://owaisali246.pythonanywhere.com";
  fun()async{
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -38,6 +38,37 @@ getAll() async {
      apiClient3.headers["Authorization"]="Token $token";
 
     final response = await apiClient3.get('/products');
+ List<dynamic> data = jsonDecode(response.body);
+      List products = [];
+
+      for (var item in data) {
+        var cylinder = item['cylinder'];
+        var discount = item['discount'];
+        cylinder["discount"]=discount;
+
+        var combinedObject = {
+           cylinder,
+          // "discount":discount,
+        };
+
+        products.add(cylinder);
+      }
+print(products);
+      return jsonEncode(products);
+  } else {
+    // Handle the case where the token is empty or null
+    // return an appropriate value or throw an error
+  }
+}
+getAlld() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("authToken");
+
+  if (token != null && token.isNotEmpty) {
+
+     apiClient3.headers["Authorization"]="Token $token";
+
+    final response = await apiClient3.get('/discounts');
     print(response.body);
 
     return response.body;
@@ -78,8 +109,12 @@ print(response.body);
 getOne(id) async{
   final id1=int.parse(id);
   final response = await apiClient3.get('/products/$id1');
+  final data = jsonDecode(response.body);
   print(response.body);
-  return response.body;
+        var cylinder = data['cylinder'];
+        var discount = data['discount'];
+        cylinder["discount"]=discount;
+  return jsonEncode((cylinder));
 
 }
 
@@ -114,11 +149,11 @@ signup(body) async {
   // print(token);
     print(jsonEncode(body));
   final response=await apiClient3.post("/dj-rest-auth/registration/", body);
-// print(response.body);
+print(response.body);
 // print("------------------")
 // ;
   // print(jsonEncode(body));
-return response.body;
+return response.statusCode;
     // final a=prefs.getString("lpguser");
     // Retrieve the value associated with the key 'token'
 }
