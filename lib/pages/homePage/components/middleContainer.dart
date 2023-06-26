@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/productGrid/product_grid.dart';
+import 'package:flutter_ecommerce_app/platformSettings/button.dart';
 
 class GradientContainer extends StatelessWidget {
   final String text;
@@ -10,14 +11,16 @@ class GradientContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double containerHeight = MediaQuery.of(context).size.height / 6;
+    double containerHeight = MediaQuery.of(context).size.height / 4;
     double containerWidth = MediaQuery.of(context).size.width;
+    double buttonHeight = MediaQuery.of(context).size.height / 19.5;
+    double buttonWidth = MediaQuery.of(context).size.width / 2;
 
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(8.0),
       child: Container(
         height: containerHeight,
-        width: containerWidth,
+        // width: containerWidth,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
@@ -27,7 +30,7 @@ class GradientContainer extends StatelessWidget {
               Color(0xFF66FFFF),
             ],
           ),
-          borderRadius: BorderRadius.circular(16.0),
+          // borderRadius: BorderRadius.circular(16.0),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.3),
@@ -41,7 +44,7 @@ class GradientContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,27 +57,46 @@ class GradientContainer extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      final Map<String, String> jsonData = {
-                        'search': "".toString()
-                      };
-                      final jsonString = jsonEncode(jsonData);
-                      Navigator.pushNamed(context, '/gridPage',
-                          arguments: jsonString);
-                    },
-                    child: const Text('Order Now'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
+                  // SizedBox(height: 8.0),
+                  SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      
+                      onPressed: () async{
+                        final Map<String, String> jsonData = {
+                          'search': "".toString()
+                        };
+                        final jsonString = jsonEncode(jsonData);
+                        Navigator.pushNamed(context, '/gridPage',
+                            arguments: jsonString);
+                      },
+                      child: const Text('More'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
                     ),
+                  ),
+                  SizedBox(height: 8.0),
+                  SizedBox(
+                    height: buttonHeight,
+                    width: buttonWidth,
+                    child: CustomButton(
+                        text: 'Order Now',
+                        onPressed: () {
+                          final Map<String, String> jsonData = {
+                            'search': "".toString()
+                          };
+                          final jsonString = jsonEncode(jsonData);
+                          Navigator.pushNamed(context, '/gridPage',
+                              arguments: jsonString);
+                        }),
                   ),
                 ],
               ),
             ),
             Container(
-              width: containerHeight * 0.8,
-              height: containerHeight * 0.8,
+              width: containerHeight * 0.7,
+              height: containerHeight * 0.7,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(

@@ -9,6 +9,8 @@ import '../../../reduxStore/app_state.dart';
 import '../../../urls/urls.dart';
 
 Future<dynamic> getAllProduct(BuildContext context) async {
+  try{
+
   final Store<AppState> store = StoreProvider.of<AppState>(context);
   final List<LPG> storedProducts = store.state.lpgList;
 
@@ -151,5 +153,8 @@ Future<dynamic> getAllProduct(BuildContext context) async {
 
       return products;
     }
+  }
+  }catch (error) {
+    throw Exception('Error: Something Went Wrong!');
   }
 }

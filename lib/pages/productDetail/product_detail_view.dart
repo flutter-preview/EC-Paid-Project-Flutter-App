@@ -39,7 +39,10 @@ class ProductDetailsView extends StatelessWidget {
         body: FutureBuilder(
             future: productDetailLoad(context),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.hasError) {
+                return Center(child: Text(snapshot.error.toString()));
+              } 
+              else if (snapshot.hasData) {
                 LPG lpg = snapshot.data as LPG;
 
                 return Column(

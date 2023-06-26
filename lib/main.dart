@@ -37,15 +37,15 @@ import 'reduxStore/reducer.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Firebase.initializeApp();
+  // Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
   );
   HttpOverrides.global = MyHttpOverrides();
-  // Stripe.publishableKey = ?"pk_test_51M1EtEA5eTipZQn7bj5ZNMahdePCZiDsAZYnQCR2Ff6sFMaezZT6uN9sdb54pfxt9qj2roaftpA5zmQzvF24xZfi00RzpC6vTy";
+  // 
   runApp(
-      // DevicePreview(enabled: false, builder: (context) => MyApp(store: store)));
+      // DevicePreview(enabled: true, builder: (context) => MyApp(store: store)));
   MyApp(store: store));
 }
 
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home: Splash(),
+          home: MainPage(),
           routes: {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),

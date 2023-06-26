@@ -9,6 +9,7 @@ class LPG {
   int price;
   double size=0;
   String description="";
+  double discount=0.0;
 
   LPG(
       {this.id = -1,
@@ -16,12 +17,13 @@ class LPG {
       this.title = "",
       this.price = 0,
       this.image = '',
-      this.quantity = 0});
+      this.quantity = 0,this.discount=0.0});
 
   LPG.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         description = json['description'],
         size = json['size'],
+        discount = json['discount']??0.0,
         title = json['name'],
         image = baseUrl + json["image"],
         price = json['price'];
@@ -33,6 +35,7 @@ class LPG {
         'quantity': quantity,
         'price': price,
         'size': size,
+        'discount': discount,
         'description': description,
         'image': image,
       };

@@ -214,26 +214,21 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Welcome!',
-          style: TextStyle(fontWeight: FontWeight.w700),
-        ),
-        centerTitle: true,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('images/login-background.jpg'),
-                  fit: BoxFit.fill)),
-        ),
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(
+        'Welcome!',
+        style: TextStyle(fontWeight: FontWeight.w700),
       ),
-      body: ListView(children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
+      centerTitle: true,
+    ),
+    body: OrientationBuilder(
+      builder: (context, orientation) {
+        final isPortrait = orientation == Orientation.portrait;
+
+        return Container(
+          decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/login-background.jpg'),
               fit: BoxFit.cover,
@@ -243,15 +238,6 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                          Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: AssetImage('images/logo2.jpg'),
-                                    fit: BoxFit.contain)),
-                            height: 120,
-                          ),
-                          SizedBox(height:5),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
@@ -262,8 +248,8 @@ class _LoginPageState extends State<LoginPage> {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Color.fromARGB(205, 95, 203, 230),
-                                Color.fromARGB(205, 213, 238, 238),
+                                Color.fromARGB(255, 95, 203, 230),
+                                Color.fromARGB(255, 213, 238, 238),
                               ]),
                           border: Border.all(
                               style: BorderStyle.solid,
@@ -272,6 +258,14 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.white),
                       child: Column(
                         children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: AssetImage('images/logo2.jpg'),
+                                    fit: BoxFit.contain)),
+                            height: 180,
+                          ),
                           MyInputBox(loginuser: loginuser),
                         ],
                       )),

@@ -3,24 +3,26 @@ import 'package:flutter/material.dart';
 
 class MyTheme {
   static ThemeData appThemeData = ThemeData(
-    fontFamily: 'Nunito',
-    scaffoldBackgroundColor: Colors.cyan[100],
-    appBarTheme: AppBarTheme(
-        backgroundColor: Colors.cyan.shade600,
-        shadowColor: Color.fromARGB(155, 0, 0, 0)),
-    buttonTheme: ButtonThemeData(
-      buttonColor: Color.fromARGB(148, 3, 168, 244).withOpacity(0.3),
-      textTheme: ButtonTextTheme.primary,
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: Colors.lightBlue,
-          width: 2.0,
+      fontFamily: 'Nunito',
+      scaffoldBackgroundColor: Colors.cyan[100],
+      appBarTheme: AppBarTheme(
+          backgroundColor: Colors.cyan.shade600,
+          shadowColor: Color.fromARGB(155, 0, 0, 0)),
+      buttonTheme: ButtonThemeData(
+        buttonColor: Color.fromARGB(148, 3, 168, 244).withOpacity(0.3),
+        textTheme: ButtonTextTheme.primary,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.lightBlue,
+            width: 2.0,
+          ),
         ),
       ),
-    ),
-  );
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black, foregroundColor: Colors.white)));
 
   static CupertinoThemeData iosThemeData = CupertinoThemeData(
     scaffoldBackgroundColor: Colors.white,

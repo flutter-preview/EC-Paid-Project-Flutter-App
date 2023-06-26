@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/urls/urls.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import '../paymentOrCash/actions/cashAndPaymentAction.dart';
 
@@ -28,8 +29,8 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return PlatformScaffold(
+      appBar: PlatformAppBar(
         title: Text('Billing Details'),
       ),
       body: Container(

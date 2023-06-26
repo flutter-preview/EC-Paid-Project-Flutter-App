@@ -10,6 +10,8 @@ productDetailLoad(BuildContext context)async{
 
   //  final con=Uri.base.pathSegments.last;
   //  print(con);
+  try{
+
   final args = ModalRoute.of(context)!.settings.arguments as String;
   await Future.delayed(Duration(seconds: 2));
   final a=await getOne(args);
@@ -21,5 +23,8 @@ productDetailLoad(BuildContext context)async{
 // final a=product.map<LPG>((json)=>LPG.fromJson(json));
 // LPG.fromJson(product);
 return lpg;
+  }catch (error) {
+    throw Exception('Error: Something Went Wrong!');
+  }
 
 }

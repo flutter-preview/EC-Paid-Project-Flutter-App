@@ -19,9 +19,9 @@ class _GridPageState extends State<GridPage> {
     final itemWidth = (screenWidth - 30) / 2; // Subtracting padding and spacing
     final itemHeight = itemWidth * 1.2; // Adjust the aspect ratio as needed
 
-    return Scaffold(
+    return PlatformScaffold(
       backgroundColor: Colors.cyan[100],
-      appBar: AppBar(
+      appBar: PlatformAppBar(
         title: Text('Catalog'),
       ),
       body: Column(
@@ -36,7 +36,10 @@ class _GridPageState extends State<GridPage> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasData) {
+                }else if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
+                  }
+                 else if (snapshot.hasData) {
                   List<LPG> lpg = snapshot.data!;
                   return CustomScrollView(
                     slivers: [

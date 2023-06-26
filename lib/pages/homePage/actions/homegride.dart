@@ -12,13 +12,21 @@ import '../../../urls/urls.dart';
 
 
 homePageProducts (BuildContext context)async{
+try{
+  // future delayed
+  await Future.delayed(Duration(seconds: 2));
   final product=await  getAll();
+  // final product22=await  getAlld();
+  // print("df");
   final decoded=jsonDecode(product);
 final   food = decoded as List<dynamic>;
   final products=food.map<LPG>((json)=>LPG.fromJson(json)).toList();
   final Store<AppState> store = StoreProvider.of<AppState>(context);
   store.dispatch(SetLPGListAction(products));
 return products;
+}catch (error) {
+    throw Exception('Error: Something Went Wrong$error!');
+  }
 }
 //   if(routeArgs != null){
 //    final uri = Uri.parse(routeArgs);
