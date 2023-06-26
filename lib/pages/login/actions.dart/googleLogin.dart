@@ -20,7 +20,7 @@ signInWithGoogle(BuildContext context) async {
       idToken: googleAuth?.idToken,
     );
 // print(credential );
-// print(googleAuth?.accessToken); 
+print(googleAuth?.idToken); 
 final a =await googlelogin(googleAuth?.idToken);
 if(a!=null){
   Navigator.of(context).pushNamed("/mainPage");
