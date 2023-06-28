@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,7 @@ import '../../platformSettings/input.dart';
 import '../../urls/urls.dart';
 
 class ForgetPassPage extends StatelessWidget {
+  String email="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class ForgetPassPage extends StatelessWidget {
                     prefixIcon: Icon(Icons.email),
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
-                      // Handle email input
+                      email = value;
                     },
                   ),
                   SizedBox(height: 20),
@@ -41,10 +43,13 @@ class ForgetPassPage extends StatelessWidget {
                     onPressed: () async {
                       //
                       //
+                      final a=await resetPassword(email);
+                      if(a!=null){
+final jsonSting =jsonEncode(a);
+                      Navigator.pushNamed(context, "/otpPage");
+                      }
                       //await getOrderDetail(12.toString());
                       // await getUser();
-                      Navigator.pushNamed(context, "/orderDetail",
-                          arguments: "12");
                     },
                     child: Text('next'),
                   ),

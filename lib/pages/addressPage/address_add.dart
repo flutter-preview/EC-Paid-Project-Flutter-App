@@ -141,7 +141,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               await SharedPreferences.getInstance();
                           prefs.setString("lpgAddress",
                               jsonEncode(addressAndPhone.toJson()));
-                          Navigator.pushNamed(context, "/map");
+                          Navigator.pushNamed(context, "/map",arguments: {"isClick":true});
                         } else {
                           // Invalid fields, show an error message
                           setState(() {

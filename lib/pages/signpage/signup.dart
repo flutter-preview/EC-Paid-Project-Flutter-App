@@ -31,34 +31,43 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   _signup() async {
-  final a=signup(user);
     if (_formKey.currentState!.validate()) {
-      bool isValid = validateFields();
-      if (isValid) {
-        setState(() {
-          _errorMessage = 'Signup successful!';
-        });
-      } else {
-        setState(() {
-          _errorMessage =
-              'Please fill in all the required fields correctly.';
+      try {
+
+  final response= await signup(user);
+if( response.statusCode==204){
+  Navigator.pushNamed(context, '/login');
+}else {
+  if(jsonDecode((response.body))["non_field_errors"]!=null){
+  Navigator.pushNamed(context, '/login');
+
+  }
+  else{
+    setState(() {
+          _errorMessage ="Fill Form Correctly";
+        });}
+}
+
+      }catch(err){
+print(err);
+      setState(() {
+          _errorMessage ="Fill Form Correctly";
         });
       }
-    }
-  }
-
-  bool validateFields() {
-    final RegExp specialCharsRegex = RegExp(r'[!@#$%^&*(),.?":{}|<>]');
-
-    if (user.email.contains('@') &&
-        user.password.length >= 8 &&
-        specialCharsRegex.hasMatch(user.password) &&
-        user.confirmPassword == user.password) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // print(response.statusCode);
+  // if(response.statusCode==200 || response.statusCode==204){
+  //   Navigator.pushNamed(context, '/login');
+  // }else{
+  //   setState(() {
+  //         _errorMessage ="Fill Form Correctly";
+  //       });
+  // }
+  //   }
+  }else{
+      setState(() {
+          _errorMessage ="Fill Form Correctly";
+        });
+    }}
 
   @override
   void dispose() {

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/PlaceOrderPage/placeorder.dart';
 import 'package:flutter_ecommerce_app/pages/forgetPassPage/forgetPassPage.dart';
 import 'package:flutter_ecommerce_app/pages/billingDetailsPage/billingDetails.dart';
+import 'package:flutter_ecommerce_app/pages/forgetPassPage/otpPage.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
 import 'package:flutter_ecommerce_app/pages/mainPage/main_page.dart';
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home: MainPage(),
+          home: LoginPage(),
           routes: {
             "/splash": (context) => Splash(),
             "/login": (context) => LoginPage(),
@@ -93,7 +94,8 @@ class MyApp extends StatelessWidget {
             "/orderPlaced": (context) => OrderPlacedPage(),
             "/map": (context) => MapPage(),
             "/updateProfilePage": (context) => UpdateProfilePage(),
-            "/billingDetailsPage": (context) => BillingDetailsPage()
+            "/billingDetailsPage": (context) => BillingDetailsPage(),
+            "/otpPage": (context) => OtpPage()
           },
         ));
   }
