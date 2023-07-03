@@ -25,7 +25,6 @@ class _MapPageState extends State<MapPage> {
   Distributor? nearestDistributor;
   List<Distributor> nearestDistributors = [];
   List<Distributor> distributors = [];
-
   @override
   void initState() {
     super.initState();
@@ -42,15 +41,24 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+final jsonString = ModalRoute.of( context)?.settings.arguments;
+late final text;
+if(jsonString!=null){
+ text="Select Distributor";
+}else{
+   text="Our Distributor";
+}
+
+// final jsonString="a";
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        title: Text('Select Distributor'),
+        title: Text( text),
       ),
-      body: _buildMap(),
+      body: _buildMap(jsonString),
     );
   }
 
-  Widget _buildMap() {
+  Widget _buildMap(jsonString) {
     if (userLocation == null) {
       return Center(
         child: PlatformCircularProgressIndicator(),
@@ -71,11 +79,11 @@ class _MapPageState extends State<MapPage> {
           mapController = controller;
         });
       },
-      markers: _buildMarkers(),
+      markers: _buildMarkers(jsonString),
     );
   }
 
-  Set<Marker> _buildMarkers() {
+  Set<Marker> _buildMarkers(jsonString) {
 
     if (userLocation == null || nearestDistributors.isEmpty) {
       return {};
@@ -107,8 +115,15 @@ class _MapPageState extends State<MapPage> {
         Marker(
 
 onTap: () {
+  // Map<String,bool> a=jsonDecode(jsonString) as Map<String,bool>;
+  // print(a);
+  if(jsonString!=null && jsonString["isClick"]==true){
+    print("isClick is true");
+    onDistributorTap(distributor);
+  // print(jsonString["isClick"]);
 onDistributorTap(distributor);
 Navigator.pushNamed(context, "/paymentOrCash");
+  }
 },
 
           markerId: MarkerId(distributor.name),
@@ -118,8 +133,14 @@ Navigator.pushNamed(context, "/paymentOrCash");
             title: distributor.name,
             snippet: 'Distance: ${distance.toStringAsFixed(2)} meters',
 onTap: (){
-  onDistributorTap(distributor);
-Navigator.pushNamed(context, "/paymentOrCash");
+  if(jsonString!=null && jsonString["isClick"]==true){
+    print("isClick is true");
+    onDistributorTap(distributor);
+  // print(jsonString["isClick"]);
+onDistributorTap(distributor);
+Navigator.pushNamed(context, "/paymentOrCash");}
+//   onDistributorTap(distributor);
+// Navigator.pushNamed(context, "/paymentOrCash");
 },
           ),
         ),

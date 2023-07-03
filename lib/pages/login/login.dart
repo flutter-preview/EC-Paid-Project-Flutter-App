@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -22,24 +23,20 @@ class _LoginPageState extends State<LoginPage> {
   String message = '';
 
   _login(BuildContext context) async {
-    // await makePayment();
-    await login(loginuser);
-    // await getOffer();
-    // await initiateHandshake();
-    if (loginuser.email.contains('@') &&
-        loginuser.password.length >= 8 &&
-        RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(loginuser.password) &&
-        loginuser.password != loginuser.password.toLowerCase()) {
-      // final store=StoreProvider.of(context);
-      // store.state.cart= await getCartFromSession();
-      Navigator.pushNamed(context, "/mainPage");
+   final response=await login(loginuser);
+print(jsonDecode(response.body));
+
+if(response.statusCode!=200)
+     {
+
       setState(() {
-        message = 'Login successful';
+        message ="Invalid Credentials";
       });
     } else {
       setState(() {
-        message = 'password must contain Number Capital and Special character';
+        message = 'Login successful';
       });
+      Navigator.pushNamed(context, "/mainPage");
     }
   }
 

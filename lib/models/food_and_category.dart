@@ -26,7 +26,7 @@ class LPG {
         discount = json['discount']??0.0,
         title = json['name'],
         image = baseUrl + json["image"],
-        price = json['price'];
+        price = (json['price']-((json['discount']/1000)*json['price']).round());
 
   Map<String, dynamic> toJson() => {
         // 'category_id': categoryId,

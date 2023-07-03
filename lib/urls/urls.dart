@@ -135,29 +135,30 @@ login(body) async {
 
 
   final response = await apiClient3.post("/dj-rest-auth/login/", body);
+    print("hellow");
     dynamic jsonData = jsonDecode(response.body);
-    String token = jsonData['key'];
+    if(jsonData['key']!=null){
+    final token = jsonData['key'];
     prefs.setString("authToken",token);
     print(prefs.getString('authToken'));
+    }
 final a=await getUser();
-
-
-
-
-  return response.body;
+    print("hellow");
+// print((response).statusCode);
+// print(jsresponse);
+  return response;
 }
 
 signup(body) async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   // String? token = prefs.getString("authToken");
   // print(token);
-    print(jsonEncode(body));
+
+print("------------------");
   final response=await apiClient3.post("/dj-rest-auth/registration/", body);
-print(response.body);
-// print("------------------")
 // ;
   // print(jsonEncode(body));
-return response.statusCode;
+return response;
     // final a=prefs.getString("lpguser");
     // Retrieve the value associated with the key 'token'
 }
@@ -300,6 +301,12 @@ await getUser();
   return response.body;
 }
 
+
+resetPassword(body) async{
+final response=await apiClient3.post("/dj-rest-auth/password/reset/",body);
+// final Map<String,dynamic> pass_data=jsonDecode(response.body)["pass_data"]; 
+return response.body;
+}
 
 
 

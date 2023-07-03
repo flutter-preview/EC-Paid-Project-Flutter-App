@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/productGrid/product_grid.dart';
 import 'package:flutter_ecommerce_app/platformSettings/button.dart';
 
+import '../../../urls/urls.dart';
+
 class GradientContainer extends StatelessWidget {
   final String text;
   final String image;
@@ -58,37 +60,21 @@ class GradientContainer extends StatelessWidget {
                     ),
                   ),
                   // SizedBox(height: 8.0),
-                  SizedBox(
-                    height: 40,
-                    child: ElevatedButton(
-                      
-                      onPressed: () async{
-                        final Map<String, String> jsonData = {
-                          'search': "".toString()
-                        };
-                        final jsonString = jsonEncode(jsonData);
-                        Navigator.pushNamed(context, '/gridPage',
-                            arguments: jsonString);
-                      },
-                      child: const Text('More'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                      ),
-                    ),
-                  ),
                   SizedBox(height: 8.0),
                   SizedBox(
                     height: buttonHeight,
                     width: buttonWidth,
                     child: CustomButton(
-                        text: 'Order Now',
-                        onPressed: () {
+                        text: 'More Products',
+                        onPressed: () async{
                           final Map<String, String> jsonData = {
                             'search': "".toString()
                           };
                           final jsonString = jsonEncode(jsonData);
                           Navigator.pushNamed(context, '/gridPage',
                               arguments: jsonString);
+                          // final a=await resetPassword("riz@gmail.com");
+                          // print(a);
                         }),
                   ),
                 ],
